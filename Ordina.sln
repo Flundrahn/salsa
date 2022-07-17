@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Ordina.UI", "Ordina.UI\Ordina.UI.esproj", "{6CA96F51-0F12-4171-A6F6-2A80166F03D0}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "ordina.ui", "ordina.ui\ordina.ui.esproj", "{6CA96F51-0F12-4171-A6F6-2A80166F03D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ordina.api", "ordina.api\ordina.api.csproj", "{19C8C14A-5BEC-4DD8-A1AE-6CBCDC56235C}"
 EndProject
