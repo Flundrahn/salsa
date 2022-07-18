@@ -2,8 +2,8 @@
 
 const context = [
   '/weatherforecast',
-  '/weeks',
-  '/topics',
+  '/api/weeks',
+  '/api/topics',
 ];
 
 module.exports = function (app) {
