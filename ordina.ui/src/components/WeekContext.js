@@ -10,7 +10,7 @@ const WeeksProvider = ({ children }) => {
       .then(response => response.json())
       .then(result => setWeeks(result))
       .catch(error => console.error(error));
-  },[]);
+  }, []);
 
   const topicsState = [weeks, setWeeks];
 

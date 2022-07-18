@@ -1,5 +1,5 @@
 {
-  "name": "ordina.ui",
+  "name": "component-builder",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,7 +10,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "^2.1.3",
+    "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -58,6 +58,6 @@
   },
   "devDependencies": {
     "eslint-config-salt": "^1.2.0",
-    "jest-editor-support": "^30.1.0"
+    "eslint-config-react-app": "^7.0.1"
   }
 }

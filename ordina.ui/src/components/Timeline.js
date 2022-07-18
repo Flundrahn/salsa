@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 // import React, { useContext } from 'react';
 // import { TopicsContext } from '../../TopicContext';
 import './styles/Timeline.css';
@@ -6,15 +7,16 @@ import './styles/Timeline.css';
 
 function Timeline() {
   // const [topics, setTopics] = useContext(TopicsContext);
-
+  // Week = { WeekId, WeekNumber, Title, Topics }
+  // Topics = { TopicId, Title, Resources }
   const weekIds = [
     1,
     2,
-  ]
+  ];
   const weekNumbers = [
     1,
     2,
-  ]
+  ];
   const weekTitles = [
     'Intro to React',
     'Databases',
@@ -26,12 +28,12 @@ function Timeline() {
     'Router',
     '.Net & React',
   ];
-  const topicDates = [
-    new Date().toDateString(),
-    new Date().toDateString(),
-    new Date().toDateString(),
-    new Date().toDateString(),
-    new Date().toDateString(),
+  const topicDays = [
+    51,
+    52,
+    53,
+    54,
+    55,
   ];
 
   const weeks = weekIds.map((id, wIndex) => (
@@ -41,8 +43,9 @@ function Timeline() {
       title: weekTitles[wIndex],
       topics: topicTitles.map((title, tIndex) => (
         {
-          title: title,
-          date: topicDates[tIndex],
+          topicId: tIndex,
+          title,
+          day: topicDays[tIndex],
         }
       )),
     }
@@ -53,19 +56,22 @@ function Timeline() {
   return (
     <div className="timeline">
       {
-    weeks.map(t => (
+    weeks.map(w => (
       <div className="week">
         <div className="week__header">
-          <span className="timeline__date week__date">{t.week}</span>
-          <h3 className="timeline__title week__title">{t.title}</h3>
+          <span className="timeline__date week__date">{`Week ${w.weekNumber}`}</span>
+          <h3 className="timeline__title week__title">{w.title}</h3>
         </div>
         <div className="week__body">
           {
-            t.topics.map(st => (
+            w.topics.map(t => (
               <div className="topic">
-                <span className="timeline__date topic__date">{st.date}</span>
+                <span className="timeline__date topic__date">{`Day ${t.day}`}</span>
                 <div className="topic__bullet" />
-                <span className="timeline__title topic__title">{st.title}</span>
+                <Link to="/topic" className="timeline__title topic__title">
+                  {' '}
+                  {t.title}
+                </Link>
               </div>
             ))
           }
