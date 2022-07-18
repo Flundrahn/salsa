@@ -4,6 +4,8 @@ namespace ordina.api.Models
   {
     public int TopicId { get; set; }
     public string Title { get; set; }
-    public ICollection<Subtopic> Subtopics { get; set; }
+    public int WeekId { get; set; }
+    public int Day { get; set; }
+    public ICollection<Resource> Resources { get; set; }
   }
 }

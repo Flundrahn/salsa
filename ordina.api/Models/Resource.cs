@@ -5,6 +5,5 @@ public class Resource
   public Type Type { get; set; }
   public string Title { get; set; }
   public string Link { get; set; }
-  public int Day { get; set; }
-  public int SubtopicId { get; set; }
+  public int TopicId { get; set; }
 }
