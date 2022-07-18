@@ -13,4 +13,6 @@ public class DataContext : DbContext
   }
 
   public DbSet<Topic> Topics { get; set; } = default!;
+  public DbSet<Resource> Resources { get; set; } = default!;
+  public DbSet<Week> Weeks { get; set; }
 }

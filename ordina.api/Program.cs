@@ -1,8 +1,21 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
+var config = builder.Configuration;
+
+var dbUser = "sql-server-username";
+var dbPass = "sql-server-password";
+
 builder.Services.AddDbContext<DataContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DataContext") ?? throw new InvalidOperationException("Connection string 'DataContext' not found.")));
+    {
+        var connectionString = builder.Configuration.GetConnectionString("DataContext");
+        if(connectionString == null) {
+            throw new InvalidOperationException("Connection string 'DataContext' not found.");
+        }
+        options.UseSqlServer(connectionString
+        .Replace(dbUser, config[dbUser])
+        .Replace(dbPass, config[dbPass]));
+    });
 
 // Add services to the container.
 
