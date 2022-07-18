@@ -9,7 +9,8 @@
     "http-proxy-middleware": "^2.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "^2.1.3",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -20,13 +21,26 @@
     "prestart": "node aspnetcore-https && node aspnetcore-react"
   },
   "eslintConfig": {
-    "extends": ["salt", "salt/react"],
+    "extends": [
+      "salt",
+      "salt/react"
+    ],
     "rules": {
       "react/jsx-closing-bracket-location": [
         "error",
-        { "selfClosing": "after-props", "nonEmpty": "after-props" }
+        {
+          "selfClosing": "after-props",
+          "nonEmpty": "after-props"
+        }
       ],
-      "react/jsx-filename-extension": ["error", { "extensions": [".js"] }],
+      "react/jsx-filename-extension": [
+        "error",
+        {
+          "extensions": [
+            ".js"
+          ]
+        }
+      ],
       "react/prop-types": "off"
     }
   },
@@ -43,6 +57,7 @@
     ]
   },
   "devDependencies": {
-    "jest-editor-support": "^30.1.0"
+    "eslint-config-salt": "^1.2.0",
+    "eslint-config-react-app": "^7.0.1"
   }
 }
