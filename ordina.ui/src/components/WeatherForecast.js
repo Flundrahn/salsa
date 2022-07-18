@@ -42,7 +42,8 @@ export default class WeatherForecast extends Component {
   }
 
   render() {
-    const { contents } = this.state.loading
+    // eslint-disable-next-line react/destructuring-assignment
+    const contents = this.state.loading
       ? (
         <p>
           <em>
@@ -53,6 +54,7 @@ export default class WeatherForecast extends Component {
           </em>
         </p>
       )
+      // eslint-disable-next-line react/destructuring-assignment
       : WeatherForecast.renderForecastsTable(this.state.forecasts);
 
     return (
