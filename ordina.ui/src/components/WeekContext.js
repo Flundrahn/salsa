@@ -1,24 +1,24 @@
 import React, { createContext, useState, useEffect } from 'react';
 
-const TopicsContext = createContext(null);
+const WeeksContext = createContext(null);
 
-const TopicsProvider = ({ children }) => {
-  const [topics, setTopics] = useState([]);
+const WeeksProvider = ({ children }) => {
+  const [weeks, setWeeks] = useState([]);
 
   useEffect(() => {
     fetch('BACKEND')
       .then(response => response.json())
-      .then(result => setTopics(result))
+      .then(result => setWeeks(result))
       .catch(error => console.error(error));
   },[]);
 
-  const topicsState = [topics, setTopics];
+  const topicsState = [weeks, setWeeks];
 
   return (
-    <TopicsContext.Provider value={topicsState}>
+    <WeeksContext.Provider value={topicsState}>
       {children}
-    </TopicsContext.Provider>
+    </WeeksContext.Provider>
   );
 };
 
-export { TopicsContext, TopicsProvider };
+export { WeeksContext, WeeksProvider };
