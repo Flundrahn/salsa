@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+:root {
+  --salt-orange: #ff7e67;
+  --salt-text: #929292;
+  --salt-background: #f8f8f8;
+  --alternative-background: darkseagreen;
+}
+.timeline {
+  background: var(--alternative-background);
+  width: 316px;
+  /* color: var(--salt-text); */
+}
+.week {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 8px;
+}
+.week__line {
+  position: absolute;
+  width: 3px;
+  height: 100%;
+  color: var(--salt-orange);
+}
+.week__header {
+  display: flex;
+  align-items: flex-end;
+}
+.timeline__date {
+  margin-right: 16px;
+}
+.timeline__title {
+  padding-left: 16px;
+  border-left: var(--salt-orange) 2px solid;
+}
+.week__body {
+  display: flex;
+  flex-direction: column;
+}
+.topic {
+  display: flex;
+  align-items: flex-end;
+}
+.topic__bullet {
+  height: 8px;
+  width: 8px;
+  border-radius: 4px;
+  background: var(--salt-orange);
+  align-self: center;
+}
