@@ -1,10 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ordina.api.Models;
+namespace ordina.api.Models.DTOs;
 public class EditTopic
 {
     [Required]
-    public int Id { get; set; }
+    public int TopicId { get; set; }
     [Required]
     public string Title { get; set; }
     [Required]

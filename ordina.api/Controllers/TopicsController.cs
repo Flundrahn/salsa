@@ -1,6 +1,8 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ordina.api.Models;
+using ordina.api.Models.DTOs;
 
 namespace ordina.api.Controllers
 {
@@ -9,21 +11,24 @@ namespace ordina.api.Controllers
     public class TopicsController : ControllerBase
     {
         private readonly IRepository _repo;
+        private readonly IMapper _mapper;
 
-        public TopicsController(IRepository repository)
+        public TopicsController(IRepository repository, IMapper mapper)
         {
+            _mapper = mapper;
             _repo = repository;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Topic>>> GetTopic()
+        public async Task<ActionResult<IEnumerable<Topic>>> GetTopics()
         {
             try
             {
-                return Ok(await _repo.GetTopics());
+                return Ok(await _repo.FindTopics());
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
                 return NotFound();
             }
         }
@@ -46,12 +51,12 @@ namespace ordina.api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTopic(int id, Topic topic)
+        public async Task<IActionResult> PutTopic(int id, EditTopic dto)
         {
-            if (id != topic.TopicId) return BadRequest();
+            if (id != dto.TopicId) return BadRequest();
             try
             {
-                _repo.ReplaceEntity(topic);
+                return Ok(await _repo.ReplaceEntity(_mapper.Map<Topic>(dto)));
             }
             catch (KeyNotFoundException)
             {
@@ -65,14 +70,18 @@ namespace ordina.api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Topic>> PostTopic(Topic topic)
+        public async Task<ActionResult<Topic>> PostTopic(CreateTopic dto)
         {
             try
             {
-                Topic persistedTopic = await _repo.CreateTopic(topic);
+                Topic persistedEntity = await _repo.CreateTopic(_mapper.Map<Topic>(dto));
                 return CreatedAtAction("GetTopic",
-                new { id = persistedTopic.TopicId },
-                persistedTopic);
+                new { id = persistedEntity.TopicId },
+                persistedEntity);
+            }
+            catch (KeyNotFoundException e)
+            {
+                return NotFound(e.Message);
             }
             catch (Exception e)
             {

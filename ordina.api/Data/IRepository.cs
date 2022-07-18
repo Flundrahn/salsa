@@ -3,8 +3,10 @@ using ordina.api.Models;
 
 public interface IRepository
 {
-    Task<IEnumerable<Topic>> GetTopics();
+    Task<IEnumerable<Week>> GetWeeks();
+    Task<IEnumerable<Topic>> FindTopics();
     Task<Topic> FindTopic(int id);
-    Task ReplaceEntity(EditTopic dto);
+    Task<Topic> ReplaceEntity(Topic topic);
     Task<Topic> CreateTopic(Topic topic);
+    Task<Week> FindWeek(int id);
 }
