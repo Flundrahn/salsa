@@ -1,4 +1,4 @@
-namespace ordina.api;
+namespace ordina.api.Models;
 
 public class WeatherForecast
 {

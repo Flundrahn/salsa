@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using ordina.api.Models;
 
 namespace ordina.api.Controllers;
 
