@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ordina.api.Models;
 using ordina.api.Models.DTOs;
+using Type = ordina.api.Models.Type;
 
 public class Repository : IRepository
 {
@@ -23,11 +24,27 @@ public class Repository : IRepository
         return savedEntry.Entity;
     }
 
+    public async Task<Resource> CreateResource(Resource resource)
+    {
+        if (resource.TopicId.HasValue && !TopicExists(resource.TopicId.Value))
+            throw new KeyNotFoundException("Topic not found.");
+        var savedEntry = _context.Resources.Add(resource);
+        await _context.SaveChangesAsync();
+        return savedEntry.Entity;
+    }
+
     public async Task<Topic> FindTopic(int id)
     {
         return await _context.Topics
                     .Where(topic => topic.TopicId.Value == id)
                     .Include("Resources")
+                    .FirstOrDefaultAsync();
+    }
+
+    public async Task<Resource> FindResource(int id)
+    {
+        return await _context.Resources
+                    .Where(resource => resource.ResourceId.Value == id)
                     .FirstOrDefaultAsync();
     }
 
@@ -37,6 +54,13 @@ public class Repository : IRepository
                     .Where(week => week.WeekId.Value == id)
                     .Include(week => week.Topics)
                     .FirstOrDefaultAsync();
+    }
+
+    public async Task<IEnumerable<Resource>> FindResources(Type type)
+    {
+        return await _context.Resources
+                    .Where(resource => resource.Type == type)
+                    .ToListAsync();
     }
 
     public async Task<IEnumerable<Topic>> FindTopics()
@@ -51,13 +75,20 @@ public class Repository : IRepository
         ).ToListAsync();
     }
 
-    public async Task<Topic> ReplaceEntity(Topic topic)
+    public async Task<Topic> ReplaceTopic(Topic topic)
     {
         if(topic.WeekId.HasValue && !WeekExists(topic.WeekId.Value))
             throw new KeyNotFoundException("Week not found.");
         _context.Entry(topic).State = EntityState.Modified;
         await _context.SaveChangesAsync();
         return _context.Entry(topic).Entity;
+    }
+
+    public async Task<Resource> ReplaceResource(Resource resource)
+    {
+        _context.Entry(resource).State = EntityState.Modified;
+        await _context.SaveChangesAsync();
+        return _context.Entry(resource).Entity;
     }
 
     private bool TopicExists(int id)

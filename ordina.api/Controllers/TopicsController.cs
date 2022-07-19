@@ -56,8 +56,12 @@ namespace ordina.api.Controllers
             if (id != dto.TopicId) return BadRequest();
             try
             {
+<<<<<<< Updated upstream
                 var replacedEntity = await _repo.ReplaceEntity(_mapper.Map<Topic>(dto));
                 return Ok(replacedEntity);
+=======
+                return Ok(await _repo.ReplaceTopic(_mapper.Map<Topic>(dto)));
+>>>>>>> Stashed changes
             }
             catch (KeyNotFoundException e)
             {
