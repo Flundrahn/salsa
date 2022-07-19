@@ -1,56 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-// import React, { useContext } from 'react';
-// import { WeeksContext } from './WeeksContext';
+import { ValueContext } from './ValueContext';
 import './styles/Timeline.css';
 
 function Timeline() {
-  // const [topics, setTopics] = useContext(TopicsContext);
-  // Week = { WeekId, WeekNumber, Title, Topics }
-  // Topics = { TopicId, Title, Resources }
-
-  // const [setCurrentTopic] = useContext(WeeksContext);
-  const weekIds = [
-    1,
-    2,
-  ];
-  const weekNumbers = [
-    1,
-    2,
-  ];
-  const weekTitles = [
-    'Intro to React',
-    'Databases',
-  ];
-  const topicTitles = [
-    'Components',
-    'Testing',
-    'Hooks',
-    'Router',
-    '.Net & React',
-  ];
-  const topicDays = [
-    51,
-    52,
-    53,
-    54,
-    55,
-  ];
-
-  const weeks = weekIds.map((id, wIndex) => (
-    {
-      weekId: id,
-      weekNumber: weekNumbers[wIndex],
-      title: weekTitles[wIndex],
-      topics: topicTitles.map((title, tIndex) => (
-        {
-          topicId: tIndex,
-          title,
-          day: topicDays[tIndex],
-        }
-      )),
-    }
-  ));
+  const { weeks } = useContext(ValueContext);
 
   return (
     <div className="timeline">

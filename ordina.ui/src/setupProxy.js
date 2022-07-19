@@ -2,13 +2,13 @@
 
 const context = [
   '/weatherforecast',
-  '/api/weeks',
-  '/api/topics',
+  '/weeks',
+  '/topics',
 ];
 
 module.exports = function (app) {
   const appProxy = createProxyMiddleware(context, {
-    target: 'https://localhost:7053',
+    target: 'https://localhost:7053/api',
     secure: false,
   });
 
