@@ -4,18 +4,20 @@ const WeeksContext = createContext(null);
 
 const WeeksProvider = ({ children }) => {
   const [weeks, setWeeks] = useState([]);
+  // const [currentTopic, setCurrentTopic] = useState({});
 
   useEffect(() => {
     fetch('BACKEND')
       .then(response => response.json())
-      .then(result => setWeeks(result))
+      .then(deserializedResponse => setWeeks(deserializedResponse))
       .catch(error => console.error(error));
   }, []);
 
-  const topicsState = [weeks, setWeeks];
+  // const weeksState = [weeks, setWeeks, currentTopic, setCurrentTopic];
+  const weeksState = [weeks, setWeeks];
 
   return (
-    <WeeksContext.Provider value={topicsState}>
+    <WeeksContext.Provider value={weeksState}>
       {children}
     </WeeksContext.Provider>
   );

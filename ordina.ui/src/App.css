@@ -1,5 +1,22 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+:root {
+  --salt-orange: #ff7e67;
+  --salt-text: #929292;
+  --salt-background: #f8f8f8;
+  --alternative-background: darkseagreen;
+}
+
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background: var(--salt-background);
+  height: 100vh;
 }
 
 .App-logo {

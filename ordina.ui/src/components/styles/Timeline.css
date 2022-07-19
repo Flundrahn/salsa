@@ -14,18 +14,11 @@
   width: 316px;
   /* color: var(--salt-text); */
 }
-.week {
+.week__container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 8px;
-}
-.week__line {
-  position: absolute;
-  width: 3px;
-  height: 100%;
-  color: var(--salt-orange);
 }
 .week__header {
   display: flex;
@@ -34,22 +27,32 @@
 .timeline__date {
   margin-right: 16px;
 }
+.timeline__line {
+  position: absolute;
+  width: 2px;
+  align-self: stretch;
+  justify-self: center;
+  background: var(--salt-orange);
+}
 .timeline__title {
   padding-left: 16px;
-  border-left: var(--salt-orange) 2px solid;
+  /* border-left: var(--salt-orange) 2px solid; */
 }
 .week__body {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
-.topic {
+.topic__container {
   display: flex;
   align-items: flex-end;
+  width: 100%;
 }
 .topic__bullet {
   height: 8px;
   width: 8px;
   border-radius: 4px;
-  background: var(--salt-orange);
   align-self: center;
+  background: var(--salt-orange);
+  background: var(--salt-orange);
 }
