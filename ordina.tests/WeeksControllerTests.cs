@@ -23,9 +23,9 @@ public class WeeksControllerTests
     Topics = new List<Topic>()
     {
       new Topic
-        {
-            Title = "UX day 1",
-        }
+      {
+          Title = "UX day 1",
+      }
     }
   };
   private static readonly Week MOCK_WEEK_2 = new Week
