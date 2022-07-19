@@ -51,20 +51,21 @@ namespace ordina.api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTopic(int id, EditTopic dto)
+        public async Task<ActionResult<Topic>> PutTopic(int id, EditTopic dto)
         {
             if (id != dto.TopicId) return BadRequest();
             try
             {
-                return Ok(await _repo.ReplaceEntity(_mapper.Map<Topic>(dto)));
+                var replacedEntity = await _repo.ReplaceEntity(_mapper.Map<Topic>(dto));
+                return Ok(replacedEntity);
             }
-            catch (KeyNotFoundException)
+            catch (KeyNotFoundException e)
             {
-                return NotFound();
+                return NotFound(e.Message);
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e.Message);
             }
             return NoContent();
         }
@@ -74,7 +75,7 @@ namespace ordina.api.Controllers
         {
             try
             {
-                Topic persistedEntity = await _repo.CreateTopic(_mapper.Map<Topic>(dto));
+                var persistedEntity = await _repo.CreateTopic(_mapper.Map<Topic>(dto));
                 return CreatedAtAction("GetTopic",
                 new { id = persistedEntity.TopicId },
                 persistedEntity);

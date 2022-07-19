@@ -16,7 +16,7 @@ public class Repository : IRepository
     }
     public async Task<Topic> CreateTopic(Topic topic)
     {
-        if (!_context.Weeks.Any(w => w.WeekId == topic.WeekId))
+        if (topic.WeekId.HasValue && !WeekExists(topic.WeekId.Value))
             throw new KeyNotFoundException("Week not found.");
         var savedEntry = _context.Topics.Add(topic);
         await _context.SaveChangesAsync();
@@ -53,6 +53,8 @@ public class Repository : IRepository
 
     public async Task<Topic> ReplaceEntity(Topic topic)
     {
+        if(topic.WeekId.HasValue && !WeekExists(topic.WeekId.Value))
+            throw new KeyNotFoundException("Week not found.");
         _context.Entry(topic).State = EntityState.Modified;
         await _context.SaveChangesAsync();
         return _context.Entry(topic).Entity;
@@ -61,9 +63,7 @@ public class Repository : IRepository
     private bool TopicExists(int id)
     => (_context.Topics?.Any(e => e.TopicId == id)).GetValueOrDefault();
 
-    // private void validateDbSet()
-    // {
-    //     if (_context.Topics == null) throw new Exception();
-    // }
+    private bool WeekExists(int id)
+    => (_context.Weeks?.Any(e => e.WeekId == id)).GetValueOrDefault();
 
 }
