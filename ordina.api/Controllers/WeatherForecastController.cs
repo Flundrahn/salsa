@@ -4,7 +4,7 @@ using ordina.api.Models;
 namespace ordina.api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class WeatherForecastController : ControllerBase
 {
     private static readonly string[] Summaries = new[]
