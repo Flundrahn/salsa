@@ -63,8 +63,7 @@ namespace ordina.api.Controllers
             if (id != dto.TopicId) return BadRequest(); // TODO I know I have seen this pattern to have id in two places for PUT-request, but suggest to simplify this by having id inside EditTopic only.
             try
             {
-                var replacedEntity = await _repo.ReplaceEntity(_mapper.Map<Topic>(dto));
-                return Ok(replacedEntity);
+                return Ok(await _repo.ReplaceTopic(_mapper.Map<Topic>(dto)));
             }
             catch (KeyNotFoundException e)
             {
