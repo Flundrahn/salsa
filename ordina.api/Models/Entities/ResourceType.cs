@@ -1,6 +1,6 @@
 namespace ordina.api.Models;
 
-public enum Type
+public enum ResourceType
 {
     LAB, SLIDES, CHEATSHEET, ARTICLE, VIDEO, TEST
 }
