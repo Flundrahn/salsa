@@ -53,8 +53,11 @@ public class Repository : IRepository
 
     public async Task<Topic> ReplaceEntity(Topic topic)
     {
-        if(topic.WeekId.HasValue && !WeekExists(topic.WeekId.Value))
+        if (!TopicExists((int)topic.TopicId))
+            throw new KeyNotFoundException("Topic not found.");
+        if (topic.WeekId.HasValue && !WeekExists(topic.WeekId.Value))
             throw new KeyNotFoundException("Week not found.");
+
         _context.Entry(topic).State = EntityState.Modified;
         await _context.SaveChangesAsync();
         return _context.Entry(topic).Entity;
