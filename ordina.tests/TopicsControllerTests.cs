@@ -25,13 +25,13 @@ public class TopicsControllerTests
     {
       new Resource
       {
-        Type = ResourceType.LAB,
+        ResourceType = ResourceType.LAB,
         Title = "CSS",
         Link = "https://github.com/saltsthlm/dnfs-summer-22-lab-css",
       },
       new Resource
       {
-        Type = ResourceType.SLIDES,
+        ResourceType = ResourceType.SLIDES,
         Title = "CSS & HTML",
         Link = "https://salt-sthlm.slack.com/files/U9ZUW8HJ5/F03JQRY4VHR/salt_slides_-_responsive_css_.pdf",
       }
@@ -47,13 +47,13 @@ public class TopicsControllerTests
         {
             new Resource
             {
-            Type = ResourceType.LAB,
+            ResourceType = ResourceType.LAB,
             Title = "UX",
             Link = "https://github.com/saltsthlm/dnfs-summer-22-lab-css",
             },
             new Resource
             {
-            Type = ResourceType.SLIDES,
+            ResourceType = ResourceType.SLIDES,
             Title = "Figma' balls",
             Link = "https://salt-sthlm.slack.com/files/U9ZUW8HJ5/F03JQRY4VHR/salt_slides_-_responsive_css_.pdf",
             }
@@ -187,7 +187,7 @@ public class TopicsControllerTests
     public async Task PutTopic_should_return_OkObjectResult()
     {
         // Arrange
-        _repo.Setup(repo => repo.ReplaceEntity(It.IsAny<Topic>()))
+        _repo.Setup(repo => repo.ReplaceTopic(It.IsAny<Topic>()))
             .Returns(Task.FromResult(MOCK_TOPIC_1));
 
         // Act
@@ -201,7 +201,7 @@ public class TopicsControllerTests
     public async Task PutTopic_should_return_the_replacing_topic()
     {
         // Arrange
-        _repo.Setup(repo => repo.ReplaceEntity(It.IsAny<Topic>()))
+        _repo.Setup(repo => repo.ReplaceTopic(It.IsAny<Topic>()))
             .Returns(Task.FromResult(MOCK_TOPIC_2));
 
         // Act
@@ -219,7 +219,7 @@ public class TopicsControllerTests
     public async Task PutTopic_should_return_NotFound_if_key_not_found()
     {
         // Arrange
-        _repo.Setup(repo => repo.ReplaceEntity(It.IsAny<Topic>()))
+        _repo.Setup(repo => repo.ReplaceTopic(It.IsAny<Topic>()))
             .Throws(new KeyNotFoundException("Mocked error message"));
 
         // Act
@@ -235,7 +235,7 @@ public class TopicsControllerTests
     public async Task PutTopic_should_handle_exception()
     {
         // Arrange
-        _repo.Setup(repo => repo.ReplaceEntity(It.IsAny<Topic>()))
+        _repo.Setup(repo => repo.ReplaceTopic(It.IsAny<Topic>()))
             .Throws(new Exception("Mocked error message"));
 
         // Act

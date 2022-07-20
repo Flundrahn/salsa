@@ -11,6 +11,10 @@ namespace ordina.tests;
 
 public class WeeksControllerTests
 {
+    private static WeeksController _controller;
+    private Mock<IRepository> _repo;
+    private static IMapper _mapper;
+
     private static readonly Week MOCK_WEEK_1 = new Week
     {
         WeekId = 1,
@@ -23,7 +27,7 @@ public class WeeksControllerTests
           Title = "UX day 1",
       }
     }
-    
+
     };
     private static readonly Week MOCK_WEEK_2 = new Week
     {

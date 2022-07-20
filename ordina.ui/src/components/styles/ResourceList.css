@@ -1,0 +1,48 @@
+* {
+	box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
+}
+:root {
+	--salt-orange: #ff7e67;
+	--salt-text: #929292;
+	--salt-background: #f8f8f8;
+	--alternative-background: darkseagreen;
+}
+.card {
+	display: flex;
+	width: 300px;
+	background: #ffffff;
+	box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.12);
+	border-radius: 5px;
+	flex-direction: column;
+}
+
+.card__header {
+	text-align: center;
+	top: 8px;
+
+	/* Title text */
+	font-family: "Futura";
+	font-style: normal;
+	font-weight: bold;
+	font-size: 32px;
+	/* identical to box height */
+	text-align: center;
+
+	/* Text */
+	color: #929292;
+}
+.row {
+	font-family: "Roboto";
+}
+
+.row__prefix {
+	font-weight: bold;
+	color: var(--salt-orange);
+}
+
+.row__title {
+	text-decoration: none;
+	color: var(--salt-text);
+}
