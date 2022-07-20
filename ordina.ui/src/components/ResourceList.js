@@ -8,34 +8,36 @@ import { ValueContext } from './ValueContext';
 const ResourceList = () => {
 // const ResourceList = ({ resourceType }) => {
 // const { id } = useParams();
-// const [topics, setTopics] = useState([]);
-// const [readyToRender, setReadyToRender] = useState(false);
+  const [resources, setResources] = useState([]);
+  // const [readyToRender, setReadyToRender] = useState(false);
 
   const resourceType = 'LAB';
 
-  const resources = [];
-  for (let i = 1; i < 10; i += 1) {
-    resources.push({
-      resourceId: i,
-      type: 'LAB',
-      title: 'Lab Title',
-      link: 'https://github.com/saltsthlm/dnfs-summer-22-lab-CanineCloud',
-      topicId: i,
-    });
-  }
+  // const resources = [];
+  // for (let i = 1; i < 10; i += 1) {
+  //   resources.push({
+  //     resourceId: i,
+  //     type: 'LAB',
+  //     title: 'Lab Title',
+  //     link: 'https://github.com/saltsthlm/dnfs-summer-22-lab-CanineCloud',
+  //     topicId: i,
+  //   });
+  // }
 
-  // useEffect(() => {
-  //   const getTopics = async () => {
-  //     const response = await fetch('topics');
-  //     const data = await response.json();
-  //     // console.log('data:');
-  //     // console.log(data);
-  //     setTopics(data);
-  //     // setReadyToRender(true);
-  //   };
+  const resourceTypeQuery = 2;
 
-  //   getTopics();
-  // }, []);
+  useEffect(() => {
+    const getResources = async () => {
+      const response = await fetch(`resources?resourceType=${resourceTypeQuery}`);
+      const data = await response.json();
+      // console.log('data:');
+      // console.log(data);
+      setResources(data);
+      // setReadyToRender(true);
+    };
+
+    getResources();
+  }, []);
 
   // if (!readyToRender) {
   //   return (<h1>Loading...</h1>);
