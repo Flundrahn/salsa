@@ -10,16 +10,18 @@ import ResourceList from './components/ResourceList';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Timeline />
-        <ResourceList />
-        <Routes>
-          <Route path="/topic/:id" element={<Topic />} />
-          <Route path="/" element={<WeatherForecast />} />
-        </Routes>
-      </div>
-    </Router>
+    <>
+      <Router>
+        <div className="App">
+          <Timeline />
+          <ResourceList />
+          <Routes>
+            <Route path="/topics/:id" element={<Topic />} />
+            {/* <Route path="/" element={<WeatherForecast />} /> */}
+          </Routes>
+        </div>
+      </Router>
+    </>
 
   );
 }
