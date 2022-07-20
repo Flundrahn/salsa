@@ -47,8 +47,7 @@ namespace ordina.api.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                return NotFound();
+                return Problem(e.Message);
             }
         }
 
