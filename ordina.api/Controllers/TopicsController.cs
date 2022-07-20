@@ -22,15 +22,22 @@ namespace ordina.api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Topic>>> GetTopics()
         {
+            IEnumerable<Topic> topics;
             try
             {
-                return Ok(await _repo.FindTopics());
+                topics = await _repo.FindTopics();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
+                return Problem(e.Message);
+            }
+            if (topics.Count() == 0)
+            {
                 return NotFound();
             }
+            return Ok(topics);
+
         }
 
         [HttpGet("{id}")]
@@ -53,7 +60,7 @@ namespace ordina.api.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<Topic>> PutTopic(int id, EditTopic dto)
         {
-            if (id != dto.TopicId) return BadRequest();
+            if (id != dto.TopicId) return BadRequest(); // TODO I know I have seen this pattern to have id in two places for PUT-request, but suggest to simplify this by having id inside EditTopic only.
             try
             {
                 return Ok(await _repo.ReplaceTopic(_mapper.Map<Topic>(dto)));
@@ -64,9 +71,8 @@ namespace ordina.api.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                return Problem(e.Message);
             }
-            return NoContent();
         }
 
         [HttpPost]
