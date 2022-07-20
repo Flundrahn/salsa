@@ -6,7 +6,7 @@ public class EditResource
     [Required]
     public int ResourceId { get; set; }
     [Required]
-    public Type Type { get; set; }
+    public ResourceType ResourceType { get; set; }
     [Required]
     public string Title { get; set; }
     [Required]

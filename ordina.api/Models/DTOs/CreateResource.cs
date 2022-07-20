@@ -4,7 +4,7 @@ namespace ordina.api.Models.DTOs;
 public class CreateResource
 {
     [Required]  
-    public Type Type { get; set; }
+    public ResourceType ResourceType { get; set; }
     [Required]
     public string Title { get; set; }
     [Required]

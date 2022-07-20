@@ -1,9 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ordina.api.Models;
 using ordina.api.Models.DTOs;
-using Type = ordina.api.Models.Type;
 
 namespace ordina.api.Controllers
 {
@@ -40,12 +38,12 @@ namespace ordina.api.Controllers
         }
 
 
-        [HttpGet("{type}")]
-        public async Task<ActionResult<IEnumerable<Resource>>> FilterResources(Type type)
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Resource>>> FilterResources(ResourceType resourceType)
         {
             try
             {
-                return Ok(await _repo.FindResources(type));
+                return Ok(await _repo.FindResources(resourceType));
             }
             catch (Exception e)
             {
@@ -94,6 +92,28 @@ namespace ordina.api.Controllers
                 return Problem("Oops.");
             }
         }
+
+        // [HttpPost]
+        // public async Task<ActionResult<IEnumerable<Resource>>> PostResources(IEnumerable<CreateResource> dto)
+        // {
+        //     try
+        //     {
+        //         var persistedEntity = await _repo.CreateResources(_mapper.Map<IEnumerable<Resource>>(dto));
+        //         return CreatedAtAction("GetResource",
+        //         new { id = persistedEntity.ResourceId },
+        //         persistedEntity);
+        //     }
+        //     catch (KeyNotFoundException e)
+        //     {
+        //         return NotFound(e.Message);
+        //     }
+        //     catch (Exception e)
+        //     {
+        //         Console.WriteLine(e);
+        //         return Problem("Oops.");
+        //     }
+        // }
+		
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<Resource>> DeleteResource(int id)

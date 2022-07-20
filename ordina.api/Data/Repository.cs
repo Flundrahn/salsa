@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ordina.api.Models;
 using ordina.api.Models.DTOs;
-using Type = ordina.api.Models.Type;
 
 public class Repository : IRepository
 {
@@ -13,7 +12,6 @@ public class Repository : IRepository
     {
         _context = context;
         _mapper = mapper;
-
     }
     public async Task<Topic> CreateTopic(Topic topic)
     {
@@ -28,10 +26,27 @@ public class Repository : IRepository
     {
         if (resource.TopicId.HasValue && !TopicExists(resource.TopicId.Value))
             throw new KeyNotFoundException("Topic not found.");
+        if (!ResourceTypeExists(resource))
+            throw new KeyNotFoundException("Resource type not found.");
+        return await SaveResource(resource);
+    }
+
+    private async Task<Resource> SaveResource(Resource resource)
+    {
         var savedEntry = _context.Resources.Add(resource);
         await _context.SaveChangesAsync();
         return savedEntry.Entity;
     }
+
+    // public async Task<IEnumerable<Resource>> CreateResources(IEnumerable<Resource> resources)
+    // {
+    //     List<Resource> savedResources = new List<Resource>();
+    //     foreach(var resource in resources)
+    //     {
+    //         savedResources.Add(await CreateResource(resource));
+    //     }
+    //     return savedResources;
+    // }
 
     public async Task<Topic> FindTopic(int id)
     {
@@ -56,10 +71,10 @@ public class Repository : IRepository
                     .FirstOrDefaultAsync();
     }
 
-    public async Task<IEnumerable<Resource>> FindResources(Type type)
+    public async Task<IEnumerable<Resource>> FindResources(ResourceType resourceType)
     {
         return await _context.Resources
-                    .Where(resource => resource.Type == type)
+                    .Where(resource => resource.ResourceType == resourceType)
                     .ToListAsync();
     }
 
@@ -86,6 +101,10 @@ public class Repository : IRepository
 
     public async Task<Resource> ReplaceResource(Resource resource)
     {
+        if (resource.TopicId.HasValue && !TopicExists(resource.TopicId.Value))
+            throw new KeyNotFoundException("Topic not found.");
+        if (!ResourceTypeExists(resource))
+            throw new KeyNotFoundException("Resource type not found.");
         _context.Entry(resource).State = EntityState.Modified;
         await _context.SaveChangesAsync();
         return _context.Entry(resource).Entity;
@@ -96,5 +115,8 @@ public class Repository : IRepository
 
     private bool WeekExists(int id)
     => (_context.Weeks?.Any(e => e.WeekId == id)).GetValueOrDefault();
+
+    private bool ResourceTypeExists(Resource resource)
+    => resource.ResourceType > 0 && resource.ResourceType <= Enum.GetValues(typeof(ResourceType)).Cast<ResourceType>().Last();
 
 }
