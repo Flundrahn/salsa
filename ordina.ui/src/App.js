@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import {
-  BrowserRouter as Router, Route, Routes, Link,
+  BrowserRouter as Router, Route, Routes,
 } from 'react-router-dom';
 import Error from './pages/Error';
 import Timeline from './components/Timeline';
@@ -16,17 +16,22 @@ function App() {
         <Timeline />
         <Navbar />
         <Routes>
-          <Route
-            index
-            element={(
-              <div>
-                Welcome to Ordina
-                <Link to="topic" className="timeline__title topic__title"> Topics </Link>
-              </div>
-          )} />
+          {/* <Route          TODO for authentication later
+                exact
+                path="/"
+                render={() => {
+                    return (
+                      this.state.isUserAuthenticated ?
+                      <Redirect to="/" /> :
+                      <Redirect to="/login" />
+                    )
+                }}
+              /> */}
+          <Route exact path="/" element={<Topic4 isDaily="true" />} />
           <Route exact path="topic/:topicId" element={<Topic4 />} />
           <Route exact path="resource/:resourceType" element={<ResourceList />} />
           <Route path="*" element={<Error />} />
+          <Route path="topic/*" element={<Error />} />
         </Routes>
       </div>
     </Router>

@@ -1,17 +1,19 @@
 using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ordina.api.Models;
-using ordina.api.Models.DTOs;
+using ordina.api.Services;
 
 public class Repository : IRepository
 {
-    public DataContext _context;
-    public IMapper _mapper;
-    public Repository(DataContext context, IMapper mapper)
+    private DataContext _context;
+    private IMapper _mapper;
+    private DateProvider _dateProvider;
+    
+    public Repository(DataContext context, IMapper mapper, DateProvider dateProvider)
     {
         _context = context;
         _mapper = mapper;
+        _dateProvider = dateProvider;
     }
     public async Task<Topic> CreateTopic(Topic topic)
     {
@@ -38,6 +40,8 @@ public class Repository : IRepository
         return savedEntry.Entity;
     }
 
+    // TODO LATER: functionality to add multiple resources
+    //
     // public async Task<IEnumerable<Resource>> CreateResources(IEnumerable<Resource> resources)
     // {
     //     List<Resource> savedResources = new List<Resource>();
@@ -122,4 +126,58 @@ public class Repository : IRepository
     private bool ResourceTypeExists(Resource resource)
     => resource.ResourceType >= 0 && resource.ResourceType <= Enum.GetValues(typeof(ResourceType)).Cast<ResourceType>().Last();
 
+    public Task<Topic> GetDailyTopic()
+    {
+        int day = GetCurrentDay();
+        return GetTopicByDay(day);
+    }
+
+    private int GetCurrentDay()
+    {
+        var curWeekDate = _dateProvider.GetCurrentDate().Date;
+        
+        if(curWeekDate.DayOfWeek == DayOfWeek.Saturday)
+            curWeekDate = curWeekDate.AddDays(-1);
+        if(curWeekDate.DayOfWeek == DayOfWeek.Sunday)
+            curWeekDate = curWeekDate.AddDays(-2);
+        
+        var daysDiff = (int) (curWeekDate - GetCurrentCourseStartDate()).TotalDays;
+        
+        return subtractWeekends(daysDiff);
+    }
+
+    private int subtractWeekends(int days)
+    => days - (days / 7 * 2) + 1;
+
+    private Task<Topic> GetTopicByDay(int day)
+    {
+        return _context.Topics
+                    .Where(topic => topic.Day == day)
+                    .Include("Resources")
+                    .FirstOrDefaultAsync();
+    }
+
+    public Task<Course> FindCourse(int id)
+    {
+        return _context.Courses
+                    .Where(course => course.CourseId.Value == id)
+                    .FirstOrDefaultAsync();
+    }
+
+    public async Task<Course> CreateCourse(Course course)
+    {
+        var savedEntry = _context.Courses.Add(course);
+        await _context.SaveChangesAsync();
+        return savedEntry.Entity;
+    }
+
+    public DateTime GetCurrentCourseStartDate()
+    {
+        var course = _context.Courses.FirstOrDefault();
+        if (course == null)
+        {
+            throw new KeyNotFoundException("Course not found.");
+        }
+        return course.StartDate;
+    }
 }
