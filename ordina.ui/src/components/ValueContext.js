@@ -5,6 +5,7 @@ const ValueContext = createContext(null);
 const ValueProvider = ({ children }) => {
   const [weeks, setWeeks] = useState([]);
   const [topics, setTopics] = useState({});
+  const resourceTypes = ["Lab", "Slide", "Cheatsheet", "Article", "Video", "Weekend Test"]
 
   useEffect(() => {
     const populateWeeks = async () => {
@@ -18,7 +19,7 @@ const ValueProvider = ({ children }) => {
 
   return (
     <ValueContext.Provider value={{
-      weeks, setWeeks, topics, setTopics,
+      weeks, setWeeks, topics, setTopics, resourceTypes
     }}>
       {children}
     </ValueContext.Provider>
