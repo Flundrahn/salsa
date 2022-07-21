@@ -1,0 +1,78 @@
+* {
+	box-sizing: border-box;
+	margin: 0px;
+}
+:root {
+	--salt-orange: #ff7e67;
+	--salt-text: #929292;
+	--salt-background: #f8f8f8;
+	--alternative-background: darkseagreen;
+}
+.card--form {
+	display: flex;
+	width: auto;
+	padding: 4px;
+	background: var(--salt-background);
+	box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.12);
+	border-radius: 5px;
+	flex-direction: column;
+	/* text-align: left; */
+	color: var(--salt-text);
+	font-size: 1rem;
+	font-family: var(--salt-text);
+}
+
+/* .form__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 2.2rem;
+} */
+
+.form__row {
+	display: flex;
+	width: 100%;
+	margin: 4px;
+	justify-content: space-between;
+}
+
+.form__input {
+	border: none;
+	padding: 5px;
+	width: 80%;
+	font-size: 1rem;
+}
+
+.form__title {
+	color: var(--salt-orange);
+	font-weight: bold;
+	font-size: 1.4rem;
+	font-family: "Futura";
+	font-weight: bold;
+	text-align: center;
+}
+
+.form__button--submit {
+	/* margin: 0px; */
+	padding: 4px;
+	border: none;
+	height: 100%;
+	width: 70px;
+	border: rgba(128, 128, 128, 0.184) solid 0.5px;
+	align-self: center;
+	font-size: 1rem;
+  font-weight: bold;
+	background: var(--salt-orange);
+	color: white;
+}
+
+.form__button--add:hover {
+	background-color: tomato;
+}
+
+/* @media screen and (min-width: 481px) {
+  .form {
+    width: 380px;
+  }
+} */
