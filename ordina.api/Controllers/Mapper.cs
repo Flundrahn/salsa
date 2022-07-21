@@ -8,6 +8,7 @@ public class Mapper : Profile
     {
         CreateMap<EditTopic, Topic>();
         CreateMap<EditResource, Resource>();
+        CreateMap<CreateCourse, Course>();
         CreateMap<CreateTopic, Topic>();
         CreateMap<CreateResource, Resource>();
         // CreateMap<IEnumerable<CreateResource>, IEnumerable<Resource>>();
