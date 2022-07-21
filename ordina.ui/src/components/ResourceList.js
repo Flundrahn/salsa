@@ -2,48 +2,45 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import './styles/ResourceList.css';
+import axios from 'axios';
 // eslint-disable-next-line no-unused-vars
-import { ValueContext } from './ValueContext';
+// import { ValueContext } from './ValueContext';
 // import { useParams } from 'react-router-dom';
 
 const ResourceList = () => {
-// const ResourceList = ({ resourceType }) => {
-// const { id } = useParams();
   const { resourceType } = useParams();
   const [resources, setResources] = useState([]);
-  // const [readyToRender, setReadyToRender] = useState(false);
+  const resourceTypes = ['labs', 'slide', 'cheatsheet', 'article', 'video', 'weekend test'];
+  const [readyToRender, setReadyToRender] = useState(false);
 
-  // const resources = [];
-  // for (let i = 1; i < 10; i += 1) {
-  //   resources.push({
-  //     resourceId: i,
-  //     type: 'LAB',
-  //     title: 'Lab Title',
-  //     link: 'https://github.com/saltsthlm/dnfs-summer-22-lab-CanineCloud',
-  //     topicId: i,
-  //   });
-  // }
+  console.log(resourceType);
+  console.log(resourceTypes.indexOf(resourceType));
+
+  const getResources = () => {
+    axios
+      .get(
+        `/resources?resourceType=${resourceTypes.indexOf(resourceType)}`,
+      )
+      .then(res => {
+        setResources(res.data);
+        setReadyToRender(true);
+        console.log('resource data');
+        console.log(res.data);
+      })
+      .catch(err => console.log(err));
+  };
 
   useEffect(() => {
-    const getResources = async () => {
-      const response = await fetch(`resources?resourceType=${resourceTypes.indexOf(resourceType)}`);
-      const data = await response.json();
-      // console.log('data:');
-      // console.log(data);
-      setResources(data);
-      // setReadyToRender(true);
-    };
-
     getResources();
-  }, []);
+  }, [resourceType]);
 
-  // if (!readyToRender) {
-  //   return (<h1>Loading...</h1>);
-  // }
+  if (!readyToRender) {
+    return (<h1>Loading...</h1>);
+  }
 
   return (
     <div className="card">
-      <h1 className="card__header">{`${resourceType}`}</h1>
+      <h1 className="card__header">{`${resourceType}s`}</h1>
       {
         React.Children.toArray(
           resources.map(r => (

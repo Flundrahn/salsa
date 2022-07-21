@@ -13,14 +13,15 @@ function Navbar() {
       </div>
       <div className="navbar">
         {
-          resourceTypes.map(r => (
-            <Link
-              to={`resource/${r.toLowerCase()}s`}
-              className="navbar-item">
-              {' '}
-              {`${r}s`}
-            </Link>
-          ))
+          React.Children.toArray(
+            resourceTypes.map(r => (
+              <Link
+                to={`resource/${r.toLowerCase()}`}
+                className="navbar-item">
+                {` ${r}s`}
+              </Link>
+            )),
+          )
           }
       </div>
       <div className="user-information">
