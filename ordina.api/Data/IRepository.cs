@@ -14,4 +14,9 @@ public interface IRepository
     Task<Resource> CreateResource(Resource resource);
     // Task<IEnumerable<Resource>> CreateResources(IEnumerable<Resource> resources);
     Task<Week> FindWeek(int id);
+    Task<Course> FindCourse(int id);
+    Task<Topic> GetDailyTopic();
+    Task<Course> CreateCourse(Course course);
+
+    DateTime GetCurrentCourseStartDate();
 }

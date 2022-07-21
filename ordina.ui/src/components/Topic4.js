@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './styles/Topic.css';
 
-function Topic4() {
+function Topic4({ isDaily }) {
   const [topic, setTopic] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const { topicId } = useParams();
@@ -12,7 +12,7 @@ function Topic4() {
   const fetchTopic = () => {
     axios
       .get(
-        `/topics/${topicId}`,
+        `/topics/${isDaily ? 'daily' : topicId}`,
       )
       .then(res => {
         setTopic(res.data);
