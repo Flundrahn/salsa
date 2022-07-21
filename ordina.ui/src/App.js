@@ -12,6 +12,7 @@ function App() {
     <Router>
       <div className="App">
         {/* <ResourceList />  todo  make it work */}
+        <Timeline />
         <Routes>
           <Route
             index
@@ -21,10 +22,7 @@ function App() {
                 <Link to="topic" className="timeline__title topic__title"> Topics </Link>
               </div>
           )} />
-          <Route exact path="topic" element={<Timeline />}>
-            <Route exact path=":topicId" element={<Topic4 />} />
-            <Route path="*" element={<Error />} />
-          </Route>
+          <Route exact path="topic/:topicId" element={<Topic4 />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </div>

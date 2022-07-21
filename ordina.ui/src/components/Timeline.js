@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 // import { Link } from 'react-router-dom';
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ValueContext } from './ValueContext';
 import './styles/Timeline.css';
 
@@ -28,7 +28,7 @@ function Timeline() {
                     <div className="timeline__line" />
                     <div className="topic__bullet" />
                     <Link
-                      to={`/topic/${t.topicId}`}
+                      to={`topic/${t.topicId}`}
                       className="timeline__title topic__title">
                       {' '}
                       {t.title}
@@ -37,12 +37,10 @@ function Timeline() {
                 )),
               )
             }
-            {/* </div> */}
           </div>
         )),
       )
     }
-      <Outlet />
     </div>
   );
 }

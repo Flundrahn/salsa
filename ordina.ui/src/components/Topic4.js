@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import './styles/Topic.css';
 
 function Topic4() {
-  const [data, setData] = useState({});
+  const [topic, setTopic] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const { topicId } = useParams();
   // const actualId = parseInt(topicId);
@@ -14,7 +15,7 @@ function Topic4() {
         `/topics/${topicId}`,
       )
       .then(res => {
-        setData(res.data);
+        setTopic(res.data);
         setIsLoading(false);
         console.log('topic data');
         console.log(res.data);
@@ -33,16 +34,27 @@ function Topic4() {
   }
 
   return (
-    <div>
-      <h3>{data.title}</h3>
-      <div>{data.resources.length}</div>
-      {
-        data.resources.map(resource => (
-          <div key={resource.resourceId}>
-            <h5>{resource.title}</h5>
-          </div>
-        ))
-     }
+    <div className="topic">
+      <div className="topic__header">
+        {`Day ${topic.day}`}
+        {topic.title}
+        {console.log(topic.resources)}
+        <div className="topic__body">
+          {
+            topic.resources.map(r => (
+              <div key={r.link} className="resource">
+                <span className="resource__type">
+                  {r.type}
+                  :
+                </span>
+                <a className="resource__title" href={r.link}>
+                  {`${r.title}  `}
+                </a>
+              </div>
+            ))
+          }
+        </div>
+      </div>
     </div>
   );
 }
