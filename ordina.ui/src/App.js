@@ -6,6 +6,7 @@ import {
 import Error from './pages/Error';
 import Timeline from './components/Timeline';
 import Topic4 from './components/Topic4';
+import Navbar from './components/Navbar';
 import ResourceList from './components/ResourceList';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
     <Router>
       <div className="App">
         <Timeline />
+        <Navbar />
         <Routes>
           {/* <Route          TODO for authentication later
                 exact
@@ -27,7 +29,8 @@ function App() {
               /> */}
           <Route exact path="/" element={<Topic4 isDaily="true" />} />
           <Route exact path="topic/:topicId" element={<Topic4 />} />
-          <Route exact path="resources" element={<ResourceList />} />
+          <Route exact path="resource/:resourceType" element={<ResourceList />} />
+          <Route path="*" element={<Error />} />
           <Route path="topic/*" element={<Error />} />
         </Routes>
       </div>
