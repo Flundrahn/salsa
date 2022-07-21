@@ -1,48 +1,31 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { ValueContext } from './ValueContext';
 import './styles/Timeline.css';
 
-function Timeline() {
+const Timeline = () => {
   const { weeks } = useContext(ValueContext);
 
   return (
-    <div className="timeline">
-      {
-    React.Children.toArray(
-      weeks.map(w => (
-        <div className="week__container">
-          <div className="week__header">
-            <span className="timeline__date week__date">{`Week ${w.weekNumber}`}</span>
-            <div className="timeline__line" />
-            <div className="topic__bullet" />
-            <h3 className="timeline__title week__title">{w.title}</h3>
+    <div>
+      <div className="item-container">
+        {weeks.map(week => (
+          <div className="card" key={week.weekId}>
+            <h3>{week.title}</h3>
+            {week.topics.map(tpc => (
+              <div className="card" key={tpc.topicId}>
+                <h3>{tpc.title}</h3>
+                <li key={tpc.topicId}>
+                  <Link to={`/topic/${tpc.topicId}`}>View</Link>
+                </li>
+              </div>
+            ))}
           </div>
-          <div className="week__body">
-            {
-            React.Children.toArray(
-              w.topics.map(t => (
-                <div className="topic__container">
-                  <span className="timeline__date topic__date">{`Day ${t.day}`}</span>
-                  <div className="timeline__line" />
-                  <div className="topic__bullet" />
-                  <Link
-                    to={`/topic/${t.topicId}`}
-                    className="timeline__title topic__title">
-                    {' '}
-                    {t.title}
-                  </Link>
-                </div>
-              )),
-            )
-          }
-          </div>
-        </div>
-      )),
-    )
-      }
+        ))}
+      </div>
+      <Outlet />
     </div>
   );
-}
+};
 
 export default Timeline;

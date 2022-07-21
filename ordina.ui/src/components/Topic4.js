@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 function Topic4() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
   const { topicId } = useParams();
   // const actualId = parseInt(topicId);
 
@@ -22,7 +22,7 @@ function Topic4() {
 
   useEffect(() => {
     fetchTopic();
-  }, []);
+  }, [topicId]);
 
   return (
     <div>{data.title}</div>

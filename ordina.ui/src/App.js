@@ -1,27 +1,36 @@
 import './App.css';
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {
+  BrowserRouter as Router, Route, Routes, Link,
+} from 'react-router-dom';
 // import Timeline from './components/Timeline';
 import Error from './pages/Error';
 // import Topic from './components/Topic';
 import WeatherForecast from './components/WeatherForecast';
-import AllTopics from './components/AllTopics';
+import Timeline from './components/Timeline';
 import Topic4 from './components/Topic4';
 
 function App() {
   return (
     <Router>
       <div className="App">
-        {/* <Timeline /> */}
-        {/* <Link to="/topic2/1" className="timeline__title topic__title">
-          {' '}
-          Topic
-        </Link> */}
+        <Link to="weatherforecast" className="timeline__title topic__title">
+          Weather
+        </Link>
         <Routes>
-          {/* <Route path="/" element={<Timeline />} /> */}
+          <Route
+            index
+            element={(
+              <div>
+                Welcome to Ordina
+                <Link to="topic" className="timeline__title topic__title"> Topics </Link>
+              </div>
+          )} />
           <Route path="/weatherforecast" element={<WeatherForecast />} />
-          <Route exact path="/" element={<AllTopics />} />
-          <Route exact path="/topic/:topicId" element={<Topic4 />} />
+          <Route exact path="topic" element={<Timeline />}>
+            <Route exact path=":topicId" element={<Topic4 />} />
+            <Route path="*" element={<Error />} />
+          </Route>
           <Route path="*" element={<Error />} />
         </Routes>
       </div>
