@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using ordina.api.Models;
 using ordina.api.Models.DTOs;
 
+
 namespace ordina.api.Controllers
 {
     [Route("api/[controller]")]
@@ -47,6 +48,22 @@ namespace ordina.api.Controllers
             try
             {
                 var topic = await _repo.FindTopic(id);
+                if (topic == null) return NotFound();
+                return Ok(topic);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return Problem(e.Message);
+            }
+        }
+
+        [HttpGet("daily")]
+        public async Task<ActionResult<Topic>> GetDailyTopic()
+        {
+            try
+            {
+                var topic = await _repo.GetDailyTopic();
                 if (topic == null) return NotFound();
                 return Ok(topic);
             }
