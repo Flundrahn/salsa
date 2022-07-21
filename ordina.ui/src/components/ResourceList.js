@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect, useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import './styles/ResourceList.css';
 // eslint-disable-next-line no-unused-vars
 import { ValueContext } from './ValueContext';
@@ -8,10 +9,9 @@ import { ValueContext } from './ValueContext';
 const ResourceList = () => {
 // const ResourceList = ({ resourceType }) => {
 // const { id } = useParams();
+  const { resourceType } = useParams();
   const [resources, setResources] = useState([]);
   // const [readyToRender, setReadyToRender] = useState(false);
-
-  const resourceType = 'LAB';
 
   // const resources = [];
   // for (let i = 1; i < 10; i += 1) {
@@ -24,11 +24,9 @@ const ResourceList = () => {
   //   });
   // }
 
-  const resourceTypeQuery = 2;
-
   useEffect(() => {
     const getResources = async () => {
-      const response = await fetch(`resources?resourceType=${resourceTypeQuery}`);
+      const response = await fetch(`resources?resourceType=${resourceTypes.indexOf(resourceType)}`);
       const data = await response.json();
       // console.log('data:');
       // console.log(data);
@@ -45,7 +43,7 @@ const ResourceList = () => {
 
   return (
     <div className="card">
-      <h1 className="card__header">{`${resourceType}s`}</h1>
+      <h1 className="card__header">{`${resourceType}`}</h1>
       {
         React.Children.toArray(
           resources.map(r => (
