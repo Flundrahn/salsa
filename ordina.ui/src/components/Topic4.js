@@ -4,6 +4,7 @@ import axios from 'axios';
 
 function Topic4() {
   const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
   const { topicId } = useParams();
   // const actualId = parseInt(topicId);
 
@@ -14,8 +15,11 @@ function Topic4() {
       )
       .then(res => {
         setData(res.data);
+        setIsLoading(false);
         console.log('topic data');
         console.log(res.data);
+        console.log('resources');
+        console.log(res.data.resources);
       })
       .catch(err => console.log(err));
   };
@@ -24,8 +28,22 @@ function Topic4() {
     fetchTopic();
   }, [topicId]);
 
+  if (isLoading) {
+    return (<div>loading...</div>);
+  }
+
   return (
-    <div>{data.title}</div>
+    <div>
+      <h3>{data.title}</h3>
+      <div>{data.resources.length}</div>
+      {
+        data.resources.map(resource => (
+          <div key={resource.resourceId}>
+            <h5>{resource.title}</h5>
+          </div>
+        ))
+     }
+    </div>
   );
 }
 

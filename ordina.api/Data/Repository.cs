@@ -120,6 +120,6 @@ public class Repository : IRepository
     => (_context.Weeks?.Any(e => e.WeekId == id)).GetValueOrDefault();
 
     private bool ResourceTypeExists(Resource resource)
-    => resource.ResourceType > 0 && resource.ResourceType <= Enum.GetValues(typeof(ResourceType)).Cast<ResourceType>().Last();
+    => resource.ResourceType >= 0 && resource.ResourceType <= Enum.GetValues(typeof(ResourceType)).Cast<ResourceType>().Last();
 
 }
