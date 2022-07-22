@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using ordina.api.Models;
+using ordina.api.Models.DTOs;
 using ordina.api.Services;
 
 public class Repository : IRepository
@@ -8,7 +9,7 @@ public class Repository : IRepository
     private DataContext _context;
     private IMapper _mapper;
     private DateProvider _dateProvider;
-    
+
     public Repository(DataContext context, IMapper mapper, DateProvider dateProvider)
     {
         _context = context;
@@ -24,13 +25,17 @@ public class Repository : IRepository
         return savedEntry.Entity;
     }
 
-    public async Task<Resource> CreateResource(Resource resource)
+    public async Task<Resource> CreateResource(CreateResource dto)
     {
-        if (resource.TopicId.HasValue && !TopicExists(resource.TopicId.Value))
-            throw new KeyNotFoundException("Topic not found.");
-        if (!ResourceTypeExists(resource))
+        if (!ResourceTypeExists(dto.ResourceType))
             throw new KeyNotFoundException("Resource type not found.");
-        return await SaveResource(resource);
+        var topicId = GetTopicId(dto.TopicDay);
+        if (topicId == null)
+            throw new KeyNotFoundException("Topic for day " + dto.TopicDay + " not found.");
+        
+        var entityToPersist = _mapper.Map<Resource>(dto);
+        entityToPersist.TopicId = topicId;
+        return await SaveResource(entityToPersist);
     }
 
     private async Task<Resource> SaveResource(Resource resource)
@@ -110,7 +115,7 @@ public class Repository : IRepository
     {
         if (resource.TopicId.HasValue && !TopicExists(resource.TopicId.Value))
             throw new KeyNotFoundException("Topic not found.");
-        if (!ResourceTypeExists(resource))
+        if (!ResourceTypeExists(resource.ResourceType))
             throw new KeyNotFoundException("Resource type not found.");
         _context.Entry(resource).State = EntityState.Modified;
         await _context.SaveChangesAsync();
@@ -123,8 +128,8 @@ public class Repository : IRepository
     private bool WeekExists(int id)
     => (_context.Weeks?.Any(e => e.WeekId == id)).GetValueOrDefault();
 
-    private bool ResourceTypeExists(Resource resource)
-    => resource.ResourceType >= 0 && resource.ResourceType <= Enum.GetValues(typeof(ResourceType)).Cast<ResourceType>().Last();
+    private bool ResourceTypeExists(ResourceType resourceType)
+    => resourceType >= 0 && resourceType <= Enum.GetValues(typeof(ResourceType)).Cast<ResourceType>().Last();
 
     public Task<Topic> GetDailyTopic()
     {
@@ -135,14 +140,14 @@ public class Repository : IRepository
     private int GetCurrentDay()
     {
         var curWeekDate = _dateProvider.GetCurrentDate().Date;
-        
-        if(curWeekDate.DayOfWeek == DayOfWeek.Saturday)
+
+        if (curWeekDate.DayOfWeek == DayOfWeek.Saturday)
             curWeekDate = curWeekDate.AddDays(-1);
-        if(curWeekDate.DayOfWeek == DayOfWeek.Sunday)
+        if (curWeekDate.DayOfWeek == DayOfWeek.Sunday)
             curWeekDate = curWeekDate.AddDays(-2);
-        
-        var daysDiff = (int) (curWeekDate - GetCurrentCourseStartDate()).TotalDays;
-        
+
+        var daysDiff = (int)(curWeekDate - GetCurrentCourseStartDate()).TotalDays;
+
         return subtractWeekends(daysDiff);
     }
 
@@ -180,4 +185,8 @@ public class Repository : IRepository
         }
         return course.StartDate;
     }
+
+    public int? GetTopicId(int topicDay)
+    => _context.Topics.Where(topic => topic.Day == topicDay).Select(topic => topic.TopicId).FirstOrDefault();
+
 }

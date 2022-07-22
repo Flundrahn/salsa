@@ -76,7 +76,7 @@ namespace ordina.api.Controllers
         {
             try
             {
-                var persistedEntity = await _repo.CreateResource(_mapper.Map<Resource>(dto));
+                var persistedEntity = await _repo.CreateResource(dto);
                 return CreatedAtAction("GetResource",
                 new { id = persistedEntity.ResourceId },
                 persistedEntity);

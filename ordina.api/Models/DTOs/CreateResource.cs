@@ -3,13 +3,13 @@ using System.ComponentModel.DataAnnotations;
 namespace ordina.api.Models.DTOs;
 public class CreateResource
 {
-    [Required]
+    [Required(ErrorMessage = "Resource type is a required field")]
     public ResourceType ResourceType { get; set; }
-    [Required]
+    [Required(ErrorMessage = "Title is a required field.")]
     public string Title { get; set; }
-    [Required]
+    [Required(ErrorMessage = "Link is a required field.")]
     public string Link { get; set; } // TODO Add validation of correct url
-    [Required]
-    public int TopicId { get; set; }
+    [Required(ErrorMessage = "Day of topic is a required field.")]
+    public int TopicDay { get; set; }
 
 }

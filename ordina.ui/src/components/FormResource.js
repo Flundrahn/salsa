@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import './styles/Form.css';
+import axios from 'axios';
 import { ValueContext } from './ValueContext';
 // import
 // { FontAwesomeIcon }
@@ -8,7 +9,7 @@ import { ValueContext } from './ValueContext';
 // { faAdd }
 //   from '@fortawesome/free-solid-svg-icons';
 
-function Form() {
+export default function FormResource() {
   const { resourceTypes } = useContext(ValueContext);
   // const [createdResource, setCreatedResource] = useState({});
 
@@ -19,23 +20,16 @@ function Form() {
       resourceType: parseInt(e.target[0].value, 10),
       title: e.target[1].value,
       link: e.target[2].value,
-      topicId: parseInt(e.target[3].value, 10),
+      topicDay: parseInt(e.target[3].value, 10),
     };
 
-    console.log(resourceToCreate);
-
-    try {
-      const response = await fetch('resources', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(resourceToCreate),
+    axios.post('/resources', resourceToCreate)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
       });
-      console.log(response);
-    } catch (error) {
-      console.error(error);
-    }
   };
 
   return (
@@ -91,5 +85,3 @@ function Form() {
     </form>
   );
 }
-
-export default Form;
