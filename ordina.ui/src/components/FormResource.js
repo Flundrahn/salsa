@@ -8,7 +8,7 @@ import { ValueContext } from './ValueContext';
 // { faAdd }
 //   from '@fortawesome/free-solid-svg-icons';
 
-function Form() {
+function FormResource() {
   const { resourceTypes } = useContext(ValueContext);
   // const [createdResource, setCreatedResource] = useState({});
 
@@ -92,4 +92,4 @@ function Form() {
   );
 }
 
-export default Form;
+export default FormResource;
