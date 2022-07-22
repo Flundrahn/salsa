@@ -3,25 +3,29 @@
 	margin: 0px;
 	padding: 0px;
 }
-:root {
-	--salt-orange: #ff7e67;
-	--salt-text: #929292;
-	--salt-background: #f8f8f8;
-	--alternative-background: darkseagreen;
-}
 .card {
+	display: flex;
+	flex-direction: column;
+	width: 40vw;
+	height: 70vh;
+	background: #ffffff;
+	box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.12);
+	border-radius: 5px;
+	justify-self: center;
+	margin-top: 16px;
+}
+/* .card {
 	display: flex;
 	width: 300px;
 	background: #ffffff;
 	box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.12);
 	border-radius: 5px;
 	flex-direction: column;
-}
+} */
 
 .card__header {
-	text-align: center;
 	top: 8px;
-
+	width: 100%;
 	/* Title text */
 	font-family: "Futura";
 	font-style: normal;

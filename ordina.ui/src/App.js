@@ -13,13 +13,14 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Timeline />
-        {/* add the link to the navigation bar */}
-        {/* <Link to="resource/create">Add Resource</Link> */}
-        <Navbar />
-
-        <Routes>
-          {/* <Route          TODO for authentication later
+        <div className="App__header">
+          <Navbar />
+        </div>
+        <div className="App-body">
+          <Timeline />
+          <div className="routes__container">
+            <Routes>
+              {/* <Route          TODO for authentication later
                 exact
                 path="/"
                 render={() => {
@@ -30,14 +31,14 @@ function App() {
                     )
                 }}
               /> */}
-          <Route exact path="/" element={<Topic4 isDaily="true" />} />
-          <Route exact path="topic/:topicId" element={<Topic4 />} />
-
-          {/* <Route exact path="resource/create" element={<FormResource />} />  TODO add later */}
-          <Route exact path="resource/:resourceType" element={<ResourceList />} />
-          <Route path="*" element={<Error />} />
-          <Route path="topic/*" element={<Error />} />
-        </Routes>
+              <Route exact path="/" element={<Topic4 isDaily="true" />} />
+              <Route exact path="topic/:topicId" element={<Topic4 />} />
+              <Route exact path="resource/:resourceType" element={<ResourceList />} />
+              <Route path="*" element={<Error />} />
+              <Route path="topic/*" element={<Error />} />
+            </Routes>
+          </div>
+        </div>
       </div>
     </Router>
 

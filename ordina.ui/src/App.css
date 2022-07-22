@@ -1,54 +1,31 @@
 * {
-  box-sizing: border-box;
-  margin: 0px;
-  padding: 0px;
+	box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
 }
 :root {
-  --salt-orange: #ff7e67;
-  --salt-text: #929292;
-  --salt-background: #f8f8f8;
-  --alternative-background: darkseagreen;
+	--salt-orange: hwb(9 40% 0%);
+	--salt-text: #404040;
+	--salt-background: #f8f8f8;
+	--alternative-background: hwb(9 70% 0%);
 }
 
 .App {
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  background: var(--salt-background);
-  height: 100vh;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	height: auto;
+	background: var(--salt-background);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App-body {
+	display: flex;
+	justify-content: flex-start;
+	height: auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.routes__container {
+  flex-grow: 1;
+	display: flex;
+	justify-content: center;
 }

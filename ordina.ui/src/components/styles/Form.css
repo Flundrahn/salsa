@@ -2,12 +2,6 @@
 	box-sizing: border-box;
 	margin: 0px;
 }
-:root {
-	--salt-orange: #ff7e67;
-	--salt-text: #929292;
-	--salt-background: #f8f8f8;
-	--alternative-background: darkseagreen;
-}
 .card--form {
 	display: flex;
 	width: auto;

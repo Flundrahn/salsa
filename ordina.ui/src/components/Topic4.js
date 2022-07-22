@@ -9,6 +9,8 @@ function Topic4({ isDaily }) {
   const { topicId } = useParams();
   // const actualId = parseInt(topicId);
 
+  const resourceTypes = ['lab', 'slide', 'cheatsheet', 'article', 'video', 'weekend test'];
+
   const fetchTopic = () => {
     axios
       .get(
@@ -36,18 +38,17 @@ function Topic4({ isDaily }) {
   return (
     <div className="topic">
       <div className="topic__header">
-        {`Day ${topic.day}`}
+        {`Day ${topic.day} `}
         {topic.title}
-        {console.log(topic.resources)}
         <div className="topic__body">
           {
             topic.resources.map(r => (
               <div key={r.link} className="resource">
                 <span className="resource__type">
-                  {r.type}
+                  {resourceTypes[r.type]}
                   :
                 </span>
-                <a className="resource__title" href={r.link}>
+                <a className="resource__title" href={r.link} target="_blanl" rel="noreferrer">
                   {`${r.title}  `}
                 </a>
               </div>

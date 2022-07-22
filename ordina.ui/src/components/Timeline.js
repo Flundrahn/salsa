@@ -13,7 +13,7 @@ function Timeline() {
       React.Children.toArray(
         weeks.map(w => (
           <div className="week__container">
-            <div className="timeline__row">
+            <div className="timeline__row timeline__header">
               <span className="timeline__date week__date">{`Week ${w.weekNumber}`}</span>
               <div className="timeline__line" />
               <div className="week__bullet" />
