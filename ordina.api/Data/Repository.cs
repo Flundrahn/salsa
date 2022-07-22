@@ -29,7 +29,7 @@ public class Repository : IRepository
     {
         if (!ResourceTypeExists(dto.ResourceType))
             throw new KeyNotFoundException("Resource type not found.");
-        var topicId = GetTopicId(dto.TopicDay.Value);
+        var topicId = GetTopicId(dto.TopicDay);
         if (topicId == null)
             throw new KeyNotFoundException("Topic for day " + dto.TopicDay + " not found.");
         

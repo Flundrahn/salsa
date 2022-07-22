@@ -65,6 +65,7 @@
   font-weight: bold;
 	background: var(--salt-orange);
 	color: white;
+	height: fit-content;
 }
 
 .form__button--add:hover {
