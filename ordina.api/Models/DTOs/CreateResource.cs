@@ -9,7 +9,7 @@ public class CreateResource
     public string Title { get; set; }
     [Required]
     public string Link { get; set; } // TODO Add validation of correct url
-    [Required]
-    public int TopicId { get; set; }
+    [Required(ErrorMessage = "You must specify the day of the topic.")]
+    public int? TopicDay { get; set; }
 
 }

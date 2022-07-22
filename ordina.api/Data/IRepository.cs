@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ordina.api.Models;
+using ordina.api.Models.DTOs;
 
 public interface IRepository
 {
@@ -11,12 +12,11 @@ public interface IRepository
     Task<Topic> ReplaceTopic(Topic topic);
     Task<Resource> ReplaceResource(Resource resource);
     Task<Topic> CreateTopic(Topic topic);
-    Task<Resource> CreateResource(Resource resource);
-    // Task<IEnumerable<Resource>> CreateResources(IEnumerable<Resource> resources);
+    Task<Resource> CreateResource(CreateResource resource);
+    // Task<IEnumerable<Resource>> CreateResources(IEnumerable<Resource> resources); // TODO LATER
     Task<Week> FindWeek(int id);
     Task<Course> FindCourse(int id);
     Task<Topic> GetDailyTopic();
     Task<Course> CreateCourse(Course course);
-
     DateTime GetCurrentCourseStartDate();
 }

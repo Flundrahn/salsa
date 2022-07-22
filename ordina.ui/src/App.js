@@ -15,7 +15,7 @@ function App() {
       <div className="App">
         <Timeline />
         {/* add the link to the navigation bar */}
-        <Link to="recourse/create">Add Resource</Link>
+        <Link to="resource/create">Add Resource</Link>
         <Routes>
           {/* <Route          TODO for authentication later
                 exact
@@ -30,7 +30,7 @@ function App() {
               /> */}
           <Route exact path="/" element={<Topic4 isDaily="true" />} />
           <Route exact path="topic/:topicId" element={<Topic4 />} />
-          <Route exact path="recourse/create" element={<FormResource />} />
+          <Route exact path="resource/create" element={<FormResource />} />
           <Route exact path="resources" element={<ResourceList />} />
           <Route path="topic/*" element={<Error />} />
         </Routes>
