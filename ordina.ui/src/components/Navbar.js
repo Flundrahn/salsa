@@ -25,7 +25,7 @@ function Navbar() {
           }
       </div>
       <div className="user-information">
-        <img src="user-photo.svg" alt="" />
+        <img src="user-photo.svg" alt="" className="user-information__photo" />
         Justina Hamphrey
       </div>
     </div>

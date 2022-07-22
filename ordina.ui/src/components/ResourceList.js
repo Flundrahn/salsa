@@ -10,7 +10,7 @@ import axios from 'axios';
 const ResourceList = () => {
   const { resourceType } = useParams();
   const [resources, setResources] = useState([]);
-  const resourceTypes = ['labs', 'slide', 'cheatsheet', 'article', 'video', 'weekend test'];
+  const resourceTypes = ['lab', 'slide', 'cheatsheet', 'article', 'video', 'weekend test'];
   const [readyToRender, setReadyToRender] = useState(false);
 
   console.log(resourceType);
