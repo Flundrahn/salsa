@@ -3,6 +3,7 @@ using ordina.api.Models;
 
 public interface IRepository
 {
+    Task<Week> CreateWeek(Week week);
     Task<IEnumerable<Week>> GetWeeks();
     Task<IEnumerable<Topic>> FindTopics();
     Task<IEnumerable<Resource>> FindResources(ResourceType resourceType);

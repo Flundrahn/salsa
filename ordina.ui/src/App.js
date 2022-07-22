@@ -8,6 +8,7 @@ import Timeline from './components/Timeline';
 import Topic4 from './components/Topic4';
 import Navbar from './components/Navbar';
 import ResourceList from './components/ResourceList';
+import Form from './components/Form';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
                     )
                 }}
               /> */}
+
           <Route exact path="/" element={<Topic4 isDaily="true" />} />
           <Route exact path="topic/:topicId" element={<Topic4 />} />
           <Route exact path="resource/:resourceType" element={<ResourceList />} />

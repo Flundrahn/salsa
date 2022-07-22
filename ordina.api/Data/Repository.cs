@@ -8,13 +8,21 @@ public class Repository : IRepository
     private DataContext _context;
     private IMapper _mapper;
     private DateProvider _dateProvider;
-    
+
     public Repository(DataContext context, IMapper mapper, DateProvider dateProvider)
     {
         _context = context;
         _mapper = mapper;
         _dateProvider = dateProvider;
     }
+
+    public async Task<Week> CreateWeek(Week week)
+    {
+        var savedEntry = _context.Weeks.Add(week);
+        await _context.SaveChangesAsync();
+        return savedEntry.Entity;
+    }
+
     public async Task<Topic> CreateTopic(Topic topic)
     {
         if (topic.WeekId.HasValue && !WeekExists(topic.WeekId.Value))
@@ -135,14 +143,14 @@ public class Repository : IRepository
     private int GetCurrentDay()
     {
         var curWeekDate = _dateProvider.GetCurrentDate().Date;
-        
-        if(curWeekDate.DayOfWeek == DayOfWeek.Saturday)
+
+        if (curWeekDate.DayOfWeek == DayOfWeek.Saturday)
             curWeekDate = curWeekDate.AddDays(-1);
-        if(curWeekDate.DayOfWeek == DayOfWeek.Sunday)
+        if (curWeekDate.DayOfWeek == DayOfWeek.Sunday)
             curWeekDate = curWeekDate.AddDays(-2);
-        
-        var daysDiff = (int) (curWeekDate - GetCurrentCourseStartDate()).TotalDays;
-        
+
+        var daysDiff = (int)(curWeekDate - GetCurrentCourseStartDate()).TotalDays;
+
         return subtractWeekends(daysDiff);
     }
 
