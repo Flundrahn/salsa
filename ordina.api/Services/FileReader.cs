@@ -25,8 +25,8 @@ public class FileReader
             while (!reader.EndOfStream)
             {
                 day += 1;
-                var line = reader.ReadLine();
-                var values = line.Split(","); // Course week,Week Info,Date,Day,Info
+                var line = reader.ReadLine(); // Course week,Week Info,Date,Day,Info
+                var values = line.Split(","); // BUG split csv by comma, problem when string contains comma!
 
                 if (!int.TryParse(values[0], out int weekNumber))
                 {
