@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './styles/Topic.css';
 
-function Topic4({ isDaily }) {
+function Topic({ isDaily }) {
   const [topic, setTopic] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const { topicId } = useParams();
@@ -60,4 +60,4 @@ function Topic4({ isDaily }) {
   );
 }
 
-export default Topic4;
+export default Topic;
