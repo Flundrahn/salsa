@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { ValueContext } from './ValueContext';
-import './styles/Topic.css';
+import './styles/Card.css';
 
 function Topic4({ isDaily }) {
   const [topic, setTopic] = useState({});
@@ -36,20 +36,19 @@ function Topic4({ isDaily }) {
   }
 
   return (
-    <div className="topic">
-      <div className="topic__header">
+    <div className="card">
+      <div className="card__header">
         {`Day ${topic.day} `}
         {topic.title}
-        <div className="topic__body">
-          {
+        {
             React.Children.toArray(
               topic.resources.map(r => (
-                <div className="resource">
-                  <span className="resource__type">
+                <div className="row">
+                  <span className="row__prefix">
                     {`${resourceTypes[r.resourceType]}: `}
                   </span>
                   <a
-                    className="resource__title"
+                    className="row__title"
                     href={r.link}
                     target="_blank"
                     rel="noreferrer">
@@ -59,7 +58,6 @@ function Topic4({ isDaily }) {
               )),
             )
           }
-        </div>
       </div>
     </div>
   );

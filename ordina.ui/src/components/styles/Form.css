@@ -7,7 +7,7 @@
 	width: auto;
 	padding: 4px;
 	background: var(--salt-background);
-	box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.12);
+	box-shadow: 0 0 6px 0 #cfcfcf;
 	border-radius: 5px;
 	flex-direction: column;
 	/* text-align: left; */
