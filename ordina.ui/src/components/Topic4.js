@@ -19,10 +19,6 @@ function Topic4({ isDaily }) {
       .then(res => {
         setTopic(res.data);
         setIsLoading(false);
-        console.log('topic data');
-        console.log(res.data);
-        console.log('resources');
-        console.log(res.data.resources);
       })
       .catch(err => console.error(err));
   };
