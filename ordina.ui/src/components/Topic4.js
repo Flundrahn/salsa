@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { ValueContext } from './ValueContext';
 import './styles/Topic.css';
 
 function Topic4({ isDaily }) {
   const [topic, setTopic] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const { topicId } = useParams();
-  // const actualId = parseInt(topicId);
 
-  const resourceTypes = ['lab', 'slide', 'cheatsheet', 'article', 'video', 'weekend test'];
+  const { resourceTypes } = useContext(ValueContext);
 
   const fetchTopic = () => {
     axios
@@ -24,7 +24,7 @@ function Topic4({ isDaily }) {
         console.log('resources');
         console.log(res.data.resources);
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
   };
 
   useEffect(() => {
@@ -42,17 +42,22 @@ function Topic4({ isDaily }) {
         {topic.title}
         <div className="topic__body">
           {
-            topic.resources.map(r => (
-              <div key={r.link} className="resource">
-                <span className="resource__type">
-                  {resourceTypes[r.type]}
-                  :
-                </span>
-                <a className="resource__title" href={r.link} target="_blanl" rel="noreferrer">
-                  {`${r.title}  `}
-                </a>
-              </div>
-            ))
+            React.Children.toArray(
+              topic.resources.map(r => (
+                <div className="resource">
+                  <span className="resource__type">
+                    {`${resourceTypes[r.resourceType]}: `}
+                  </span>
+                  <a
+                    className="resource__title"
+                    href={r.link}
+                    target="_blank"
+                    rel="noreferrer">
+                    {`${r.title}`}
+                  </a>
+                </div>
+              )),
+            )
           }
         </div>
       </div>
