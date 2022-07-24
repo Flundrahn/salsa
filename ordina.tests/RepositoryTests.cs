@@ -7,6 +7,8 @@ using ordina.api.Models;
 using AutoMapper;
 using ordina.api.Models.DTOs;
 using ordina.api.Services;
+using ordina.api.Data;
+using FluentAssertions;
 
 namespace ordina.tests;
 
@@ -31,6 +33,4 @@ public class RepositoryTests
             .Returns(new DateTime(2022, 5, 6));
         // TODO mock data context
     }
-
-
 }
