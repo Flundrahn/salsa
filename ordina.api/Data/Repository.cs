@@ -16,6 +16,14 @@ public class Repository : IRepository
         _mapper = mapper;
         _dateProvider = dateProvider;
     }
+
+    public async Task<Week> CreateWeek(Week week)
+    {
+        var savedEntry = _context.Weeks.Add(week);
+        await _context.SaveChangesAsync();
+        return savedEntry.Entity;
+    }
+
     public async Task<Topic> CreateTopic(Topic topic)
     {
         if (topic.WeekId.HasValue && !WeekExists(topic.WeekId.Value))

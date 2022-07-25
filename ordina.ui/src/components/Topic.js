@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import './styles/Topic.css';
+import './styles/Card.css';
 import ResLink from './ResLink';
 
 const deleteResource = id => {
@@ -59,20 +59,22 @@ function Topic({ isDaily }) {
   }
 
   return (
-    <div className="topic">
-      <div className="topic__header">
+    <div className="card">
+      <div className="card__header">
         {`Day ${topic.day} `}
         {topic.title}
-        <div className="topic__body">
-          {
-            topic.resources.map(r => (
-              <ResLink key={r.resourceId} data={r} deleteLink={handleRemoveResource} />
-            ))
+      </div>
+      <div className="card__body">
+        {
+            React.Children.toArray(
+              topic.resources.map(r => (
+                <ResLink data={r} deleteLink={handleRemoveResource} />
+              )),
+            )
           }
-          <div id="delete-request-set-headers" className="status__message">
-            <div>
-              <span className="status" />
-            </div>
+        <div id="delete-request-set-headers" className="status__message">
+          <div>
+            <span className="status" />
           </div>
         </div>
       </div>
