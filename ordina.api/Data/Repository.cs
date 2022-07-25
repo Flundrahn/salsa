@@ -26,8 +26,27 @@ public class Repository : IRepository
 
     public async Task<Topic> CreateTopic(Topic topic)
     {
-        if (topic.WeekId.HasValue && !WeekExists(topic.WeekId.Value))
-            throw new KeyNotFoundException("Week not found.");
+        if (_context.Topics.Any(t => t.Day == topic.Day))
+            throw new Exception("There is already a topic for this day");
+
+        // NOTE Now that updated CreateTopic does not have a WeekId, this guard clause should be uneccessary 
+        // if (topic.WeekId.HasValue && !WeekExists(topic.WeekId.Value))
+        //     throw new KeyNotFoundException("Week not found.");
+
+        var weekNumber = topic.Day / 5 + 1;
+
+        try
+        {
+            topic.WeekId = await _context.Weeks
+            .Where(w => w.WeekNumber == weekNumber)
+            .Select(w => w.WeekId)
+            .FirstAsync();
+        }
+        catch (Exception)
+        {
+            throw new KeyNotFoundException("Week not found");
+        }
+
         var savedEntry = _context.Topics.Add(topic);
         await _context.SaveChangesAsync();
         return savedEntry.Entity;
@@ -40,7 +59,7 @@ public class Repository : IRepository
         var topicId = GetTopicId(dto.TopicDay);
         if (topicId == null)
             throw new KeyNotFoundException("Topic for day " + dto.TopicDay + " not found.");
-        
+
         var entityToPersist = _mapper.Map<Resource>(dto);
         entityToPersist.TopicId = topicId;
         return await SaveResource(entityToPersist);

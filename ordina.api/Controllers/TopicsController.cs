@@ -1,6 +1,5 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ordina.api.Models;
 using ordina.api.Models.DTOs;
 
@@ -108,8 +107,7 @@ namespace ordina.api.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                return Problem("Oops.");
+                return Problem(e.Message);
             }
         }
 

@@ -68,6 +68,12 @@ public class TopicsControllerTests
 
     private static readonly IEnumerable<Topic> ALL_TOPICS = new[] { MOCK_TOPIC_1, MOCK_TOPIC_2 };
 
+    private static readonly CreateTopic MOCK_CREATE_TOPIC = new CreateTopic
+    {
+        Title = MOCK_TOPIC_1.Title,
+        Day = (int)MOCK_TOPIC_1.Day,
+    };
+
     public TopicsControllerTests()
     {
         _repo = new Mock<IRepository>();
@@ -147,7 +153,7 @@ public class TopicsControllerTests
     }
 
     [Fact]
-    public async Task GetTopics_should_return_notfound_if_no_topics()
+    public async Task GetTopics_should_return_NotFound_if_no_topics()
     {
         // Arrange
         _repo.Setup(repo => repo.FindTopics())
@@ -238,6 +244,80 @@ public class TopicsControllerTests
 
         // Act
         var actionResult = await _controller.PutTopic(MOCK_EDIT_TOPIC.TopicId, MOCK_EDIT_TOPIC);
+        var result = actionResult.Result as ObjectResult;
+        var value = result.Value as ProblemDetails;
+
+        // Assert
+        Assert.Equal("Mocked error message", value.Detail);
+        Assert.Equal(500, value.Status);
+    }
+
+    [Fact]
+    public async Task PostTopic_should_return_CreatedAtAction()
+    {
+        // Arrange
+        _repo.Setup(repo => repo.CreateTopic(It.IsAny<Topic>()))
+            .Returns(Task.FromResult(MOCK_TOPIC_1));
+
+        var MOCK_CREATE_TOPIC = new CreateTopic
+        {
+            Title = MOCK_TOPIC_1.Title,
+            Day = (int)MOCK_TOPIC_1.Day,
+        };
+
+        // Act
+        var actionResult = await _controller.PostTopic(MOCK_CREATE_TOPIC);
+        var result = actionResult.Result as ObjectResult;
+        var value = result.Value as ProblemDetails;
+
+        // Assert
+        Assert.IsType<CreatedAtActionResult>(actionResult.Result);
+    }
+
+    [Fact]
+    public async Task PostTopic_should_return_created_topic()
+    {
+        // Arrange
+        _repo.Setup(repo => repo.CreateTopic(It.IsAny<Topic>()))
+            .Returns(Task.FromResult(MOCK_TOPIC_1));
+
+        // Act
+        var actionResult = await _controller.PostTopic(MOCK_CREATE_TOPIC);
+        var result = actionResult.Result as CreatedAtActionResult;
+
+        // Assert
+        Assert.IsType<Topic>(result.Value);
+        var returnedTopic = result.Value as Topic;
+        Assert.Equal(returnedTopic.Title, MOCK_TOPIC_1.Title);
+        Assert.Equal(returnedTopic.Day, MOCK_TOPIC_1.Day);
+        Assert.Equal(returnedTopic.TopicId, MOCK_TOPIC_1.TopicId);
+    }
+
+    [Fact]
+    public async Task PostTopic_should_return_NotFound_for_KeyNotFoundException()
+    {
+        // Arrange
+        _repo.Setup(repo => repo.CreateTopic(It.IsAny<Topic>()))
+            .Throws(new KeyNotFoundException("Mocked error message"));
+
+        // Act
+        var actionResult = await _controller.PostTopic(MOCK_CREATE_TOPIC);
+        
+         // Assert
+        Assert.IsType<NotFoundObjectResult>(actionResult.Result);
+        var result = actionResult.Result as NotFoundObjectResult;
+        Assert.Equal("Mocked error message", result.Value);
+    }
+
+    [Fact]
+    public async Task PostTopic_should_handle_exception()
+    {
+        // Arrange
+        _repo.Setup(repo => repo.CreateTopic(It.IsAny<Topic>()))
+            .Throws(new Exception("Mocked error message"));
+
+        // Act
+        var actionResult = await _controller.PostTopic(MOCK_CREATE_TOPIC);
         var result = actionResult.Result as ObjectResult;
         var value = result.Value as ProblemDetails;
 
