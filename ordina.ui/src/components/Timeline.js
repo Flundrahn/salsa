@@ -5,7 +5,7 @@ import { ValueContext } from './ValueContext';
 import './styles/Timeline.css';
 
 function Timeline() {
-  const { weeks } = useContext(ValueContext);
+  const { weeks } = useContext(ValueContext) || {};
 
   return (
     <div className="timeline">

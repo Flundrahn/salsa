@@ -10,7 +10,7 @@ import { ValueContext } from './ValueContext';
 //   from '@fortawesome/free-solid-svg-icons';
 
 export default function FormResource() {
-  const { resourceTypes } = useContext(ValueContext);
+  const { resourceTypes } = useContext(ValueContext) || {};
   // const [createdResource, setCreatedResource] = useState({});
 
   const handleSubmit = async e => {
