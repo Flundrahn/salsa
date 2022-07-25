@@ -4,7 +4,7 @@ import { ValueContext } from './ValueContext';
 import './styles/Navbar.css';
 
 function Navbar() {
-  const { resourceTypes } = useContext(ValueContext);
+  const { resourceTypes } = useContext(ValueContext) || {};
 
   return (
     <div className="navbar-container">
