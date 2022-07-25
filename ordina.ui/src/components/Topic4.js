@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import './styles/Topic.css';
+import { ValueContext } from './ValueContext';
+import './styles/Card.css';
 
 function Topic4({ isDaily }) {
   const [topic, setTopic] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const { topicId } = useParams();
-  // const actualId = parseInt(topicId);
 
-  const resourceTypes = ['lab', 'slide', 'cheatsheet', 'article', 'video', 'weekend test'];
+  const { resourceTypes } = useContext(ValueContext);
 
   const fetchTopic = () => {
     axios
@@ -19,12 +19,8 @@ function Topic4({ isDaily }) {
       .then(res => {
         setTopic(res.data);
         setIsLoading(false);
-        console.log('topic data');
-        console.log(res.data);
-        console.log('resources');
-        console.log(res.data.resources);
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
   };
 
   useEffect(() => {
@@ -36,25 +32,28 @@ function Topic4({ isDaily }) {
   }
 
   return (
-    <div className="topic">
-      <div className="topic__header">
+    <div className="card">
+      <div className="card__header">
         {`Day ${topic.day} `}
         {topic.title}
-        <div className="topic__body">
-          {
-            topic.resources.map(r => (
-              <div key={r.link} className="resource">
-                <span className="resource__type">
-                  {resourceTypes[r.type]}
-                  :
-                </span>
-                <a className="resource__title" href={r.link} target="_blanl" rel="noreferrer">
-                  {`${r.title}  `}
-                </a>
-              </div>
-            ))
+        {
+            React.Children.toArray(
+              topic.resources.map(r => (
+                <div className="row">
+                  <span className="row__prefix">
+                    {`${resourceTypes[r.resourceType]}: `}
+                  </span>
+                  <a
+                    className="row__title"
+                    href={r.link}
+                    target="_blank"
+                    rel="noreferrer">
+                    {`${r.title}`}
+                  </a>
+                </div>
+              )),
+            )
           }
-        </div>
       </div>
     </div>
   );

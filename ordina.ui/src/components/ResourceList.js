@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import './styles/ResourceList.css';
+import './styles/Card.css';
 import axios from 'axios';
 // eslint-disable-next-line no-unused-vars
 // import { ValueContext } from './ValueContext';
