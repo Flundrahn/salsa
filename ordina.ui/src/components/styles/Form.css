@@ -3,7 +3,7 @@
 	justify-content: space-around;
 	width: auto;
 	height: 11rem;
-	padding: 4px;
+	padding: 8px;
 	background: var(--salt-background);
 	box-shadow: 0 0 6px 0 #cfcfcf;
 	border-radius: 5px;
@@ -47,7 +47,6 @@
 	font-weight: bold;
 	background: var(--salt-orange);
 	color: white;
-	height: fit-content;
 	border-radius: 3px;
 	transition: 0.30s ease-in-out;
 }
