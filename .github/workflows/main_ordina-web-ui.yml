@@ -21,12 +21,11 @@ jobs:
         with:
           node-version: '16.x'
 
-      - name: npm install, build, and test
+      - name: npm install, build
         run: |
           cd ordina.ui
           npm install
           npm run build ordina.ui --if-present
-          npm run test ordina.ui --if-present
       
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
