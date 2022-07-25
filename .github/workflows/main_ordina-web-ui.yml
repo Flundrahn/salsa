@@ -24,7 +24,7 @@ jobs:
       - name: npm install, build, and test
         run: |
           cd ordina.ui
-          npm install --prefix ./ordina.ui
+          npm install
           npm run build ordina.ui --if-present
           npm run test ordina.ui --if-present
       
