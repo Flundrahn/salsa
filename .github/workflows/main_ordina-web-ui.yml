@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy ASP.Net Core app to Azure Web App - ordina-web-api
+name: Build and deploy Node.js app to Azure Web App - ordina-web-ui
 
 on:
   push:
@@ -16,26 +16,25 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up .NET Core
-        uses: actions/setup-dotnet@v1
+      - name: Set up Node.js version
+        uses: actions/setup-node@v1
         with:
-          dotnet-version: '6.0.x'
-          include-prerelease: true
+          node-version: '16.x'
 
-      - name: Build with dotnet
-        run: dotnet build ordina.api --configuration Release
-
-      - name: dotnet publish
-        run: dotnet publish ordina.api -c Release -o ${{env.DOTNET_ROOT}}/myapp
-
+      - name: npm install, build
+        run: |
+          cd ordina.ui
+          npm install
+          npm run build ordina.ui --if-present
+      
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
-          name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          name: node-app
+          path: ./ordina.ui/build
 
   deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     needs: build
     environment:
       name: 'Production'
@@ -45,13 +44,13 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
-          name: .net-app
+          name: node-app
 
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
+      - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
+        id: deploy-to-webapp
         with:
-          app-name: 'ordina-web-api'
+          app-name: 'ordina-web-ui'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_84E46AF078D4422B8CD450A433EE964A }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_430103E0365D482AB90666DB581A5187 }}
           package: .

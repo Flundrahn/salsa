@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using ordina.api.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -247,18 +245,4 @@ public class TopicsControllerTests
         Assert.Equal("Mocked error message", value.Detail);
         Assert.Equal(500, value.Status);
     }
-
-    // // Arrange
-    //     _repo.Setup(repo => repo.FindTopics())
-    //         .Throws(new Exception("Mocked error message"));
-
-    //     // Act
-    //     var actionResult = await _controller.GetTopics();
-    //     var result = actionResult.Result as ObjectResult;
-    //     var value = result.Value as ProblemDetails;
-
-    //     // Assert
-
-    //     Assert.Equal("Mocked error message", value.Detail);
-    //     Assert.Equal(500, value.Status);
 }

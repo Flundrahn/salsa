@@ -1,11 +1,5 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using ordina.api.Controllers;
-using Microsoft.AspNetCore.Mvc;
 using Moq;
-using ordina.api.Models;
 using AutoMapper;
-using ordina.api.Models.DTOs;
 using ordina.api.Services;
 
 namespace ordina.tests;
@@ -31,6 +25,4 @@ public class RepositoryTests
             .Returns(new DateTime(2022, 5, 6));
         // TODO mock data context
     }
-
-
 }

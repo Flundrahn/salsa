@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom';
 import Error from './pages/Error';
 import Timeline from './components/Timeline';
-import Topic4 from './components/Topic4';
+import Topic from './components/Topic';
 import Navbar from './components/Navbar';
 import ResourceList from './components/ResourceList';
 import CreateButton from './components/CreateButton';
@@ -32,8 +32,8 @@ function App() {
                     )
                 }}
               /> */}
-              <Route exact path="/" element={<Topic4 isDaily="true" />} />
-              <Route exact path="topic/:topicId" element={<Topic4 />} />
+              <Route exact path="/" element={<Topic isDaily="true" />} />
+              <Route exact path="topic/:topicId" element={<Topic />} />
               <Route exact path="resource/:resourceType" element={<ResourceList />} />
               <Route path="*" element={<Error />} />
               <Route path="topic/*" element={<Error />} />

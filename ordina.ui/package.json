@@ -21,7 +21,6 @@
   "scripts": {
     "start": "set HTTPS=true&&react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prestart": "node aspnetcore-https && node aspnetcore-react"
   },
@@ -32,6 +31,7 @@
     ],
     "rules": {
       "no-console": "off",
+      "linebreak-style": "off",
       "react/jsx-closing-bracket-location": [
         "error",
         {
