@@ -2,14 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './styles/Topic.css';
+import ResLink from './ResLink';
+
+const deleteResource = id => {
+  const element = document.querySelector('#delete-request-set-headers .status');
+  const headers = {
+    // Authorization: 'Bearer my-token',    TODO later with authorization (maybe).
+  };
+  axios.delete(`resources/${id}`, { headers })
+    .then(() => { element.innerHTML = 'done!'; })
+    .catch(error => {
+      element.parentElement.innerHTML = `Error: ${error.message}`;
+      console.error('There was an error!', error);
+    });
+};
 
 function Topic({ isDaily }) {
   const [topic, setTopic] = useState({});
+  const [links, setLinks] = useState(topic.resources);
   const [isLoading, setIsLoading] = useState(true);
   const { topicId } = useParams();
-  // const actualId = parseInt(topicId);
-
-  const resourceTypes = ['lab', 'slide', 'cheatsheet', 'article', 'video', 'weekend test'];
 
   const fetchTopic = () => {
     axios
@@ -28,8 +40,19 @@ function Topic({ isDaily }) {
   };
 
   useEffect(() => {
+
+  }, [links]);
+
+  useEffect(() => {
     fetchTopic();
   }, [topicId]);
+
+  const handleRemoveResource = id => {
+    setTopic(Object.assign(topic,
+      { resources: topic.resources.filter(res => res.resourceId !== id) }));
+    setLinks(topic.resources);
+    deleteResource(id);
+  };
 
   if (isLoading) {
     return (<div>loading...</div>);
@@ -43,17 +66,14 @@ function Topic({ isDaily }) {
         <div className="topic__body">
           {
             topic.resources.map(r => (
-              <div key={r.link} className="resource">
-                <span className="resource__type">
-                  {resourceTypes[r.type]}
-                  :
-                </span>
-                <a className="resource__title" href={r.link} target="_blanl" rel="noreferrer">
-                  {`${r.title}  `}
-                </a>
-              </div>
+              <ResLink key={r.resourceId} data={r} deleteLink={handleRemoveResource} />
             ))
           }
+          <div id="delete-request-set-headers" className="status__message">
+            <div>
+              <span className="status" />
+            </div>
+          </div>
         </div>
       </div>
     </div>

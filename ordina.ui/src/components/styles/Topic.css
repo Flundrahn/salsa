@@ -6,6 +6,11 @@ a {
 	color: var(--salt-text);
 }
 
+.resource__title {
+    height: fit-content;
+	padding:0;
+}
+
 .resource__title:link {
 	color: gray
 }
