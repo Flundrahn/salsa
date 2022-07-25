@@ -26,9 +26,6 @@ public class Repository : IRepository
 
     public async Task<Topic> CreateTopic(Topic topic)
     {
-        if (_context.Topics.Any(t => t.Day == topic.Day))
-            throw new Exception("There is already a topic for this day");
-
         // NOTE Now that updated CreateTopic does not have a WeekId, this guard clause should be uneccessary 
         // if (topic.WeekId.HasValue && !WeekExists(topic.WeekId.Value))
         //     throw new KeyNotFoundException("Week not found.");
@@ -149,11 +146,17 @@ public class Repository : IRepository
         return _context.Entry(resource).Entity;
     }
 
-    private bool TopicExists(int id)
+    public bool TopicExists(int id)
     => (_context.Topics?.Any(e => e.TopicId == id)).GetValueOrDefault();
 
-    private bool WeekExists(int id)
+    public bool TopicExists(Topic topic)
+    => (_context.Topics?.Any(e => e.Day == topic.Day)).GetValueOrDefault();
+
+    public bool WeekExists(int id)
     => (_context.Weeks?.Any(e => e.WeekId == id)).GetValueOrDefault();
+
+    public bool WeekExists(Week week)
+    => (_context.Weeks?.Any(e => e.WeekNumber == week.WeekNumber)).GetValueOrDefault();
 
     private bool ResourceTypeExists(ResourceType resourceType)
     => resourceType >= 0 && resourceType <= Enum.GetValues(typeof(ResourceType)).Cast<ResourceType>().Last();
