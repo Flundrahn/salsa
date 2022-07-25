@@ -23,15 +23,15 @@ jobs:
 
       - name: npm install, build, and test
         run: |
-          npm install
-          npm run build --if-present
-          npm run test --if-present
+          npm install ordina.ui
+          npm run build ordina.ui --if-present
+          npm run test ordina.ui --if-present
       
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: .
+          path: ./ordina.ui
 
   deploy:
     runs-on: ubuntu-latest
