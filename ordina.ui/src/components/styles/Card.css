@@ -8,6 +8,7 @@
 	flex-direction: column;
 	width: 40vw;
 	height: 70vh;
+	overflow: scroll;
 	background: white;
 	box-shadow: 0 0 6px 0 #cfcfcf;
 	border-radius: 5px;
@@ -23,8 +24,10 @@
 	font-weight: bold;
 	font-size: 2rem;
 	text-align: center;
-	color: var(--salt-text)
+	color: var(--salt-text);
+	height: fit-content;
 }
+
 .row {
 	font-family: "Roboto";
 	font-size: 1rem;
