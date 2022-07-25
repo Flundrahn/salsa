@@ -5,13 +5,10 @@ namespace ordina.api.Services;
 public class FileReader
 {
     public string _path { get; }
-    // public static IRepository _repository;
 
     public FileReader(string fileDirectory, string fileName)
-    // public FileReader(string fileDirectory, string fileName, IRepository repository)
     {
         _path = Path.Join(fileDirectory, fileName);
-        // _repository = repository;
     }
     public IEnumerable<Topic> CreateTopics()
     {
@@ -54,23 +51,4 @@ public class FileReader
             Topics = g.ToArray()
         });
     }
-
-    // public async Task<bool> WriteWeeks()
-    // {
-    //     var weeks = CreateWeeks();
-    //     Week response = null;
-    //     try
-    //     {
-    //         foreach (var week in weeks)
-    //         {
-    //             response = await _repository.CreateWeek(week);
-    //         }
-    //         return true;
-    //     }
-    //     catch
-    //     {
-    //         return false;
-    //     }
-
-    // }
 }

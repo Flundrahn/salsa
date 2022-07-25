@@ -11,8 +11,6 @@ public static class SeedData
             serviceProvider.GetRequiredService<
                 DbContextOptions<DataContext>>()))
         {
-            // context.Database.EnsureDeleted();
-            // context.Database.EnsureCreated();
 
             if (context.Weeks.Any())
             {
@@ -25,7 +23,7 @@ public static class SeedData
 
             foreach (var week in weeks)
             {
-                var savedEntry = context.Weeks.Add(week);
+                context.Weeks.Add(week);
             }
 
             await context.SaveChangesAsync();
