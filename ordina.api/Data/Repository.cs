@@ -119,6 +119,7 @@ public class Repository : IRepository
     public async Task<IEnumerable<Week>> GetWeeks()
     {
         return await _context.Weeks
+        .OrderBy(w => w.WeekNumber)
         .Include(week => week.Topics //.Select(t => _mapper.Map<TopicResp>(t)).OrderBy(topic => topic.Day)
         ).ToListAsync();
     }
