@@ -8,8 +8,8 @@ const context = [
 ];
 
 // TODO use when developing
-const URL = 'https://localhost:7053/api/';
-// const URL = 'https://ordina-web-api.azurewebsites.net/api/';
+// const URL = 'https://localhost:7053/api/';
+const URL = 'https://ordina-web-api.azurewebsites.net/api/';
 
 module.exports = function (app) {
   const appProxy = createProxyMiddleware(context, {
