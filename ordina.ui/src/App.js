@@ -8,6 +8,7 @@ import Timeline from './components/Timeline';
 import Topic from './components/Topic';
 import Navbar from './components/Navbar';
 import ResourceList from './components/ResourceList';
+import CreateButton from './components/CreateButton';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
               <Route path="topic/*" element={<Error />} />
             </Routes>
           </div>
+          <CreateButton />
         </div>
       </div>
     </Router>
