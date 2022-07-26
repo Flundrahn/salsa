@@ -38,6 +38,7 @@
 .row__prefix {
 	font-weight: bold;
 	color: var(--salt-orange);
+	width: 40px;
 }
 
 .row__title {

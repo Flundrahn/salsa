@@ -9,7 +9,7 @@ function Navbar() {
   return (
     <div className="navbar-container">
       <div className="logo">
-        <img src="salt-logo.svg" alt="salt-logo" />
+        <Link to="/"><img src="salt-logo.svg" alt="salt-logo" /></Link>
       </div>
       <div className="navbar">
         {

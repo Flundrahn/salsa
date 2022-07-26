@@ -11,7 +11,7 @@ function ResLink({ data, deleteLink }) {
   return (
     <div key={data.link} className="row link__info">
       <span className="row__prefix">
-        {resourceTypes[data.type]}
+        {`${resourceTypes[data.resourceType]}:`}
       </span>
       <a className="row__title" href={data.link} target="_blank" rel="noreferrer">
         {`${data.title}  `}
