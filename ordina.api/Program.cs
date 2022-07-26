@@ -47,8 +47,11 @@ using (var scope = app.Services.CreateScope())
     SeedData.Initialize(services);
 }
 
+// const URL = 'https://localhost:3000';
+// const URL = 'https://ordina-web-ui.azurewebsites.net/';
+
 app.UseCors(options => options
-    .WithOrigins("https://ordina-web-ui.azurewebsites.net/")
+    .AllowAnyOrigin()
     .AllowAnyHeader()
     .AllowAnyMethod());
 

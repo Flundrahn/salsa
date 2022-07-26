@@ -1,0 +1,31 @@
+* {
+	box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
+}
+:root {
+	--salt-orange: hwb(9 40% 0%);
+	--salt-text: #404040;
+	--salt-background: #f8f8f8;
+	--alternative-background: hwb(0 100% 0%);
+}
+
+.App {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	height: auto;
+	background: var(--salt-background);
+}
+
+.App-body {
+	display: flex;
+	justify-content: flex-start;
+	height: auto;
+}
+
+.routes__container {
+	flex-grow: 1;
+	display: flex;
+	justify-content: center;
+}

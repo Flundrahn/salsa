@@ -1,27 +1,31 @@
 import './App.css';
 import React from 'react';
-import {
-  BrowserRouter as Router, Routes, Route,
-} from 'react-router-dom';
-import Error from './pages/Error';
+// import {
+//   BrowserRouter as Router,
+// } from 'react-router-dom';
+// import {
+//   BrowserRouter as Router, Routes, Route,
+// } from 'react-router-dom';
+// import Error from './pages/Error';
 import Timeline from './components/Timeline';
-import Topic from './components/Topic';
-import Navbar from './components/Navbar';
-import ResourceList from './components/ResourceList';
-import CreateButton from './components/CreateButton';
+// import Topic from './components/Topic';
+// import Navbar from './components/Navbar';
+// import ResourceList from './components/ResourceList';
+// import CreateButton from './components/CreateButton';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <div className="App__header">
-          <Navbar />
-        </div>
-        <div className="App-body">
-          <Timeline />
-          <div className="routes__container">
-            <Routes>
-              {/* <Route          TODO for authentication later
+  // <Router>
+    <div className="App">
+      <div className="App__header">
+        <p>Hello</p>
+        {/* <Navbar /> */}
+      </div>
+      <div className="App-body">
+        <Timeline />
+        <div className="routes__container">
+          {/* <Routes> */}
+          {/* <Route          TODO for authentication later
                 exact
                 path="/"
                 render={() => {
@@ -32,17 +36,17 @@ function App() {
                     )
                 }}
               /> */}
-              <Route exact path="/" element={<Topic isDaily="true" />} />
+          {/* <Route exact path="/" element={<Topic isDaily="true" />} />
               <Route exact path="topic/:topicId" element={<Topic />} />
               <Route exact path="resource/:resourceType" element={<ResourceList />} />
               <Route path="*" element={<Error />} />
-              <Route path="topic/*" element={<Error />} />
-            </Routes>
-          </div>
-          <CreateButton />
+              <Route path="topic/*" element={<Error />} /> */}
+          {/* </Routes> */}
         </div>
+        {/* <CreateButton /> */}
       </div>
-    </Router>
+    </div>
+  // </Router>
   );
 }
 

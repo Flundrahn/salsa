@@ -1,0 +1,47 @@
+* {
+	box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
+}
+.card {
+	display: flex;
+	flex-direction: column;
+	width: 40vw;
+	height: 70vh;
+	overflow: scroll;
+	background: white;
+	box-shadow: 0 0 6px 0 #cfcfcf;
+	border-radius: 5px;
+	justify-self: center;
+	margin-top: 16px;
+	padding: 16px;
+}
+
+.card__header {
+	width: 100%;
+	font-family: "Futura";
+	font-style: normal;
+	font-weight: bold;
+	font-size: 2rem;
+	text-align: center;
+	color: var(--salt-text);
+	height: fit-content;
+}
+
+.row {
+	font-family: "Roboto";
+	font-size: 1rem;
+	text-align: left;
+	margin-top: 0.5rem;
+}
+
+.row__prefix {
+	font-weight: bold;
+	color: var(--salt-orange);
+	width: 40px;
+}
+
+.row__title {
+	text-decoration: none;
+	color: var(--salt-text);
+}
