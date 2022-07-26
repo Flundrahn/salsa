@@ -31,6 +31,7 @@
     ],
     "rules": {
       "no-console": "off",
+      "linebreak-style": "off",
       "react/jsx-closing-bracket-location": [
         "error",
         {
