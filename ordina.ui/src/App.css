@@ -4,7 +4,7 @@
 	padding: 0px;
 }
 :root {
-	--salt-orange: hwb(9 40% 0%);
+	--salt-orange: #ff7d66;
 	--salt-text: #404040;
 	--salt-background: #f8f8f8;
 	--alternative-background: hwb(0 100% 0%);
@@ -28,4 +28,24 @@
 	flex-grow: 1;
 	display: flex;
 	justify-content: center;
+}
+
+.form__container {
+	position: absolute;
+	padding-top: 30vh;
+	/* top: 50%;
+	left: 50%;
+	width: 40vw; */
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	align-self: center;
+	align-content: center;
+	justify-self: center;
+	justify-content: center;
+}
+
+.create-button {
+	/* background-color: var(--salt-orange); */
+	color: var(--salt-orange);
 }
