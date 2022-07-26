@@ -22,7 +22,11 @@ function Week({ week, today }) {
         {
           React.Children.toArray(
             week.topics.map(t => (
-              <div className={`timeline__row ${t.Day > today ? 'future' : ''}`}>
+              <div className={
+                `timeline__row 
+                ${t.day === today ? 'today' : ''}
+                ${t.day > today ? 'future' : ''}`
+                }>
                 <span className="topic__date timeline__date">{`Day ${t.day}`}</span>
                 <div className="timeline__line" />
                 <div className="topic__bullet" />

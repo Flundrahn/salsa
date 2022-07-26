@@ -51,16 +51,22 @@
 	background: var(--salt-orange);
 	color: white;
 	border-radius: 3px;
-	transition: 0.3s ease-in-out;
+	transition: 0.1s ease-in-out;
 }
 
 .form__button--submit:hover {
-	transform: scale(1.05);
+	background-color: var(--salt-orange-dark);
+	box-shadow: 0 0 6px 0 #cfcfcf;
+}
+
+.form__button--submit:active {
+	color: var(--salt-text);
 }
 
 .form__response-message {
 	font-size: 0.8rem;
 	color: green;
+	align-self: center;
 }
 
 .fail {

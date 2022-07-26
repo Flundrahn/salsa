@@ -19,9 +19,6 @@
 	flex-direction: column;
 	width: 100%;
 }
-.week__header {
-	padding: 12px;
-}
 .week__title {
 	font-size: 1rem;
 	margin-left: -21px;
@@ -30,11 +27,8 @@
 .week__text {
 	border-radius: 13px;
 	color: var(--salt-text);
-	/* color: white; */
 	background: var(--salt-orange);
 	padding: 4px 8px;
-	padding-left: 8px;
-	padding-right: 8px;
 }
 .future .week__text {
 	background: #bababa;
@@ -47,12 +41,15 @@
 	flex-direction: column;
 	width: 100%;
 }
+.week__header.timeline__row {
+	padding: 16px 0px;
+}
 .timeline__row {
 	display: flex;
 	align-items: center;
 	position: relative;
 	width: 100%;
-	padding: 8px 0px;
+	padding: 10px 0px;
 }
 .timeline__date {
 	text-align: right;
@@ -96,6 +93,18 @@
 }
 .future .topic__bullet {
 	background: var(--future-gray);
+}
+.today .topic__bullet {
+	transform: scale(1.6);
+	background: rgb(50, 224, 255);
+}
+.today .topic__title {
+	transform: scale(1.6);
+	background: rgb(50, 224, 255);
+}
+.today .topic__date {
+	transform: scale(1.6);
+	background: rgb(50, 224, 255);
 }
 .timeline__end {
 	display: flex;

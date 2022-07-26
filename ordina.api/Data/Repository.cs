@@ -41,7 +41,7 @@ public class Repository : IRepository
         }
         catch (Exception)
         {
-            throw new KeyNotFoundException("Week not found");
+            throw new KeyNotFoundException("No week exists for this day");
         }
 
         var savedEntry = _context.Topics.Add(topic);
