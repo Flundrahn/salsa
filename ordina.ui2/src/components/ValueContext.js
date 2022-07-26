@@ -7,12 +7,12 @@ const ValueProvider = ({ children }) => {
   const [topics, setTopics] = useState({});
   const resourceTypes = ['Lab', 'Slide', 'Cheatsheet', 'Article', 'Video', 'Weekend Test'];
 
-  // // const URL = 'https://ordina-web-api.azurewebsites.net/api/api/';
+  // // const URL = 'https://ordina-web-api.azurewebsites.net/api/';
   // const URL = 'https://ordina-web-api.azurewebsites.net/api/';
 
   useEffect(() => {
     const populateWeeks = async () => {
-      const response = await fetch('https://ordina-web-api.azurewebsites.net/api/api/weeks');
+      const response = await fetch('https://ordina-web-api.azurewebsites.net/api/weeks');
       const data = await response.json();
       setWeeks(data);
     };

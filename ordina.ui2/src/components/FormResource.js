@@ -23,7 +23,7 @@ export default function FormResource() {
       topicDay: parseInt(e.target[3].value, 10),
     };
 
-    axios.post('https://ordina-web-api.azurewebsites.net/api/api/resources', resourceToCreate)
+    axios.post('https://ordina-web-api.azurewebsites.net/api/resources', resourceToCreate)
       .then(response => {
         console.log(response);
       })

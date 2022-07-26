@@ -36,7 +36,7 @@ export default class WeatherForecast extends Component {
   }
 
   async populateWeatherData() {
-    const response = await fetch('https://ordina-web-api.azurewebsites.net/api/api/weatherforecast');
+    const response = await fetch('https://ordina-web-api.azurewebsites.net/api/weatherforecast');
     const data = await response.json();
     this.setState({ forecasts: data, loading: false });
   }

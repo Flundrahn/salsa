@@ -9,7 +9,7 @@ const deleteResource = id => {
   const headers = {
     // Authorization: 'Bearer my-token',    TODO later with authorization (maybe).
   };
-  axios.delete(`https://ordina-web-api.azurewebsites.net/api/api/resources/${id}`, { headers })
+  axios.delete(`https://ordina-web-api.azurewebsites.net/api/resources/${id}`, { headers })
     .then(() => { element.innerHTML = 'done!'; })
     .catch(error => {
       element.parentElement.innerHTML = `Error: ${error.message}`;
@@ -26,7 +26,7 @@ function Topic({ isDaily }) {
   const fetchTopic = () => {
     axios
       .get(
-        `https://ordina-web-api.azurewebsites.net/api/api/topics/${isDaily ? 'daily' : topicId}`,
+        `https://ordina-web-api.azurewebsites.net/api/topics/${isDaily ? 'daily' : topicId}`,
       )
       .then(res => {
         setTopic(res.data);

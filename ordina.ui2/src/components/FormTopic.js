@@ -14,7 +14,7 @@ export default function FormTopic() {
       day: parseInt(e.target[1].value, 10),
     };
 
-    axios.post('https://ordina-web-api.azurewebsites.net/api/api/topics', topicToCreate)
+    axios.post('https://ordina-web-api.azurewebsites.net/api/topics', topicToCreate)
       .then(response => {
         console.log(response);
         setSuccessfullPost(true);

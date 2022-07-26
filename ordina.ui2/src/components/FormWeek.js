@@ -14,7 +14,7 @@ export default function FormWeek() {
       weekNumber: parseInt(e.target[1].value, 10),
     };
 
-    axios.post('https://ordina-web-api.azurewebsites.net/api/api/weeks', weekToCreate)
+    axios.post('https://ordina-web-api.azurewebsites.net/api/weeks', weekToCreate)
       .then(response => {
         console.log(response);
         setSuccessfullPost(true);

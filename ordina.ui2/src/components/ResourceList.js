@@ -19,7 +19,7 @@ const ResourceList = () => {
   const getResources = () => {
     axios
       .get(
-        `https://ordina-web-api.azurewebsites.net/api/api/resources?resourceType=${resourceTypes.indexOf(resourceType)}`,
+        `https://ordina-web-api.azurewebsites.net/api/resources?resourceType=${resourceTypes.indexOf(resourceType)}`,
       )
       .then(res => {
         setResources(res.data);
