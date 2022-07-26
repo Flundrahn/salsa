@@ -36,7 +36,6 @@ function Topic({ isDaily }) {
   };
 
   useEffect(() => {
-
   }, [links]);
 
   useEffect(() => {
