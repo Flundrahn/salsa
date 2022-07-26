@@ -13,6 +13,7 @@ public class Mapper : Profile
         CreateMap<CreateResource, Resource>();
         // CreateMap<IEnumerable<CreateResource>, IEnumerable<Resource>>();
         CreateMap<Week, WeekExtResp>();
+        CreateMap<CreateWeek, Week>();
         CreateMap<Topic, TopicResp>();
     }
 }

@@ -1,5 +1,6 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using ordina.api.Models;
 using ordina.api.Models.DTOs;
 
 namespace ordina.api.Controllers
@@ -43,6 +44,26 @@ namespace ordina.api.Controllers
             catch (Exception e)
             {
                 Console.WriteLine(e);
+                return Problem(e.Message);
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<WeekExtResp>> PostWeek(CreateWeek dto)
+        {
+            var week = _mapper.Map<Week>(dto);
+            if (_repo.WeekExists(week))
+                return BadRequest("There is already a week with this week number");
+
+            try
+            {
+                var persistedEntity = await _repo.CreateWeek(week);
+                return CreatedAtAction("GetWeek",
+                new { id = persistedEntity.WeekId },
+                persistedEntity);
+            }
+            catch (Exception e)
+            {
                 return Problem(e.Message);
             }
         }

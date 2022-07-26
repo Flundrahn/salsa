@@ -7,12 +7,13 @@ const context = [
   '/resources',
 ];
 
-// const URL_DEVELOPMENT = 'https://localhost:7053/api/'; TODO use when developing
-const URL_PRODUCTION = 'https://ordina-web-api.azurewebsites.net/api/';
+// TODO use when developing
+const URL = 'https://localhost:7053/api/';
+// const URL = 'https://ordina-web-api.azurewebsites.net/api/';
 
 module.exports = function (app) {
   const appProxy = createProxyMiddleware(context, {
-    target: URL_PRODUCTION,
+    target: URL,
     secure: false,
   });
 

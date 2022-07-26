@@ -1,6 +1,5 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ordina.api.Models;
 using ordina.api.Models.DTOs;
 
@@ -95,9 +94,14 @@ namespace ordina.api.Controllers
         [HttpPost]
         public async Task<ActionResult<Topic>> PostTopic(CreateTopic dto)
         {
+            var topic = _mapper.Map<Topic>(dto);
+
+            if (_repo.TopicExists(topic))
+                return BadRequest("There is already a topic for this day");
+
             try
             {
-                var persistedEntity = await _repo.CreateTopic(_mapper.Map<Topic>(dto));
+                var persistedEntity = await _repo.CreateTopic(topic);
                 return CreatedAtAction("GetTopic",
                 new { id = persistedEntity.TopicId },
                 persistedEntity);
@@ -108,8 +112,7 @@ namespace ordina.api.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                return Problem("Oops.");
+                return Problem(e.Message);
             }
         }
 

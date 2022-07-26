@@ -9,6 +9,7 @@
 }
 .timeline {
 	background: var(--alternative-background);
+	padding-bottom: 16px;
 	/* width: 320px; */
 	height: 100vh;
 	overflow-y: scroll;
@@ -65,11 +66,10 @@
 	transform-origin: 0% 50%;
 }
 .title-text__container {
-	border-radius: 9px;
+	border-radius: 13px;
 	color: white;
 	background: var(--salt-orange);
-	padding-left: 8px;
-	padding-right: 8px;
+	padding: 4px 8px;
 }
 .timeline__title:hover {
 	transform: scale(1.1);

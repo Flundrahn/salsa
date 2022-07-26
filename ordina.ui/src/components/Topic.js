@@ -31,12 +31,8 @@ function Topic({ isDaily }) {
       .then(res => {
         setTopic(res.data);
         setIsLoading(false);
-        console.log('topic data');
-        console.log(res.data);
-        console.log('resources');
-        console.log(res.data.resources);
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
   };
 
   useEffect(() => {
@@ -66,12 +62,14 @@ function Topic({ isDaily }) {
       </div>
       <div className="card__body">
         {
-            React.Children.toArray(
-              topic.resources.map(r => (
+          React.Children.toArray(
+            topic.resources.map(r => (
+              <>
                 <ResLink data={r} deleteLink={handleRemoveResource} />
-              )),
-            )
-          }
+              </>
+            )),
+          )
+        }
         <div id="delete-request-set-headers" className="status__message">
           <div>
             <span className="status" />

@@ -26,8 +26,24 @@ public class Repository : IRepository
 
     public async Task<Topic> CreateTopic(Topic topic)
     {
-        if (topic.WeekId.HasValue && !WeekExists(topic.WeekId.Value))
-            throw new KeyNotFoundException("Week not found.");
+        // NOTE Now that updated CreateTopic does not have a WeekId, this guard clause should be uneccessary 
+        // if (topic.WeekId.HasValue && !WeekExists(topic.WeekId.Value))
+        //     throw new KeyNotFoundException("Week not found.");
+
+        var weekNumber = topic.Day / 5 + 1;
+
+        try
+        {
+            topic.WeekId = await _context.Weeks
+            .Where(w => w.WeekNumber == weekNumber)
+            .Select(w => w.WeekId)
+            .FirstAsync();
+        }
+        catch (Exception)
+        {
+            throw new KeyNotFoundException("Week not found");
+        }
+
         var savedEntry = _context.Topics.Add(topic);
         await _context.SaveChangesAsync();
         return savedEntry.Entity;
@@ -40,7 +56,7 @@ public class Repository : IRepository
         var topicId = GetTopicId(dto.TopicDay);
         if (topicId == null)
             throw new KeyNotFoundException("Topic for day " + dto.TopicDay + " not found.");
-        
+
         var entityToPersist = _mapper.Map<Resource>(dto);
         entityToPersist.TopicId = topicId;
         return await SaveResource(entityToPersist);
@@ -103,6 +119,7 @@ public class Repository : IRepository
     public async Task<IEnumerable<Week>> GetWeeks()
     {
         return await _context.Weeks
+        .OrderBy(w => w.WeekNumber)
         .Include(week => week.Topics //.Select(t => _mapper.Map<TopicResp>(t)).OrderBy(topic => topic.Day)
         ).ToListAsync();
     }
@@ -130,11 +147,17 @@ public class Repository : IRepository
         return _context.Entry(resource).Entity;
     }
 
-    private bool TopicExists(int id)
+    public bool TopicExists(int id)
     => (_context.Topics?.Any(e => e.TopicId == id)).GetValueOrDefault();
 
-    private bool WeekExists(int id)
+    public bool TopicExists(Topic topic)
+    => (_context.Topics?.Any(e => e.Day == topic.Day)).GetValueOrDefault();
+
+    public bool WeekExists(int id)
     => (_context.Weeks?.Any(e => e.WeekId == id)).GetValueOrDefault();
+
+    public bool WeekExists(Week week)
+    => (_context.Weeks?.Any(e => e.WeekNumber == week.WeekNumber)).GetValueOrDefault();
 
     private bool ResourceTypeExists(ResourceType resourceType)
     => resourceType >= 0 && resourceType <= Enum.GetValues(typeof(ResourceType)).Cast<ResourceType>().Last();

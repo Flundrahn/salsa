@@ -20,4 +20,8 @@ public interface IRepository
     Task<Topic> GetDailyTopic();
     Task<Course> CreateCourse(Course course);
     DateTime GetCurrentCourseStartDate();
+    bool TopicExists(int id);
+    bool TopicExists(Topic topic);
+    bool WeekExists(int id);
+    bool WeekExists(Week week);
 }
