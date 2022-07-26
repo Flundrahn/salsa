@@ -8,8 +8,8 @@ on:
     branches:
       - main
     paths:
-      - ordina.api/**
-      - .github/workflows/main_ordina-web-api.yml
+      - ordina.ui/**
+      - .github/workflows/main_ordina-web-ui.yml
   workflow_dispatch:
 
 jobs:
