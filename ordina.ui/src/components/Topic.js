@@ -9,23 +9,11 @@ import {
 } from '../auth/firebase-configs';
 import config from '../constants';
 
-const deleteResource = id => {
-  const element = document.querySelector('#delete-request-set-headers .status');
-  const headers = {
-    // Authorization: 'Bearer my-token',    TODO later with authorization (maybe).
-  };
-  axios.delete(`${config.API_URL}/resources/${id}`, { headers })
-    // .then(() => { element.innerHTML = 'done!'; })
-    .catch(error => {
-      element.parentElement.innerHTML = `Error: ${error.message}`;
-      console.error('There was an error!', error);
-    });
-};
-
 function Topic({ isDaily }) {
   const [topic, setTopic] = useState({});
   const [links, setLinks] = useState(topic.resources);
   const [isLoading, setIsLoading] = useState(true);
+  const [deletedMessage, setDeletedMessage] = useState('');
   const { topicId } = useParams();
   const { currentUser, resourceAdded, setResourceAdded } = useContext(ValueContext);
 
@@ -41,12 +29,27 @@ function Topic({ isDaily }) {
       .catch(err => console.error(err));
   };
 
+  const deleteResource = id => {
+    const headers = {
+      // Authorization: 'Bearer my-token',    TODO later with authorization (maybe).
+    };
+    axios.delete(`${config.API_URL}/resources/${id}`, { headers })
+      .then(() => setDeletedMessage('Resource deleted'))
+      .catch(error => {
+        setDeletedMessage(`Something went wrong: ${error.message}`);
+        console.error('There was an error!', error);
+      });
+  };
+
   useEffect(() => {
   }, [links]);
 
   useEffect(() => {
     fetchTopic();
-    return () => setResourceAdded('');
+    return () => {
+      setResourceAdded('');
+      setDeletedMessage('');
+    };
   }, [topicId, resourceAdded]);
 
   const handleRemoveResource = id => {
@@ -77,17 +80,14 @@ function Topic({ isDaily }) {
           React.Children.toArray(
             topic.resources.map(r => (
               <>
-                <ResLink resource={r} deleteLink={handleRemoveResource} />
+                <ResLink
+                  resource={{ ...r, topicDay: topic.day }}
+                  deleteLink={handleRemoveResource} />
               </>
             )),
           )
         }
-        <div id="delete-request-set-headers" className="status__message">
-          <div>
-            <span className="status" />
-            <p className="message">{resourceAdded}</p>
-          </div>
-        </div>
+        <p className="deleted-message">{deletedMessage}</p>
       </div>
     </div>
   );
