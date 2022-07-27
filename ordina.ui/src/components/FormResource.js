@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './styles/Form.css';
 import axios from 'axios';
 import { ValueContext } from './ValueContext';
@@ -11,7 +11,8 @@ import { ValueContext } from './ValueContext';
 
 export default function FormResource() {
   const { resourceTypes } = useContext(ValueContext) || {};
-  // const [createdResource, setCreatedResource] = useState({});
+  const [successfullPost, setSuccessfullPost] = useState(null);
+  const [postResponse, setPostResponse] = useState('');
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -26,9 +27,13 @@ export default function FormResource() {
     axios.post('https://ordina-web-api.azurewebsites.net/api/resources', resourceToCreate)
       .then(response => {
         console.log(response);
+        setSuccessfullPost(true);
+        setPostResponse('Your topic was successfully posted');
       })
       .catch(error => {
         console.log(error);
+        setSuccessfullPost(true);
+        setPostResponse(`Something went wrong: ${error.response.data}`);
       });
   };
 
@@ -79,9 +84,9 @@ export default function FormResource() {
       <button
         type="submit"
         className="form__button--submit">
-        {/* <FontAwesomeIcon icon={faAdd}/> */}
         Submit
       </button>
+      <p className={`form__response-message ${successfullPost ? '' : 'fail'}`}>{postResponse}</p>
     </form>
   );
 }

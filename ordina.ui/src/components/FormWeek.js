@@ -23,7 +23,7 @@ export default function FormWeek() {
       .catch(error => {
         console.error(error);
         setSuccessfullPost(false);
-        setPostResponse(`Something went wrong: ${error.message}`);
+        setPostResponse(`Something went wrong: ${error.response.data}`);
       });
   };
 
