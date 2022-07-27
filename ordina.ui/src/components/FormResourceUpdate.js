@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import './styles/Form.css';
 import axios from 'axios';
 import { ValueContext } from './ValueContext';
+import config from '../constants';
 
 export default function FormResourceUpdate({ resource }) {
   const { resourceTypes, setTopicAddedMessage } = useContext(ValueContext) || {};
@@ -19,7 +20,7 @@ export default function FormResourceUpdate({ resource }) {
       topicDay: e.target[3].value ? parseInt(e.target[3].value, 10) : resource.topicDay,
     };
 
-    axios.put('https://ordina-web-api.azurewebsites.net/api/Resources', resourceToUpdate)
+    axios.put(`${config.API_URL}/resources`, resourceToUpdate)
       .then(response => {
         console.log(response);
         setSuccessfullPost(true);

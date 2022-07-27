@@ -2,12 +2,7 @@ import React, { useContext, useState } from 'react';
 import './styles/Form.css';
 import axios from 'axios';
 import { ValueContext } from './ValueContext';
-// import
-// { FontAwesomeIcon }
-//   from '@fortawesome/react-fontawesome';
-// import
-// { faAdd }
-//   from '@fortawesome/free-solid-svg-icons';
+import config from '../constants';
 
 export default function FormResource() {
   const { resourceTypes, setTopicAddedMessage } = useContext(ValueContext) || {};
@@ -24,7 +19,7 @@ export default function FormResource() {
       topicDay: parseInt(e.target[3].value, 10),
     };
 
-    axios.post('https://ordina-web-api.azurewebsites.net/api/resources', resourceToCreate)
+    axios.post(`${config.API_URL}/resources`, resourceToCreate)
       .then(response => {
         console.log(response);
         setSuccessfullPost(true);
@@ -47,8 +42,6 @@ export default function FormResource() {
       <label htmlFor="form__input--dropdown" className="form__row">
         Resource type:
         <select
-          // value={state.value}
-          // onChange={handleChange}
           className="form__input form__input--dropdown"
           id="form__input--dropdown">
           {
