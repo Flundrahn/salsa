@@ -17,6 +17,11 @@
 	padding: 16px;
 }
 
+.card__body {
+	display: flex;
+	flex-direction: column;
+}
+
 .card__header {
 	width: 100%;
 	font-family: "Futura";
@@ -44,4 +49,26 @@
 .row__title {
 	text-decoration: none;
 	color: var(--salt-text);
+}
+
+.deleted-message {
+	font-family: "Roboto";
+	font-size: 1rem;
+	text-align: center;
+	margin-top: 0.5rem;
+	color: var(--salt-text);
+}
+
+.MuiSvgIcon-root {
+	color: var(--salt-text);
+	transition: 0.2s;
+}
+
+.MuiSvgIcon-root:hover {
+	color: rgb(201, 0, 0);
+}
+
+.MuiSvgIcon-root:active {
+	color: var(--salt-orange);
+	text-shadow: 0 0 6px 0 #cfcfcf;
 }

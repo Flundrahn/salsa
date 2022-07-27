@@ -17,7 +17,7 @@ export default function FormResourceUpdate({ resource }) {
       resourceType: e.target[0].value ? parseInt(e.target[0].value, 10) : resource.resourceType,
       title: e.target[1].value ? e.target[1].value : resource.title,
       link: e.target[2].value ? e.target[2].value : resource.link,
-      topicDay: e.target[3].value ? parseInt(e.target[3].value, 10) : resource.topicDay,
+      topicDay: e.target[3].value ? e.target[3].value : resource.topicDay,
     };
 
     axios.put(`${config.API_URL}/resources`, resourceToUpdate)
@@ -34,6 +34,9 @@ export default function FormResourceUpdate({ resource }) {
         setPostResponse(`Something went wrong: ${error.response.data}`);
       });
   };
+
+  console.log(resource.topicDay);
+  console.log(resource);
 
   return (
     <form
@@ -60,7 +63,6 @@ export default function FormResourceUpdate({ resource }) {
           type="text"
           className="form__input form__input--title"
           placeholder={resource.title}
-          // value={resource.title}
           id="form__input--title" />
       </label>
       <label htmlFor="form__input--link" className="form__row">
@@ -69,7 +71,6 @@ export default function FormResourceUpdate({ resource }) {
           type="text"
           className="form__input form__input--link"
           placeholder={resource.link}
-          // value={resource.link}
           id="form__input--link" />
       </label>
       <label htmlFor="form__input--day" className="form__row">
@@ -77,8 +78,7 @@ export default function FormResourceUpdate({ resource }) {
         <input
           type="number"
           className="form__input form__input--day"
-          placeholder={resource.topicDay}
-          // value={resource.topicDay}
+          placeholder={parseInt(resource.topicDay, 10)}
           id="form__input--day" />
       </label>
       <button

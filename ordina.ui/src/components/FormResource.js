@@ -23,7 +23,7 @@ export default function FormResource() {
       .then(response => {
         console.log(response);
         setSuccessfullPost(true);
-        setPostResponse('Your topic was successfully created');
+        setPostResponse('Your resource was successfully created');
         setResourceAdded('Update topic resources');
       })
       .catch(error => {
