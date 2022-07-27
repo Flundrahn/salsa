@@ -12,6 +12,7 @@ public class EditResource
     [Required]
     public string Link { get; set; }
     [Required]
-    public int TopicId { get; set; }
+    public int TopicDay { get; set; }
+    // public int? TopicId { get; set; }
 
 }

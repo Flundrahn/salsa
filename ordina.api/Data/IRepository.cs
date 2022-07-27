@@ -9,9 +9,9 @@ public interface IRepository
     Task<IEnumerable<Topic>> FindTopics();
     Task<IEnumerable<ResourceResponse>> FindResources(ResourceType resourceType);
     Task<Topic> FindTopic(int id);
-    Task<Resource> FindResource(int id);
+    Task<ResourceResponse> FindResource(int id);
     Task<Topic> ReplaceTopic(Topic topic);
-    Task<Resource> ReplaceResource(Resource resource);
+    Task<ResourceResponse> ReplaceResource(EditResource dto);
     Task<Topic> CreateTopic(Topic topic);
     Task<Resource> CreateResource(CreateResource resource);
     // Task<IEnumerable<Resource>> CreateResources(IEnumerable<Resource> resources); // TODO LATER

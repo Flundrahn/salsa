@@ -67,7 +67,7 @@ function Topic({ isDaily }) {
           React.Children.toArray(
             topic.resources.map(r => (
               <>
-                <ResLink data={r} deleteLink={handleRemoveResource} />
+                <ResLink resource={r} deleteLink={handleRemoveResource} />
               </>
             )),
           )

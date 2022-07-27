@@ -21,7 +21,7 @@ namespace ordina.api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Resource>> GetResource(int id)
+        public async Task<ActionResult<ResourceResponse>> GetResource(int id)
         {
 
             try
@@ -51,14 +51,13 @@ namespace ordina.api.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-        public async Task<ActionResult<Resource>> PutResource(int id, EditResource dto)
+        [HttpPut]
+        public async Task<ActionResult<ResourceResponse>> PutResource(EditResource dto)
         {
-            if (id != dto.ResourceId) return BadRequest();
             try
             {
-                var replacedResource = await _repo.ReplaceResource(_mapper.Map<Resource>(dto));
-                return Ok(replacedResource);
+                var replacedResource = await _repo.ReplaceResource(dto);
+                return Ok(_mapper.Map<ResourceResponse>(replacedResource));
             }
             catch (KeyNotFoundException e)
             {

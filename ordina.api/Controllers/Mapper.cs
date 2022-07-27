@@ -11,6 +11,7 @@ public class Mapper : Profile
         CreateMap<CreateCourse, Course>();
         CreateMap<CreateTopic, Topic>();
         CreateMap<CreateResource, Resource>();
+        CreateMap<Resource, ResourceResponse>();
         // CreateMap<IEnumerable<CreateResource>, IEnumerable<Resource>>();
         CreateMap<Week, WeekExtResp>();
         CreateMap<CreateWeek, Week>();

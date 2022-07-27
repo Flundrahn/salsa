@@ -10,5 +10,6 @@ public class Resource
   public ResourceType ResourceType { get; set; }
   public string Title { get; set; }
   public string Link { get; set; }
+  [ForeignKey("TopicId")]
   public int? TopicId { get; set; }
 }
