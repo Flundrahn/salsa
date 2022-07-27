@@ -53,7 +53,7 @@ export default function FormTopic() {
         className="form__button--submit">
         Submit
       </button>
-      <p className={`form__response-message ${successfullPost ? '' : 'fail'}`}>{postResponse}</p>
+      <p className={`form__response-message${successfullPost ? '' : '-fail'}`}>{postResponse}</p>
     </form>
   );
 }
