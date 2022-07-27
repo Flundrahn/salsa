@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './styles/Card.css';
 import ResLink from './ResLink';
+import { ValueContext } from './ValueContext';
 
 const deleteResource = id => {
   const element = document.querySelector('#delete-request-set-headers .status');
@@ -22,6 +23,7 @@ function Topic({ isDaily }) {
   const [links, setLinks] = useState(topic.resources);
   const [isLoading, setIsLoading] = useState(true);
   const { topicId } = useParams();
+  const { topicAddedMessage, setTopicAddedMessage } = useContext(ValueContext);
 
   const fetchTopic = () => {
     axios
@@ -40,6 +42,7 @@ function Topic({ isDaily }) {
 
   useEffect(() => {
     fetchTopic();
+    return setTopicAddedMessage('');
   }, [topicId]);
 
   const handleRemoveResource = id => {
@@ -72,6 +75,7 @@ function Topic({ isDaily }) {
         <div id="delete-request-set-headers" className="status__message">
           <div>
             <span className="status" />
+            <p className="message">{topicAddedMessage}</p>
           </div>
         </div>
       </div>

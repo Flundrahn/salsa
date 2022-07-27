@@ -10,7 +10,7 @@ import { ValueContext } from './ValueContext';
 //   from '@fortawesome/free-solid-svg-icons';
 
 export default function FormResource() {
-  const { resourceTypes } = useContext(ValueContext) || {};
+  const { resourceTypes, setTopicAddedMessage } = useContext(ValueContext) || {};
   const [successfullPost, setSuccessfullPost] = useState(null);
   const [postResponse, setPostResponse] = useState('');
 
@@ -28,7 +28,9 @@ export default function FormResource() {
       .then(response => {
         console.log(response);
         setSuccessfullPost(true);
-        setPostResponse('Your topic was successfully posted');
+        const successMessage = 'Your topic was successfully created';
+        setPostResponse(successMessage);
+        setTopicAddedMessage(successMessage);
       })
       .catch(error => {
         console.log(error);

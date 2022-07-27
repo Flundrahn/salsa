@@ -6,6 +6,7 @@ const ValueProvider = ({ children }) => {
   const [weeks, setWeeks] = useState([]);
   const [topics, setTopics] = useState({});
   const [dailyTopic, setDailyTopic] = useState({});
+  const [topicAddedMessage, setTopicAddedMessage] = useState('');
 
   const resourceTypes = ['Lab', 'Slide', 'Cheatsheet', 'Article', 'Video', 'Weekend Test'];
 
@@ -31,7 +32,14 @@ const ValueProvider = ({ children }) => {
 
   return (
     <ValueContext.Provider value={{
-      weeks, setWeeks, topics, setTopics, dailyTopic, resourceTypes,
+      weeks,
+      setWeeks,
+      topics,
+      setTopics,
+      dailyTopic,
+      resourceTypes,
+      topicAddedMessage,
+      setTopicAddedMessage,
     }}>
       {children}
     </ValueContext.Provider>
