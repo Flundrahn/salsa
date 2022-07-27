@@ -1,0 +1,7 @@
+.MuiSpeedDial-fab {
+    background-color: var(--salt-orange);
+}
+
+.MuiSpeedDial-fab:hover {
+    background-color: var(--salt-orange);
+}

@@ -1,3 +1,4 @@
+import './styles/CreateButton.css';
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Backdrop from '@mui/material/Backdrop';
@@ -39,10 +40,9 @@ export default function CreateButton() {
     <>
       <Modal
         open={openForm}
-        onClose={handleCloseForm}>
-        <div className="form__container">
-          {form}
-        </div>
+        onClose={handleCloseForm}
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        {form}
       </Modal>
       <Box sx={{ height: 650, transform: 'translateZ(0px)' }}>
         <Backdrop open={open} />
