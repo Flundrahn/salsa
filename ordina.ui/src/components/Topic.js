@@ -27,7 +27,7 @@ function Topic({ isDaily }) {
   const [links, setLinks] = useState(topic.resources);
   const [isLoading, setIsLoading] = useState(true);
   const { topicId } = useParams();
-  const { currentUser, topicAddedMessage, setTopicAddedMessage } = useContext(ValueContext);
+  const { currentUser, resourceAdded, setResourceAdded } = useContext(ValueContext);
 
   const fetchTopic = () => {
     axios
@@ -46,8 +46,8 @@ function Topic({ isDaily }) {
 
   useEffect(() => {
     fetchTopic();
-    return setTopicAddedMessage('');
-  }, [topicId]);
+    return () => setResourceAdded('');
+  }, [topicId, resourceAdded]);
 
   const handleRemoveResource = id => {
     setTopic(Object.assign(topic,
@@ -85,7 +85,7 @@ function Topic({ isDaily }) {
         <div id="delete-request-set-headers" className="status__message">
           <div>
             <span className="status" />
-            <p className="message">{topicAddedMessage}</p>
+            <p className="message">{resourceAdded}</p>
           </div>
         </div>
       </div>

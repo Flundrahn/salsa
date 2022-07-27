@@ -10,7 +10,7 @@ const ValueProvider = ({ children }) => {
   const [weeks, setWeeks] = useState([]);
   const [topics, setTopics] = useState({});
   const [dailyTopic, setDailyTopic] = useState({});
-  const [topicAddedMessage, setTopicAddedMessage] = useState('');
+  const [resourceAdded, setResourceAdded] = useState('');
 
   const resourceTypes = ['Lab', 'Slide', 'Cheatsheet', 'Article', 'Video', 'Weekend Test'];
   const [currentUser, setCurrentUser] = useState(null);
@@ -44,8 +44,8 @@ const ValueProvider = ({ children }) => {
       setTopics,
       dailyTopic,
       resourceTypes,
-      topicAddedMessage,
-      setTopicAddedMessage,
+      resourceAdded,
+      setResourceAdded,
       currentUser,
     }}>
       {children}

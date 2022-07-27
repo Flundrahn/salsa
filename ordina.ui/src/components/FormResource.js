@@ -5,7 +5,7 @@ import { ValueContext } from './ValueContext';
 import config from '../constants';
 
 export default function FormResource() {
-  const { resourceTypes, setTopicAddedMessage } = useContext(ValueContext) || {};
+  const { resourceTypes, setResourceAdded } = useContext(ValueContext) || {};
   const [successfullPost, setSuccessfullPost] = useState(null);
   const [postResponse, setPostResponse] = useState('');
 
@@ -23,9 +23,8 @@ export default function FormResource() {
       .then(response => {
         console.log(response);
         setSuccessfullPost(true);
-        const successMessage = 'Your topic was successfully created';
-        setPostResponse(successMessage);
-        setTopicAddedMessage(successMessage);
+        setPostResponse('Your topic was successfully created');
+        setResourceAdded('Update topic resources');
       })
       .catch(error => {
         console.log(error);
