@@ -44,7 +44,7 @@ const ResourceList = () => {
         React.Children.toArray(
           resources.map(r => (
             <div className="row">
-              <span className="row__prefix">{`Day ${r.topicId} `}</span>
+              <span className="row__prefix">{`Day ${r.topicDay} `}</span>
               <a
                 className="row__title"
                 href={r.link}

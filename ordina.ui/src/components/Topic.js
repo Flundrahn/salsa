@@ -26,7 +26,7 @@ function Topic({ isDaily }) {
   const [links, setLinks] = useState(topic.resources);
   const [isLoading, setIsLoading] = useState(true);
   const { topicId } = useParams();
-  const { currentUser } = useContext(ValueContext);
+  const { currentUser, topicAddedMessage, setTopicAddedMessage } = useContext(ValueContext);
 
   const fetchTopic = () => {
     axios
@@ -45,6 +45,7 @@ function Topic({ isDaily }) {
 
   useEffect(() => {
     fetchTopic();
+    return setTopicAddedMessage('');
   }, [topicId]);
 
   const handleRemoveResource = id => {
@@ -75,7 +76,7 @@ function Topic({ isDaily }) {
           React.Children.toArray(
             topic.resources.map(r => (
               <>
-                <ResLink data={r} deleteLink={handleRemoveResource} />
+                <ResLink resource={r} deleteLink={handleRemoveResource} />
               </>
             )),
           )
@@ -83,6 +84,7 @@ function Topic({ isDaily }) {
         <div id="delete-request-set-headers" className="status__message">
           <div>
             <span className="status" />
+            <p className="message">{topicAddedMessage}</p>
           </div>
         </div>
       </div>

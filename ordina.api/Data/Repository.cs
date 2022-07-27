@@ -89,11 +89,29 @@ public class Repository : IRepository
                     .FirstOrDefaultAsync();
     }
 
-    public async Task<Resource> FindResource(int id)
+    public async Task<Topic> FindTopicByDay(int day)
+    {
+        return await _context.Topics
+                    .Where(topic => topic.Day.Value == day)
+                    .FirstOrDefaultAsync();
+    }
+
+    public async Task<ResourceResponse> FindResource(int id)
     {
         return await _context.Resources
-                    .Where(resource => resource.ResourceId.Value == id)
-                    .FirstOrDefaultAsync();
+                    .Where(r => r.ResourceId.Value == id)
+                    .Select(r =>
+                        new ResourceResponse
+                        {
+                            ResourceType = r.ResourceType,
+                            Title = r.Title,
+                            Link = r.Link,
+                            TopicId = (int)r.TopicId,
+                            TopicDay = (int)_context.Topics
+                                .Where(t => t.TopicId == r.TopicId)
+                                .FirstOrDefault().Day,
+                        }
+                    ).FirstOrDefaultAsync();
     }
 
     public async Task<Week> FindWeek(int id)
@@ -104,11 +122,22 @@ public class Repository : IRepository
                     .FirstOrDefaultAsync();
     }
 
-    public async Task<IEnumerable<Resource>> FindResources(ResourceType resourceType)
+    public async Task<IEnumerable<ResourceResponse>> FindResources(ResourceType resourceType)
     {
         return await _context.Resources
-                    .Where(resource => resource.ResourceType == resourceType)
-                    .ToListAsync();
+                    .Where(r => r.ResourceType == resourceType)
+                    .Select(r =>
+                    new ResourceResponse
+                    {
+                        ResourceId = r.ResourceId.Value,
+                        ResourceType = r.ResourceType,
+                        Title = r.Title,
+                        Link = r.Link,
+                        TopicId = (int)r.TopicId,
+                        TopicDay = (int)_context.Topics.Where(t => t.TopicId == r.TopicId).FirstOrDefault().Day,
+                    }
+
+                    ).ToListAsync();
     }
 
     public async Task<IEnumerable<Topic>> FindTopics()
@@ -136,15 +165,28 @@ public class Repository : IRepository
         return _context.Entry(topic).Entity;
     }
 
-    public async Task<Resource> ReplaceResource(Resource resource)
+    public async Task<ResourceResponse> ReplaceResource(EditResource dto)
     {
-        if (resource.TopicId.HasValue && !TopicExists(resource.TopicId.Value))
+        var topic = await FindTopicByDay(dto.TopicDay);
+
+        if (topic == null)
             throw new KeyNotFoundException("Topic not found.");
-        if (!ResourceTypeExists(resource.ResourceType))
+
+        if (!ResourceTypeExists(dto.ResourceType))
             throw new KeyNotFoundException("Resource type not found.");
+
+        var resource = _mapper.Map<Resource>(dto);
+
+        resource.TopicId = topic.TopicId;
+
         _context.Entry(resource).State = EntityState.Modified;
         await _context.SaveChangesAsync();
-        return _context.Entry(resource).Entity;
+
+        var resourceResponse = _mapper.Map<ResourceResponse>(_context.Entry(resource).Entity);
+
+        resourceResponse.TopicDay = (int)dto.TopicDay;
+
+        return resourceResponse;
     }
 
     public bool TopicExists(int id)

@@ -2,14 +2,8 @@ import React, { useContext, useState } from 'react';
 import './styles/Form.css';
 import axios from 'axios';
 import { ValueContext } from './ValueContext';
-// import
-// { FontAwesomeIcon }
-//   from '@fortawesome/react-fontawesome';
-// import
-// { faAdd }
-//   from '@fortawesome/free-solid-svg-icons';
 
-export default function FormResource() {
+export default function FormResourceUpdate({ resource }) {
   const { resourceTypes, setTopicAddedMessage } = useContext(ValueContext) || {};
   const [successfullPost, setSuccessfullPost] = useState(null);
   const [postResponse, setPostResponse] = useState('');
@@ -17,24 +11,25 @@ export default function FormResource() {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const resourceToCreate = {
-      resourceType: parseInt(e.target[0].value, 10),
-      title: e.target[1].value,
-      link: e.target[2].value,
-      topicDay: parseInt(e.target[3].value, 10),
+    const resourceToUpdate = {
+      resourceId: resource.resourceId,
+      resourceType: e.target[0].value ? parseInt(e.target[0].value, 10) : resource.resourceType,
+      title: e.target[1].value ? e.target[1].value : resource.title,
+      link: e.target[2].value ? e.target[2].value : resource.link,
+      topicDay: e.target[3].value ? parseInt(e.target[3].value, 10) : resource.topicDay,
     };
 
-    axios.post('https://ordina-web-api.azurewebsites.net/api/resources', resourceToCreate)
+    axios.put('https://ordina-web-api.azurewebsites.net/api/Resources', resourceToUpdate)
       .then(response => {
         console.log(response);
         setSuccessfullPost(true);
-        const successMessage = 'Your topic was successfully created';
+        const successMessage = 'Your resource was successfully updated';
         setPostResponse(successMessage);
         setTopicAddedMessage(successMessage);
       })
       .catch(error => {
         console.log(error);
-        setSuccessfullPost(false);
+        setSuccessfullPost(true);
         setPostResponse(`Something went wrong: ${error.response.data}`);
       });
   };
@@ -43,18 +38,16 @@ export default function FormResource() {
     <form
       className="card--form"
       onSubmit={handleSubmit}>
-      <h3 className="form__title">Create a new resource</h3>
+      <h3 className="form__title">Update resource</h3>
       <label htmlFor="form__input--dropdown" className="form__row">
         Resource type:
         <select
-          // value={state.value}
-          // onChange={handleChange}
           className="form__input form__input--dropdown"
           id="form__input--dropdown">
           {
             React.Children.toArray(
               resourceTypes.map((rt, index) => (
-                <option value={index}>{rt}</option>
+                <option value={index} selected={resource.resourceType === index ? 'selected' : ''}>{rt}</option>
               )),
             )
           }
@@ -65,7 +58,8 @@ export default function FormResource() {
         <input
           type="text"
           className="form__input form__input--title"
-          placeholder="Resource Title"
+          placeholder={resource.title}
+          // value={resource.title}
           id="form__input--title" />
       </label>
       <label htmlFor="form__input--link" className="form__row">
@@ -73,7 +67,8 @@ export default function FormResource() {
         <input
           type="text"
           className="form__input form__input--link"
-          placeholder="https://www.placeholder.com/"
+          placeholder={resource.link}
+          // value={resource.link}
           id="form__input--link" />
       </label>
       <label htmlFor="form__input--day" className="form__row">
@@ -81,6 +76,8 @@ export default function FormResource() {
         <input
           type="number"
           className="form__input form__input--day"
+          placeholder={resource.topicDay}
+          // value={resource.topicDay}
           id="form__input--day" />
       </label>
       <button
@@ -88,7 +85,7 @@ export default function FormResource() {
         className="form__button--submit">
         Submit
       </button>
-      <p className={`form__response-message${successfullPost ? '' : '-fail'}`}>{postResponse}</p>
+      <p className={`form__response-message ${successfullPost ? '' : 'fail'}`}>{postResponse}</p>
     </form>
   );
 }
