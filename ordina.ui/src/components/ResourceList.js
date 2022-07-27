@@ -3,16 +3,18 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import './styles/Card.css';
 import axios from 'axios';
-// eslint-disable-next-line no-unused-vars
-// import { ValueContext } from './ValueContext';
-// import { useParams } from 'react-router-dom';
+import { ValueContext } from './ValueContext';
 
 const ResourceList = () => {
   const { resourceType } = useParams();
   const [resources, setResources] = useState([]);
   const resourceTypes = ['lab', 'slide', 'cheatsheet', 'article', 'video', 'weekend test'];
   const [readyToRender, setReadyToRender] = useState(false);
+  const { currentUser } = useContext(ValueContext);
 
+  if (!currentUser) {
+    return (<></>);
+  }
   const getResources = () => {
     axios
       .get(

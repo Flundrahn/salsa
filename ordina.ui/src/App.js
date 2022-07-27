@@ -3,7 +3,6 @@ import React from 'react';
 import {
   BrowserRouter as Router, Routes, Route,
 } from 'react-router-dom';
-// import Modal from '@mui/material/Modal';
 import Error from './pages/Error';
 import Timeline from './components/Timeline';
 import Topic from './components/Topic';
@@ -20,26 +19,13 @@ function App() {
         </div>
         <div className="App-body">
           <Timeline />
-          <div className="routes__container">
-            <Routes>
-              {/* <Route          TODO for authentication later
-                exact
-                path="/"
-                render={() => {
-                    return (
-                      this.state.isUserAuthenticated ?
-                      <Redirect to="/" /> :
-                      <Redirect to="/login" />
-                    )
-                }}
-              /> */}
-              <Route exact path="/" element={<Topic isDaily="true" />} />
-              <Route exact path="topic/:topicId" element={<Topic />} />
-              <Route exact path="resource/:resourceType" element={<ResourceList />} />
-              <Route path="*" element={<Error />} />
-              <Route path="topic/*" element={<Error />} />
-            </Routes>
-          </div>
+          <Routes>
+            <Route exact path="/" element={<Topic isDaily="true" />} />
+            <Route exact path="topic/:topicId" element={<Topic />} />
+            <Route exact path="resource/:resourceType" element={<ResourceList />} />
+            <Route path="*" element={<Error />} />
+            <Route path="topic/*" element={<Error />} />
+          </Routes>
           <CreateButton />
         </div>
       </div>
