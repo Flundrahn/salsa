@@ -7,7 +7,10 @@ import SpeedDialAction from '@mui/material/SpeedDialAction';
 import PostAdd from '@mui/icons-material/PostAdd';
 import TabIcon from '@mui/icons-material/Tab';
 import DateRangeIcon from '@mui/icons-material/DateRange';
-// import FormResource from './FormResource';
+import Modal from '@mui/material/Modal';
+import FormWeek from './FormWeek';
+import FormResource from './FormResource';
+import FormTopic from './FormTopic';
 
 const actions = [
   { icon: <PostAdd />, name: 'Resource' },
@@ -20,25 +23,54 @@ export default function CreateButton() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const [openForm, setOpenForm] = useState(false);
+  const handleOpenForm = () => setOpenForm(true);
+  const handleCloseForm = () => setOpenForm(false);
+
+  const [form, setForm] = useState(<></>);
+
+  const forms = [
+    <FormResource />,
+    <FormTopic />,
+    <FormWeek />,
+  ];
+
   return (
-    <Box sx={{ height: 650, transform: 'translateZ(0px)' }}>
-      <Backdrop open={open} />
-      <SpeedDial
-        ariaLabel="SpeedDial tooltip example"
-        sx={{ position: 'absolute', bottom: 16, right: 16 }}
-        icon={<SpeedDialIcon />}
-        onClose={handleClose}
-        onOpen={handleOpen}
-        open={open}>
-        {actions.map(action => (
-          <SpeedDialAction
-            key={action.name}
-            icon={action.icon}
-            tooltipTitle={action.name}
-            tooltipOpen
-            onClick={handleClose} />
-        ))}
-      </SpeedDial>
-    </Box>
+    <>
+      <Modal
+        open={openForm}
+        onClose={handleCloseForm}>
+        <div className="form__container">
+          {form}
+        </div>
+      </Modal>
+      <Box sx={{ height: 650, transform: 'translateZ(0px)' }}>
+        <Backdrop open={open} />
+        <SpeedDial
+          ariaLabel="SpeedDial tooltip example"
+          sx={{
+            position: 'absolute',
+            bottom: 16,
+            right: 16,
+          }}
+          icon={<SpeedDialIcon />}
+          onClose={handleClose}
+          onOpen={handleOpen}
+          open={open}>
+          {actions.map((action, index) => (
+            <SpeedDialAction
+              key={action.name}
+              icon={action.icon}
+              tooltipTitle={action.name}
+              tooltipOpen
+              onClick={() => {
+                setForm(forms[index]);
+                handleOpenForm();
+                handleClose();
+              }} />
+          ))}
+        </SpeedDial>
+      </Box>
+    </>
   );
 }

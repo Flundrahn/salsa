@@ -3,6 +3,7 @@ import React from 'react';
 import {
   BrowserRouter as Router, Routes, Route,
 } from 'react-router-dom';
+// import Modal from '@mui/material/Modal';
 import Error from './pages/Error';
 import Timeline from './components/Timeline';
 import Topic from './components/Topic';
