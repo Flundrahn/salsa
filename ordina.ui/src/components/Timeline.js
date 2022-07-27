@@ -46,6 +46,11 @@ function Week({ week, today }) {
 
 function Timeline() {
   const { weeks, dailyTopic } = useContext(ValueContext) || {};
+  const { currentUser } = useContext(ValueContext);
+
+  if (!currentUser) {
+    return (<></>);
+  }
 
   return (
     <div className="timeline">

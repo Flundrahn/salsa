@@ -1,4 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
+import {
+  auth,
+} from '../auth/firebase-configs';
 
 const ValueContext = createContext(null);
 
@@ -8,9 +11,14 @@ const ValueProvider = ({ children }) => {
   const [dailyTopic, setDailyTopic] = useState({});
 
   const resourceTypes = ['Lab', 'Slide', 'Cheatsheet', 'Article', 'Video', 'Weekend Test'];
+  const [currentUser, setCurrentUser] = useState(null);
 
   // // const URL = 'https://ordina-web-api.azurewebsites.net/api/';
   // const URL = 'https://ordina-web-api.azurewebsites.net/api/';
+
+  useEffect(() => {
+    auth.onAuthStateChanged(setCurrentUser);
+  });
 
   const fetchDailyTopic = async () => {
     const response = await fetch('https://ordina-web-api.azurewebsites.net/api/topics/daily');
@@ -31,7 +39,7 @@ const ValueProvider = ({ children }) => {
 
   return (
     <ValueContext.Provider value={{
-      weeks, setWeeks, topics, setTopics, dailyTopic, resourceTypes,
+      weeks, setWeeks, topics, setTopics, dailyTopic, resourceTypes, currentUser,
     }}>
       {children}
     </ValueContext.Provider>

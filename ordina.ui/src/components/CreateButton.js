@@ -1,5 +1,5 @@
+import React, { useState, useContext } from 'react';
 import './styles/CreateButton.css';
-import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Backdrop from '@mui/material/Backdrop';
 import SpeedDial from '@mui/material/SpeedDial';
@@ -9,6 +9,7 @@ import PostAdd from '@mui/icons-material/PostAdd';
 import TabIcon from '@mui/icons-material/Tab';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import Modal from '@mui/material/Modal';
+import { ValueContext } from './ValueContext';
 import FormWeek from './FormWeek';
 import FormResource from './FormResource';
 import FormTopic from './FormTopic';
@@ -20,21 +21,25 @@ const actions = [
 ];
 
 export default function CreateButton() {
+  const { currentUser } = useContext(ValueContext) || {};
   const [open, setOpen] = useState(false);
+  const [form, setForm] = useState(<></>);
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
   const [openForm, setOpenForm] = useState(false);
   const handleOpenForm = () => setOpenForm(true);
   const handleCloseForm = () => setOpenForm(false);
-
-  const [form, setForm] = useState(<></>);
 
   const forms = [
     <FormResource />,
     <FormTopic />,
     <FormWeek />,
   ];
+
+  if (!currentUser) {
+    return (<></>);
+  }
 
   return (
     <>
