@@ -18,7 +18,8 @@ function Navbar() {
               <Link
                 to={`resource/${r.toLowerCase()}`}
                 className="navbar-item">
-                {` ${r}s`}
+                <p className="item__text">{` ${r}s`}</p>
+                <div className="item__line" />
               </Link>
             )),
           )

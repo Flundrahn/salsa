@@ -3,8 +3,8 @@ import './styles/Form.css';
 import axios from 'axios';
 
 export default function FormTopic() {
-  const [postResponse, setPostResponse] = useState('');
   const [successfullPost, setSuccessfullPost] = useState(null);
+  const [postResponse, setPostResponse] = useState('');
 
   const handleSubmit = async e => {
     e.preventDefault();
