@@ -6,5 +6,5 @@ public class ResourceResponse
     public string Title { get; set; }
     public string Link { get; set; }
     public int TopicId { get; set; }
-    public int TopicDay { get; set; }
+    public int? TopicDay { get; set; }
 }

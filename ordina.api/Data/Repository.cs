@@ -127,14 +127,16 @@ public class Repository : IRepository
         return await _context.Resources
                     .Where(r => r.ResourceType == resourceType)
                     .Select(r =>
-                        new ResourceResponse
-                        {
-                            ResourceType = r.ResourceType,
-                            Title = r.Title,
-                            Link = r.Link,
-                            TopicId = (int)r.TopicId,
-                            TopicDay = (int)_context.Topics.Where(t => t.TopicId == r.TopicId).FirstOrDefault().Day,
-                        }
+                    new ResourceResponse
+                    {
+                        ResourceId = r.ResourceId.Value,
+                        ResourceType = r.ResourceType,
+                        Title = r.Title,
+                        Link = r.Link,
+                        TopicId = (int)r.TopicId,
+                        TopicDay = (int)_context.Topics.Where(t => t.TopicId == r.TopicId).FirstOrDefault().Day,
+                    }
+
                     ).ToListAsync();
     }
 
@@ -174,7 +176,7 @@ public class Repository : IRepository
             throw new KeyNotFoundException("Resource type not found.");
 
         var resource = _mapper.Map<Resource>(dto);
-        
+
         resource.TopicId = topic.TopicId;
 
         _context.Entry(resource).State = EntityState.Modified;

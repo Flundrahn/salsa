@@ -19,7 +19,7 @@ export default function FormResourceUpdate({ resource }) {
       topicDay: e.target[3].value ? parseInt(e.target[3].value, 10) : resource.topicDay,
     };
 
-    axios.put('https://localhost:7053/api/Resources', resourceToUpdate)
+    axios.put('https://ordina-web-api.azurewebsites.net/api/Resources', resourceToUpdate)
       .then(response => {
         console.log(response);
         setSuccessfullPost(true);

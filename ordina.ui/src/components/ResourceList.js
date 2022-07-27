@@ -13,9 +13,6 @@ const ResourceList = () => {
   const resourceTypes = ['lab', 'slide', 'cheatsheet', 'article', 'video', 'weekend test'];
   const [readyToRender, setReadyToRender] = useState(false);
 
-  console.log(resourceType);
-  console.log(resourceTypes.indexOf(resourceType));
-
   const getResources = () => {
     axios
       .get(
@@ -45,7 +42,7 @@ const ResourceList = () => {
         React.Children.toArray(
           resources.map(r => (
             <div className="row">
-              <span className="row__prefix">{`Day ${r.day} `}</span>
+              <span className="row__prefix">{`Day ${r.topicDay} `}</span>
               <a
                 className="row__title"
                 href={r.link}
