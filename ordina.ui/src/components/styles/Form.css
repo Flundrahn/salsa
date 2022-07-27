@@ -69,6 +69,8 @@
 	align-self: center;
 }
 
-.fail {
-	color: rgb(175, 0, 0);
+.form__response-message-fail {
+	font-size: 0.8rem;
+	color: red;
+	align-self: center;
 }
