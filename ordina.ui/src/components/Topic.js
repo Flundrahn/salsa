@@ -14,7 +14,7 @@ const deleteResource = id => {
     // Authorization: 'Bearer my-token',    TODO later with authorization (maybe).
   };
   axios.delete(`https://ordina-web-api.azurewebsites.net/api/resources/${id}`, { headers })
-    .then(() => { element.innerHTML = 'done!'; })
+    // .then(() => { element.innerHTML = 'done!'; })
     .catch(error => {
       element.parentElement.innerHTML = `Error: ${error.message}`;
       console.error('There was an error!', error);
@@ -41,7 +41,6 @@ function Topic({ isDaily }) {
   };
 
   useEffect(() => {
-
   }, [links]);
 
   useEffect(() => {

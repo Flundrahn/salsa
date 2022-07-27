@@ -13,8 +13,9 @@ function ResLink({ data, deleteLink }) {
       <span className="row__prefix">
         {`${resourceTypes[data.resourceType]}:`}
       </span>
+      <pre>      </pre>
       <a className="row__title" href={data.link} target="_blank" rel="noreferrer">
-        {`${data.title}  `}
+        {`${data.title}`}
       </a>
       <div className="link-buttons">
         <EditIcon onClick={() => console.log('edit resource clicked')} />

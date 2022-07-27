@@ -23,7 +23,7 @@ export default function FormWeek() {
       .catch(error => {
         console.error(error);
         setSuccessfullPost(false);
-        setPostResponse(`Something went wrong: ${error.message}`);
+        setPostResponse(`Something went wrong: ${error.response.data}`);
       });
   };
 
@@ -55,7 +55,7 @@ export default function FormWeek() {
         className="form__button--submit">
         Submit
       </button>
-      <p className={`form__response-message ${successfullPost ? '' : 'fail'}`}>{postResponse}</p>
+      <p className={`form__response-message${successfullPost ? '' : '-fail'}`}>{postResponse}</p>
     </form>
   );
 }

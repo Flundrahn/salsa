@@ -41,7 +41,7 @@ public class Repository : IRepository
         }
         catch (Exception)
         {
-            throw new KeyNotFoundException("Week not found");
+            throw new KeyNotFoundException("No week exists for this day");
         }
 
         var savedEntry = _context.Topics.Add(topic);
@@ -120,8 +120,8 @@ public class Repository : IRepository
     {
         return await _context.Weeks
         .OrderBy(w => w.WeekNumber)
-        .Include(week => week.Topics //.Select(t => _mapper.Map<TopicResp>(t)).OrderBy(topic => topic.Day)
-        ).ToListAsync();
+        .Include(week => week.Topics.OrderBy(t => t.Day))
+        .ToListAsync();
     }
 
     public async Task<Topic> ReplaceTopic(Topic topic)

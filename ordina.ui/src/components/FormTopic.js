@@ -3,8 +3,8 @@ import './styles/Form.css';
 import axios from 'axios';
 
 export default function FormTopic() {
-  const [postResponse, setPostResponse] = useState('');
   const [successfullPost, setSuccessfullPost] = useState(null);
+  const [postResponse, setPostResponse] = useState('');
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -23,7 +23,7 @@ export default function FormTopic() {
       .catch(error => {
         console.error(error);
         setSuccessfullPost(false);
-        setPostResponse(`Something went wrong: ${error.message}`);
+        setPostResponse(`Something went wrong: ${error.response.data}`);
       });
   };
 
@@ -53,7 +53,7 @@ export default function FormTopic() {
         className="form__button--submit">
         Submit
       </button>
-      <p className={`form__response-message ${successfullPost ? '' : 'fail'}`}>{postResponse}</p>
+      <p className={`form__response-message${successfullPost ? '' : '-fail'}`}>{postResponse}</p>
     </form>
   );
 }
