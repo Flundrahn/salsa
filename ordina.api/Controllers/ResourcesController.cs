@@ -39,7 +39,7 @@ namespace ordina.api.Controllers
 
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Resource>>> FilterResources(ResourceType resourceType)
+        public async Task<ActionResult<IEnumerable<ResourceResponse>>> FilterResources(ResourceType resourceType)
         {
             try
             {
@@ -112,7 +112,7 @@ namespace ordina.api.Controllers
         //         return Problem("Oops.");
         //     }
         // }
-		
+
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<Resource>> DeleteResource(int id)

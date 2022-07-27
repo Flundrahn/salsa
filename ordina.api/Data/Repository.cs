@@ -104,11 +104,20 @@ public class Repository : IRepository
                     .FirstOrDefaultAsync();
     }
 
-    public async Task<IEnumerable<Resource>> FindResources(ResourceType resourceType)
+    public async Task<IEnumerable<ResourceResponse>> FindResources(ResourceType resourceType)
     {
         return await _context.Resources
-                    .Where(resource => resource.ResourceType == resourceType)
-                    .ToListAsync();
+                    .Where(r => r.ResourceType == resourceType)
+                    .Select(r =>
+                        new ResourceResponse
+                        {
+                            ResourceType = r.ResourceType,
+                            Title = r.Title,
+                            Link = r.Link,
+                            TopicId = (int)r.TopicId,
+                            TopicDay = (int)_context.Topics.Where(t => t.TopicId == r.TopicId).FirstOrDefault().Day,
+                        }
+                    ).ToListAsync();
     }
 
     public async Task<IEnumerable<Topic>> FindTopics()
