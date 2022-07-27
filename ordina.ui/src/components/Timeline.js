@@ -5,6 +5,11 @@ import './styles/Timeline.css';
 
 function Timeline() {
   const { weeks } = useContext(ValueContext) || {};
+  const { currentUser } = useContext(ValueContext);
+
+  if (!currentUser) {
+    return (<></>);
+  }
 
   return (
     <div className="timeline">

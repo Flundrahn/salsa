@@ -11,7 +11,7 @@
 	background: var(--alternative-background);
 	padding-bottom: 16px;
 	/* width: 320px; */
-	height: 100vh;
+	height: 91vh;
 	overflow-y: scroll;
 }
 .week__container {

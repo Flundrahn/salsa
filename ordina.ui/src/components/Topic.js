@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './styles/Card.css';
 import ResLink from './ResLink';
+import { ValueContext } from './ValueContext';
+import {
+  signIn,
+} from '../auth/firebase-configs';
 
 const deleteResource = id => {
   const element = document.querySelector('#delete-request-set-headers .status');
@@ -22,6 +26,7 @@ function Topic({ isDaily }) {
   const [links, setLinks] = useState(topic.resources);
   const [isLoading, setIsLoading] = useState(true);
   const { topicId } = useParams();
+  const { currentUser } = useContext(ValueContext);
 
   const fetchTopic = () => {
     axios
@@ -52,6 +57,12 @@ function Topic({ isDaily }) {
 
   if (isLoading) {
     return (<div>loading...</div>);
+  }
+
+  if (!currentUser) {
+    return (
+      <button type="submit" className="google-btn google-btn__login" onClick={signIn}>sign in</button>
+    );
   }
 
   return (

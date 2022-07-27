@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Box from '@mui/material/Box';
 import Backdrop from '@mui/material/Backdrop';
 import SpeedDial from '@mui/material/SpeedDial';
@@ -7,7 +7,7 @@ import SpeedDialAction from '@mui/material/SpeedDialAction';
 import PostAdd from '@mui/icons-material/PostAdd';
 import TabIcon from '@mui/icons-material/Tab';
 import DateRangeIcon from '@mui/icons-material/DateRange';
-// import FormResource from './FormResource';
+import { ValueContext } from './ValueContext';
 
 const actions = [
   { icon: <PostAdd />, name: 'Resource' },
@@ -19,6 +19,11 @@ export default function CreateButton() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const { currentUser } = useContext(ValueContext);
+
+  if (!currentUser) {
+    return (<></>);
+  }
 
   return (
     <Box sx={{ height: 650, transform: 'translateZ(0px)' }}>
