@@ -65,7 +65,26 @@ function Topic({ isDaily }) {
 
   if (!currentUser) {
     return (
-      <button type="submit" className="google-btn google-btn__login" onClick={signIn}>sign in</button>
+      <>
+        <div className="landing-page__heading-container">
+          <span className="landing-page__heading">
+            Welcome
+          </span>
+          <span className="landing-page__heading">
+            To
+          </span>
+          <span className="landing-page__heading">
+            SALSA
+          </span>
+          <span className="landing-page__heading subheading">
+            Salt Student App
+          </span>
+        </div>
+        <div className="centered-button">
+          <button type="submit" className="google-btn google-btn__login" onClick={signIn}>sign in</button>
+        </div>
+      </>
+
     );
   }
 

@@ -13,7 +13,7 @@ import CreateButton from './components/CreateButton';
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div className="App background-image">
         <div className="App__header">
           <Navbar />
         </div>
