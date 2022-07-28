@@ -7,31 +7,20 @@ import { ValueContext } from './ValueContext';
 import {
   signIn,
 } from '../auth/firebase-configs';
-
-const deleteResource = id => {
-  const element = document.querySelector('#delete-request-set-headers .status');
-  const headers = {
-    // Authorization: 'Bearer my-token',    TODO later with authorization (maybe).
-  };
-  axios.delete(`https://ordina-web-api.azurewebsites.net/api/resources/${id}`, { headers })
-    // .then(() => { element.innerHTML = 'done!'; })
-    .catch(error => {
-      element.parentElement.innerHTML = `Error: ${error.message}`;
-      console.error('There was an error!', error);
-    });
-};
+import config from '../constants';
 
 function Topic({ isDaily }) {
   const [topic, setTopic] = useState({});
   const [links, setLinks] = useState(topic.resources);
   const [isLoading, setIsLoading] = useState(true);
+  const [deletedMessage, setDeletedMessage] = useState('');
   const { topicId } = useParams();
-  const { currentUser, topicAddedMessage, setTopicAddedMessage } = useContext(ValueContext);
+  const { currentUser, componentRefresh, setComponentRefresh } = useContext(ValueContext);
 
   const fetchTopic = () => {
     axios
       .get(
-        `https://ordina-web-api.azurewebsites.net/api/topics/${isDaily ? 'daily' : topicId}`,
+        `${config.API_URL}/topics/${isDaily ? 'daily' : topicId}`,
       )
       .then(res => {
         setTopic(res.data);
@@ -40,13 +29,28 @@ function Topic({ isDaily }) {
       .catch(err => console.error(err));
   };
 
+  const deleteResource = id => {
+    const headers = {
+      // Authorization: 'Bearer my-token',    TODO later with authorization (maybe).
+    };
+    axios.delete(`${config.API_URL}/resources/${id}`, { headers })
+      .then(() => setDeletedMessage('Resource deleted'))
+      .catch(error => {
+        setDeletedMessage(`Something went wrong: ${error.message}`);
+        console.error('There was an error!', error);
+      });
+  };
+
   useEffect(() => {
   }, [links]);
 
   useEffect(() => {
     fetchTopic();
-    return setTopicAddedMessage('');
-  }, [topicId]);
+    return () => {
+      setComponentRefresh('');
+      setDeletedMessage('');
+    };
+  }, [topicId, componentRefresh]);
 
   const handleRemoveResource = id => {
     setTopic(Object.assign(topic,
@@ -76,17 +80,14 @@ function Topic({ isDaily }) {
           React.Children.toArray(
             topic.resources.map(r => (
               <>
-                <ResLink resource={r} deleteLink={handleRemoveResource} />
+                <ResLink
+                  resource={{ ...r, topicDay: topic.day }}
+                  deleteLink={handleRemoveResource} />
               </>
             )),
           )
         }
-        <div id="delete-request-set-headers" className="status__message">
-          <div>
-            <span className="status" />
-            <p className="message">{topicAddedMessage}</p>
-          </div>
-        </div>
+        <p className="deleted-message">{deletedMessage}</p>
       </div>
     </div>
   );

@@ -4,7 +4,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import Modal from '@mui/material/Modal';
 import './styles/ResLink.css';
 import FormResourceUpdate from './FormResourceUpdate';
-// import './styles/Card.css';
 
 import { ValueContext } from './ValueContext';
 
@@ -31,10 +30,8 @@ function ResLink({ resource, deleteLink }) {
           {`${resource.title}  `}
         </a>
         <div className="link-buttons">
-          <EditIcon onClick={() => {
-            handleOpenForm();
-          }} />
-          <DeleteIcon style={{ color: 'rgb(216, 5, 5)' }} onClick={() => deleteLink(resource.resourceId)} />
+          <EditIcon onClick={handleOpenForm} />
+          <DeleteIcon onClick={() => deleteLink(resource.resourceId)} />
         </div>
       </div>
     </>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './styles/Form.css';
 import axios from 'axios';
+import config from '../constants';
 
 export default function FormTopic() {
   const [successfullPost, setSuccessfullPost] = useState(null);
@@ -14,7 +15,7 @@ export default function FormTopic() {
       day: parseInt(e.target[1].value, 10),
     };
 
-    axios.post('https://ordina-web-api.azurewebsites.net/api/topics', topicToCreate)
+    axios.post(`${config.API_URL}/topics`, topicToCreate)
       .then(response => {
         console.log(response);
         setSuccessfullPost(true);

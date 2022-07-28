@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './styles/Form.css';
 import axios from 'axios';
+import config from '../constants';
 
 export default function FormWeek() {
   const [postResponse, setPostResponse] = useState('');
@@ -14,7 +15,7 @@ export default function FormWeek() {
       weekNumber: parseInt(e.target[1].value, 10),
     };
 
-    axios.post('https://ordina-web-api.azurewebsites.net/api/weeks', weekToCreate)
+    axios.post(`${config.API_URL}/weeks`, weekToCreate)
       .then(response => {
         console.log(response);
         setSuccessfullPost(true);
