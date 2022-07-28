@@ -53,17 +53,55 @@
 
 .google-btn__login {
 	width: max-content;
+	height: fit-content;
 }
 
 .google-btn__logout {
 	font-size: 1rem;
 }
 
+.background-image {
+   background-image: linear-gradient(to left, rgba(255, 255, 255, 0.688), rgba(255, 255, 255, 1)), url(https://www.salt.dev/_ipx/w_3840,q_75/https%3A%2F%2Fimages.ctfassets.net%2Fjqtlvicdu16w%2F4Eie2P3LrAhafO1Tjumxyf%2Fc61dcc187223ad370f6e407f2ddc6d15%2FSalt-Humans.ee5bf2b5.webp?url=https%3A%2F%2Fimages.ctfassets.net%2Fjqtlvicdu16w%2F4Eie2P3LrAhafO1Tjumxyf%2Fc61dcc187223ad370f6e407f2ddc6d15%2FSalt-Humans.ee5bf2b5.webp&w=3840&q=75);
+   background-size: cover;
+}
+
+.landing-page__heading-container {
+	display: flex;
+	flex-direction: column;
+	height: fit-content;
+	position: absolute;
+	align-items: flex-start;
+	top: 20%;
+	left: 10vh;
+	padding: 1rem;
+	z-index: 100;
+}
+
+.landing-page__heading {
+	font-family: 'Futura';
+	font-size:72px;
+	margin: 5px;
+	font-weight: bold;
+	letter-spacing: 0.01rem;
+	line-height: 3.5rem;
+	color:white;
+	background-color: #ff7961;
+	padding-top: 9px;
+	padding-bottom: 8px;
+}
+
+.subheading {
+	font-size: 1rem;
+	padding: 0;
+	height: 1rem;
+	color: gray;
+}
+
 .centered-button {
 	height: fit-content;
 	display: flex;
 	justify-content: center;
-	margin-top: 20%;
+	align-self: center;
 }
 
 .google-btn:hover {
