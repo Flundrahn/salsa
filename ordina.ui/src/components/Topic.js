@@ -15,7 +15,7 @@ function Topic({ isDaily }) {
   const [isLoading, setIsLoading] = useState(true);
   const [deletedMessage, setDeletedMessage] = useState('');
   const { topicId } = useParams();
-  const { currentUser, resourceAdded, setResourceAdded } = useContext(ValueContext);
+  const { currentUser, componentRefresh, setComponentRefresh } = useContext(ValueContext);
 
   const fetchTopic = () => {
     axios
@@ -47,10 +47,10 @@ function Topic({ isDaily }) {
   useEffect(() => {
     fetchTopic();
     return () => {
-      setResourceAdded('');
+      setComponentRefresh('');
       setDeletedMessage('');
     };
-  }, [topicId, resourceAdded]);
+  }, [topicId, componentRefresh]);
 
   const handleRemoveResource = id => {
     setTopic(Object.assign(topic,

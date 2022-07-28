@@ -17,8 +17,8 @@ function App() {
         <div className="App__header">
           <Navbar />
         </div>
+        <Timeline />
         <div className="App-body">
-          <Timeline />
           <Routes>
             <Route exact path="/" element={<Topic isDaily="true" />} />
             <Route exact path="topic/:topicId" element={<Topic />} />

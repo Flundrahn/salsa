@@ -6,6 +6,8 @@
 }
 .timeline {
 	background: var(--alternative-background);
+	justify-self: flex-start;
+	margin-top: 9vh;
 	padding-bottom: 16px;
 	height: 91vh;
 	width: 380px;
@@ -27,7 +29,7 @@
 }
 .week__text {
 	border-radius: 13px;
-	color:white;
+	color: white;
 	background: var(--salt-orange);
 	padding: 4px 8px;
 }
@@ -60,7 +62,7 @@
 	color: var(--salt-orange);
 }
 .future .timeline__date {
-	color: var(--future-gray)
+	color: var(--future-gray);
 }
 .timeline__line {
 	position: absolute;

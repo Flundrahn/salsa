@@ -5,6 +5,8 @@
 }
 .card {
 	display: flex;
+	justify-self: center;
+	align-self: center;
 	flex-direction: column;
 	width: 40vw;
 	height: 70vh;

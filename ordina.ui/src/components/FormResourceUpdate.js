@@ -5,8 +5,8 @@ import { ValueContext } from './ValueContext';
 import config from '../constants';
 
 export default function FormResourceUpdate({ resource }) {
-  const { resourceTypes, setTopicAddedMessage } = useContext(ValueContext) || {};
-  const [successfullPost, setSuccessfullPost] = useState(null);
+  const { resourceTypes, setComponentRefresh } = useContext(ValueContext) || {};
+  const [successfullPost, setSuccessfullPost] = useState('');
   const [postResponse, setPostResponse] = useState('');
 
   const handleSubmit = async e => {
@@ -26,7 +26,7 @@ export default function FormResourceUpdate({ resource }) {
         setSuccessfullPost(true);
         const successMessage = 'Your resource was successfully updated';
         setPostResponse(successMessage);
-        setTopicAddedMessage(successMessage);
+        setComponentRefresh('Refresh Topic & ResourceList');
       })
       .catch(error => {
         console.log(error);

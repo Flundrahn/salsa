@@ -13,8 +13,8 @@
 	align-items: center;
 	box-shadow: 0 0 6px 0 #cfcfcf;
 	overflow-y: visible;
-	position: relative;
-	z-index: 1;
+	position: absolute;
+	z-index: 2;
 }
 
 .logo {

@@ -10,7 +10,7 @@ const ResourceList = () => {
   const [resources, setResources] = useState([]);
   const resourceTypes = ['lab', 'slide', 'cheatsheet', 'article', 'video', 'weekend test'];
   const [readyToRender, setReadyToRender] = useState(false);
-  const { currentUser } = useContext(ValueContext);
+  const { currentUser, componentRefresh } = useContext(ValueContext);
 
   if (!currentUser) {
     return (<></>);
@@ -31,7 +31,7 @@ const ResourceList = () => {
 
   useEffect(() => {
     getResources();
-  }, [resourceType]);
+  }, [resourceType, componentRefresh]);
 
   if (!readyToRender) {
     return (<h1>Loading...</h1>);

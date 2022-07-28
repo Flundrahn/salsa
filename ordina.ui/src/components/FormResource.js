@@ -5,7 +5,7 @@ import { ValueContext } from './ValueContext';
 import config from '../constants';
 
 export default function FormResource() {
-  const { resourceTypes, setResourceAdded } = useContext(ValueContext) || {};
+  const { resourceTypes, setComponentRefresh } = useContext(ValueContext) || {};
   const [successfullPost, setSuccessfullPost] = useState(null);
   const [postResponse, setPostResponse] = useState('');
 
@@ -24,7 +24,7 @@ export default function FormResource() {
         console.log(response);
         setSuccessfullPost(true);
         setPostResponse('Your resource was successfully created');
-        setResourceAdded('Update topic resources');
+        setComponentRefresh('Refresh Topic & ResourceList');
       })
       .catch(error => {
         console.log(error);
