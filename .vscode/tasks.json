@@ -7,7 +7,7 @@
       "type": "process",
       "args": [
         "build",
-        "${workspaceFolder}/ordina.api/ordina.api.csproj",
+        "${workspaceFolder}/salsa.api/salsa.api.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
@@ -19,7 +19,7 @@
       "type": "process",
       "args": [
         "publish",
-        "${workspaceFolder}/ordina.api/ordina.api.csproj",
+        "${workspaceFolder}/salsa.api/salsa.api.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
@@ -33,7 +33,7 @@
         "watch",
         "run",
         "--project",
-        "${workspaceFolder}/ordina.api/ordina.api.csproj"
+        "${workspaceFolder}/salsa.api/salsa.api.csproj"
       ],
       "problemMatcher": "$msCompile"
     }
