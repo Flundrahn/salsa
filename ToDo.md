@@ -3,7 +3,4 @@
 2. Fix error message according to Håkan's solution
 
 # Frontend
-
-# Database and deployment
-Setup deployment on Fred Azure
-Setup DB on Fred Azure
+Handle update of timeline after adding week

@@ -11,6 +11,7 @@ const ValueProvider = ({ children }) => {
   const [topics, setTopics] = useState({});
   const [dailyTopic, setDailyTopic] = useState({});
   const [componentRefresh, setComponentRefresh] = useState('');
+  const [timeLineRefresh, setTimeLineRefresh] = useState('');
 
   const resourceTypes = ['Lab', 'Slide', 'Cheatsheet', 'Article', 'Video', 'Weekend Test'];
   const [currentUser, setCurrentUser] = useState(null);
@@ -25,16 +26,16 @@ const ValueProvider = ({ children }) => {
     setDailyTopic(data);
   };
 
-  const populateWeeks = async () => {
+  const fetchWeeks = async () => {
     const response = await fetch(`${config.API_URL}/weeks`);
     const data = await response.json();
     setWeeks(data);
   };
 
   useEffect(() => {
-    populateWeeks().catch(console.error);
+    fetchWeeks().catch(console.error);
     fetchDailyTopic().catch(console.error);
-  }, []);
+  }, [timeLineRefresh]);
 
   return (
     <ValueContext.Provider value={{
@@ -46,6 +47,7 @@ const ValueProvider = ({ children }) => {
       resourceTypes,
       componentRefresh,
       setComponentRefresh,
+      setTimeLineRefresh,
       currentUser,
     }}>
       {children}

@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './styles/Form.css';
 import axios from 'axios';
 import config from '../constants';
+import { ValueContext } from './ValueContext';
 
 export default function FormWeek() {
   const [postResponse, setPostResponse] = useState('');
   const [successfullPost, setSuccessfullPost] = useState(null);
+  const { setTimeLineRefresh } = useContext(ValueContext);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -20,6 +22,7 @@ export default function FormWeek() {
         console.log(response);
         setSuccessfullPost(true);
         setPostResponse('Your week was successfully posted');
+        setTimeLineRefresh('Refresh TimeLine');
       })
       .catch(error => {
         console.error(error);
