@@ -1,24 +1,25 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+// using Microsoft.Extensions.DependencyInjection;
 using salsa.api.Data;
 using salsa.api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 
-var dbUser = "sql-server-username";
-var dbPass = "sql-server-password";
+// var dbUser = "sql-server-username";
+// var dbPass = "sql-server-password";
+var connectionStringName = "DataContextLocal";
 
 builder.Services.AddDbContext<DataContext>(options =>
     {
-        var connectionString = builder.Configuration.GetConnectionString("DataContext");
+        var connectionString = builder.Configuration.GetConnectionString(connectionStringName); // NOTE Changed connection to DB for Demo 26/8
         if (connectionString == null)
         {
-            throw new InvalidOperationException("Connection string 'DataContext' not found.");
+            throw new InvalidOperationException($"Connection string {connectionStringName} not found.");
         }
-        options.UseSqlServer(connectionString
-        .Replace(dbUser, config[dbUser])
-        .Replace(dbPass, config[dbPass]));
+        options.UseSqlite(connectionString);
+        // .Replace(dbUser, config[dbUser])
+        // .Replace(dbPass, config[dbPass]));
     });
 
 // Add services to the container.

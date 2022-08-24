@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -15,59 +14,51 @@ namespace salsa.api.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.7")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.8");
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("ordina.api.Models.Course", b =>
+            modelBuilder.Entity("salsa.api.Models.Course", b =>
                 {
                     b.Property<int?>("CourseId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("CourseId"), 1L, 1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Location")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Season")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Subject")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("CourseId");
 
                     b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("ordina.api.Models.Resource", b =>
+            modelBuilder.Entity("salsa.api.Models.Resource", b =>
                 {
                     b.Property<int?>("ResourceId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("ResourceId"), 1L, 1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Link")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("ResourceType")
-                        .HasColumnType("int")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("ResourceType");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("TopicId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("ResourceId");
 
@@ -76,23 +67,21 @@ namespace salsa.api.Migrations
                     b.ToTable("Resources");
                 });
 
-            modelBuilder.Entity("ordina.api.Models.Topic", b =>
+            modelBuilder.Entity("salsa.api.Models.Topic", b =>
                 {
                     b.Property<int?>("TopicId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("TopicId"), 1L, 1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("Day")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("WeekId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("TopicId");
 
@@ -101,46 +90,44 @@ namespace salsa.api.Migrations
                     b.ToTable("Topics");
                 });
 
-            modelBuilder.Entity("ordina.api.Models.Week", b =>
+            modelBuilder.Entity("salsa.api.Models.Week", b =>
                 {
                     b.Property<int?>("WeekId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("WeekId"), 1L, 1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("WeekNumber")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("WeekId");
 
                     b.ToTable("Weeks");
                 });
 
-            modelBuilder.Entity("ordina.api.Models.Resource", b =>
+            modelBuilder.Entity("salsa.api.Models.Resource", b =>
                 {
-                    b.HasOne("ordina.api.Models.Topic", null)
+                    b.HasOne("salsa.api.Models.Topic", null)
                         .WithMany("Resources")
                         .HasForeignKey("TopicId");
                 });
 
-            modelBuilder.Entity("ordina.api.Models.Topic", b =>
+            modelBuilder.Entity("salsa.api.Models.Topic", b =>
                 {
-                    b.HasOne("ordina.api.Models.Week", null)
+                    b.HasOne("salsa.api.Models.Week", null)
                         .WithMany("Topics")
                         .HasForeignKey("WeekId");
                 });
 
-            modelBuilder.Entity("ordina.api.Models.Topic", b =>
+            modelBuilder.Entity("salsa.api.Models.Topic", b =>
                 {
                     b.Navigation("Resources");
                 });
 
-            modelBuilder.Entity("ordina.api.Models.Week", b =>
+            modelBuilder.Entity("salsa.api.Models.Week", b =>
                 {
                     b.Navigation("Topics");
                 });

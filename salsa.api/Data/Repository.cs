@@ -229,10 +229,16 @@ public class Repository : IRepository
 
     private Task<Topic> GetTopicByDay(int day)
     {
-        return _context.Topics
+        var topic = _context.Topics
                     .Where(topic => topic.Day == day)
                     .Include("Resources")
                     .FirstOrDefaultAsync();
+
+        if (topic == null)
+        {
+            return _context.Topics.LastOrDefaultAsync(); // TODO Added this fix so UI will load when there is no day, do real fix later! 
+        }
+            return topic;
     }
 
     public Task<Course> FindCourse(int id)
