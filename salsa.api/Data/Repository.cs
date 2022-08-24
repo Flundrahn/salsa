@@ -92,7 +92,7 @@ public class Repository : IRepository
     public async Task<Topic> FindTopicByDay(int day)
     {
         return await _context.Topics
-                    .Where(topic => topic.Day.Value == day)
+                    .Where(topic => topic.Day == day)
                     .FirstOrDefaultAsync();
     }
 
