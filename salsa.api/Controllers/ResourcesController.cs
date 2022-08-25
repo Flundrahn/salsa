@@ -37,8 +37,21 @@ namespace salsa.api.Controllers
             }
         }
 
-
         [HttpGet]
+        public async Task<ActionResult<IEnumerable<ResourceResponse>>> GetResources()
+        {
+            try
+            {
+                return Ok(await _repo.GetResources());
+            }
+            catch (Exception e)
+            {
+                return Problem(e.Message);
+            }
+        }
+
+
+        [HttpGet("type")]
         public async Task<ActionResult<IEnumerable<ResourceResponse>>> FilterResources(ResourceType resourceType)
         {
             try

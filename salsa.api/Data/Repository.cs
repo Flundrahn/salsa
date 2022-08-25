@@ -122,6 +122,22 @@ public class Repository : IRepository
                     .FirstOrDefaultAsync();
     }
 
+    public async Task<IEnumerable<ResourceResponse>> GetResources()
+    {
+        return await _context.Resources
+                    .Select(r =>
+                    new ResourceResponse
+                    {
+                        ResourceId = r.ResourceId.Value,
+                        ResourceType = r.ResourceType,
+                        Title = r.Title,
+                        Link = r.Link,
+                        TopicId = (int)r.TopicId,
+                        TopicDay = (int)_context.Topics.Where(t => t.TopicId == r.TopicId).FirstOrDefault().Day,
+                    }
+                    ).ToListAsync();
+    }
+
     public async Task<IEnumerable<ResourceResponse>> FindResources(ResourceType resourceType)
     {
         return await _context.Resources
@@ -136,7 +152,6 @@ public class Repository : IRepository
                         TopicId = (int)r.TopicId,
                         TopicDay = (int)_context.Topics.Where(t => t.TopicId == r.TopicId).FirstOrDefault().Day,
                     }
-
                     ).ToListAsync();
     }
 

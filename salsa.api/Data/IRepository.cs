@@ -6,18 +6,19 @@ public interface IRepository
 {
     Task<Week> CreateWeek(Week week);
     Task<IEnumerable<Week>> GetWeeks();
-    Task<IEnumerable<Topic>> FindTopics();
-    Task<IEnumerable<ResourceResponse>> FindResources(ResourceType resourceType);
+    Task<Week> FindWeek(int id);
     Task<Topic> FindTopic(int id);
+    Task<IEnumerable<Topic>> FindTopics();
+    Task<Topic> GetDailyTopic();
     Task<ResourceResponse> FindResource(int id);
     Task<Topic> ReplaceTopic(Topic topic);
-    Task<ResourceResponse> ReplaceResource(EditResource dto);
     Task<Topic> CreateTopic(Topic topic);
+    Task<IEnumerable<ResourceResponse>> FindResources(ResourceType resourceType);
+    Task<IEnumerable<ResourceResponse>> GetResources();
+    Task<ResourceResponse> ReplaceResource(EditResource dto);
     Task<Resource> CreateResource(CreateResource resource);
     // Task<IEnumerable<Resource>> CreateResources(IEnumerable<Resource> resources); // TODO LATER
-    Task<Week> FindWeek(int id);
     Task<Course> FindCourse(int id);
-    Task<Topic> GetDailyTopic();
     Task<Course> CreateCourse(Course course);
     DateTime GetCurrentCourseStartDate();
     bool TopicExists(int id);
