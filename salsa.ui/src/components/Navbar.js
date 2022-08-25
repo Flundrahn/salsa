@@ -34,7 +34,13 @@ function Navbar() {
                 </Link>
               )),
             )
-          }
+            }
+            <Link
+              to="search"
+              className="navbar-item">
+              <p className="item__text">Search All</p>
+              <div className="item__line" />
+            </Link>
           </div>
           <div className="user-information">
             <img src={auth.currentUser.photoURL} alt="" className="user-information__photo" />

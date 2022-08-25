@@ -9,6 +9,7 @@ import Topic from './components/Topic';
 import Navbar from './components/Navbar';
 import ResourceList from './components/ResourceList';
 import CreateButton from './components/CreateButton';
+import SearchList from './components/SearchList';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route exact path="resource/:resourceType" element={<ResourceList />} />
             <Route path="*" element={<Error />} />
             <Route path="topic/*" element={<Error />} />
+            <Route exact path="search" element={<SearchList />} />
           </Routes>
           <CreateButton />
         </div>
