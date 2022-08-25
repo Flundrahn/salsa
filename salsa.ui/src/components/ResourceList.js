@@ -19,7 +19,7 @@ const ResourceList = () => {
   const getResources = () => {
     axios
       .get(
-        `${config.API_URL}/resources?resourceType=${resourceTypes.indexOf(resourceType)}`, // TODO Make sure this URL is working
+        `${config.API_URL}/resources/type?resourceType=${resourceTypes.indexOf(resourceType)}`, // TODO Make sure this URL is working
       )
       .then(res => {
         setResources(res.data);
