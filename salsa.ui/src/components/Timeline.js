@@ -6,8 +6,8 @@ import { ValueContext } from './ValueContext';
 import './styles/Timeline.css';
 
 function Week({ week, today }) {
-  const isFutureWeek = week.weekNumber > today / 5 + 1;
-  const isCurrentWeek = today < week.weekNumber * 5 && today > week.weekNumber * 5 - 4;
+  const isFutureWeek = week.weekNumber >= today / 5 + 1;
+  const isCurrentWeek = today <= week.weekNumber * 5 && today > week.weekNumber * 5 - 4;
 
   const { getCollapseProps, getToggleProps } = useCollapse({
     defaultExpanded: isCurrentWeek,

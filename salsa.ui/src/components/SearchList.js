@@ -37,12 +37,7 @@ function SearchList() {
   const [inputText, setInputText] = useState('');
 
   const inputHandler = e => {
-    // let value = e.target.value.toLowerCase();
-
-    // if (value.includes(':')) {
-    //   const valueArray = value.split(':'); // TODO handle if search text includes : without spec
-
-    // }
+    // TODO Add feature to write 'lab:' and filter on only labs
 
     setInputText(e.target.value.toLowerCase());
   };

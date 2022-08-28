@@ -21,7 +21,6 @@
 	display: flex;
 	width: 15%;
 	height: 32.41px;
-	top: 36px;
 	margin-left: 80px;
 }
 
@@ -32,9 +31,7 @@
 	align-items: center;
 	padding: 20px;
 	height: 40px;
-	left: 472px;
-	top: 28px;
-}
+}	
 
 .navbar-item {
 	display: flex;
