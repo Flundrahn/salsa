@@ -9,11 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "salsa.tests", "salsa.tests\
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "salsa.ui", "salsa.ui\salsa.ui.esproj", "{68D4F304-E11C-4249-A255-09E1DC7954DD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AEA1B46C-2CB7-4177-8AB9-641B5A4795FE}"
-	ProjectSection(SolutionItems) = preProject
-		salsa.db\salsa-db.db = salsa.db\salsa-db.db
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

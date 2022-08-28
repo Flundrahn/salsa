@@ -4,7 +4,7 @@ namespace salsa.api.Services;
 
 public class FileReader
 {
-    public string _path { get; }
+    private string _path;
 
     public FileReader(string fileDirectory, string fileName)
     {

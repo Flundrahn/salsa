@@ -20,11 +20,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Data\salsa-db.db">
+    <None Update="Database\DNFS - Student Schedule.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Data\salsa.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Update="Database\salsa.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

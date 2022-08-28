@@ -17,7 +17,7 @@ public static class SeedData
                 return;   // DB has already been seeded
             }
 
-            var fileReader = new FileReader($"{Directory.GetCurrentDirectory()}/Data/", "DNFS - Student Schedule.csv");
+            var fileReader = new FileReader($"{Directory.GetCurrentDirectory()}./Database/", "DNFS - Student Schedule.csv");
 
             var weeks = fileReader.CreateWeeks();
 
