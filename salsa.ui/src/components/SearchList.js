@@ -10,11 +10,8 @@ import config from '../constants';
 function SearchList() {
   const [resources, setResources] = useState([]);
   const [readyToRender, setReadyToRender] = useState(false);
+  const [inputText, setInputText] = useState('');
   const { currentUser, componentRefresh, resourceTypes } = useContext(ValueContext);
-
-  if (!currentUser) {
-    return (<></>);
-  }
 
   const getResources = () => {
     axios
@@ -34,11 +31,12 @@ function SearchList() {
     getResources();
   }, [componentRefresh]);
 
-  const [inputText, setInputText] = useState('');
+  if (!currentUser) {
+    return (<></>);
+  }
 
   const inputHandler = e => {
     // TODO Add feature to write 'lab:' and filter on only labs
-
     setInputText(e.target.value.toLowerCase());
   };
 
@@ -46,7 +44,6 @@ function SearchList() {
     if (inputText === '') {
       return r;
     }
-
     return r.title.toLowerCase().includes(inputText);
   });
 
