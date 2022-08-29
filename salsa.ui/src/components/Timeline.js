@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import useCollapse from 'react-collapsed';
 import { ValueContext } from './ValueContext';
-import './styles/Timeline.css';
+import '../styles/Timeline.css';
 
 function Week({ week, today }) {
   const isFutureWeek = week.weekNumber >= today / 5 + 1;

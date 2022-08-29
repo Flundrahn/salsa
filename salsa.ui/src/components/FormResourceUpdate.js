@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import './styles/Form.css';
+import '../styles/Form.css';
 import axios from 'axios';
 import { ValueContext } from './ValueContext';
 import config from '../constants';

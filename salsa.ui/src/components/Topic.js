@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import './styles/Card.css';
+import '../styles/Card.css';
 import ResLink from './ResLink';
 import { ValueContext } from './ValueContext';
 import {

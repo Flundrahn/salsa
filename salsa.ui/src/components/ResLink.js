@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import Modal from '@mui/material/Modal';
-import './styles/ResLink.css';
+import '../styles/ResLink.css';
 import FormResourceUpdate from './FormResourceUpdate';
 
 import { ValueContext } from './ValueContext';

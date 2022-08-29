@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ValueContext } from './ValueContext';
-import './styles/Navbar.css';
+import '../styles/Navbar.css';
 import {
   auth,
 } from '../auth/firebase-configs';

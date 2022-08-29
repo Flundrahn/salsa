@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import './styles/Card.css';
-import './styles/SearchList.css';
+import '../styles/Card.css';
+import '../styles/SearchList.css';
 import axios from 'axios';
 import { TextField } from '@mui/material';
 import { ValueContext } from './ValueContext';
