@@ -17,8 +17,9 @@ function ResLink({ resource, deleteLink }) {
     <>
       <Modal
         open={openForm}
-        onClose={handleCloseForm}
-        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        onClose={handleCloseForm}>
+        {/* NOTE removed the styling of Modal without apparent consequences
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} */}
         <FormResourceUpdate resource={resource} />
       </Modal>
       <div key={resource.link} className="row link__info">

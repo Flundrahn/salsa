@@ -4,7 +4,7 @@ import axios from 'axios';
 import { ValueContext } from './ValueContext';
 import config from '../constants';
 
-export default function FormResource() {
+const FormResource = React.forwardRef((_, ref) => {
   const { resourceTypes, setComponentRefresh } = useContext(ValueContext) || {};
   const [successfullPost, setSuccessfullPost] = useState(null);
   const [postResponse, setPostResponse] = useState('');
@@ -42,7 +42,8 @@ export default function FormResource() {
         Resource type:
         <select
           className="form__input form__input--dropdown"
-          id="form__input--dropdown">
+          id="form__input--dropdown"
+          ref={ref}>
           {
             React.Children.toArray(
               resourceTypes.map((rt, index) => (
@@ -83,4 +84,6 @@ export default function FormResource() {
       <p className={`form__response-message${successfullPost ? '' : '-fail'}`}>{postResponse}</p>
     </form>
   );
-}
+});
+
+export default FormResource;

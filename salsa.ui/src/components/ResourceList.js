@@ -13,9 +13,6 @@ const ResourceList = () => {
   const [readyToRender, setReadyToRender] = useState(false);
   const { currentUser, componentRefresh } = useContext(ValueContext);
 
-  if (!currentUser) {
-    return (<></>);
-  }
   const getResources = () => {
     axios
       .get(
@@ -24,8 +21,6 @@ const ResourceList = () => {
       .then(res => {
         setResources(res.data);
         setReadyToRender(true);
-        console.log('resource data');
-        console.log(res.data);
       })
       .catch(err => console.log(err));
   };
@@ -33,6 +28,10 @@ const ResourceList = () => {
   useEffect(() => {
     getResources();
   }, [resourceType, componentRefresh]);
+
+  if (!currentUser) {
+    return (<></>);
+  }
 
   if (!readyToRender) {
     return (<h1>Loading...</h1>);

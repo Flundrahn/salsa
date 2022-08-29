@@ -4,7 +4,7 @@ import axios from 'axios';
 import config from '../constants';
 import { ValueContext } from './ValueContext';
 
-export default function FormTopic() {
+const FormTopic = React.forwardRef((_, ref) => {
   const [successfullPost, setSuccessfullPost] = useState(null);
   const [postResponse, setPostResponse] = useState('');
   const { setTimeLineRefresh } = useContext(ValueContext);
@@ -42,7 +42,8 @@ export default function FormTopic() {
           type="text"
           className="form__input form__input--title"
           placeholder="Topic title"
-          id="form__input--title" />
+          id="form__input--title"
+          ref={ref} />
       </label>
       <label htmlFor="form__input--day" className="form__row">
         Day of bootcamp:
@@ -60,4 +61,6 @@ export default function FormTopic() {
       <p className={`form__response-message${successfullPost ? '' : '-fail'}`}>{postResponse}</p>
     </form>
   );
-}
+});
+
+export default FormTopic;

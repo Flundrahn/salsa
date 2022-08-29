@@ -4,7 +4,7 @@ import axios from 'axios';
 import config from '../constants';
 import { ValueContext } from './ValueContext';
 
-export default function FormWeek() {
+const FormWeek = React.forwardRef((_, ref) => {
   const [postResponse, setPostResponse] = useState('');
   const [successfullPost, setSuccessfullPost] = useState(null);
   const { setTimeLineRefresh } = useContext(ValueContext);
@@ -36,7 +36,8 @@ export default function FormWeek() {
   return (
     <form
       className="card--form"
-      onSubmit={handleSubmit}>
+      onSubmit={handleSubmit}
+      ref={ref}>
       <h3 className="form__title">Create a new week</h3>
       <label htmlFor="form__input--title" className="form__row">
         Title:
@@ -44,7 +45,8 @@ export default function FormWeek() {
           type="text"
           className="form__input form__input--title"
           placeholder="Week title"
-          id="form__input--title" />
+          id="form__input--title"
+          ref={ref} />
       </label>
       <label htmlFor="form__input--day" className="form__row">
         Week number:
@@ -62,4 +64,6 @@ export default function FormWeek() {
       <p className={`form__response-message${successfullPost ? '' : '-fail'}`}>{postResponse}</p>
     </form>
   );
-}
+});
+
+export default FormWeek;

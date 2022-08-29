@@ -4,10 +4,12 @@ import axios from 'axios';
 import { ValueContext } from './ValueContext';
 import config from '../constants';
 
-export default function FormResourceUpdate({ resource }) {
+const FormResourceUpdate = React.forwardRef((props, ref) => {
   const { resourceTypes, setComponentRefresh } = useContext(ValueContext) || {};
   const [successfullPost, setSuccessfullPost] = useState('');
   const [postResponse, setPostResponse] = useState('');
+
+  const { resource } = props;
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -47,7 +49,8 @@ export default function FormResourceUpdate({ resource }) {
         Resource type:
         <select
           className="form__input form__input--dropdown"
-          id="form__input--dropdown">
+          id="form__input--dropdown"
+          ref={ref}>
           {
             React.Children.toArray(
               resourceTypes.map((rt, index) => (
@@ -89,4 +92,6 @@ export default function FormResourceUpdate({ resource }) {
       <p className={`form__response-message ${successfullPost ? '' : 'fail'}`}>{postResponse}</p>
     </form>
   );
-}
+});
+
+export default FormResourceUpdate;
