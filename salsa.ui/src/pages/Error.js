@@ -2,6 +2,6 @@ import React from 'react';
 
 export default function Error() {
   return (
-    <div>Page not found.</div>
+    <div>Page not found</div>
   );
 }

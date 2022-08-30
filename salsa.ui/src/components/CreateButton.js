@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import '../styles/CreateButton.css';
 import Box from '@mui/material/Box';
 import Backdrop from '@mui/material/Backdrop';
 import SpeedDial from '@mui/material/SpeedDial';
@@ -10,9 +9,10 @@ import TabIcon from '@mui/icons-material/Tab';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import Modal from '@mui/material/Modal';
 import { ValueContext } from './ValueContext';
-import FormWeek from './FormWeek';
-import FormResource from './FormResource';
-import FormTopic from './FormTopic';
+import ResourceForm from '../forms/ResourceForm';
+import TopicForm from '../forms/TopicForm';
+import WeekForm from '../forms/WeekForm';
+import '../styles/CreateButton.css';
 
 const actions = [
   { icon: <PostAdd />, name: 'Resource' },
@@ -32,9 +32,9 @@ export default function CreateButton() {
   const handleCloseForm = () => setOpenForm(false);
 
   const forms = [
-    <FormResource />,
-    <FormTopic />,
-    <FormWeek />,
+    <ResourceForm />,
+    <TopicForm />,
+    <WeekForm />,
   ];
 
   if (!currentUser) {
@@ -46,6 +46,7 @@ export default function CreateButton() {
       <Modal
         open={openForm}
         onClose={handleCloseForm}
+        disableEnforceFocus
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         {form}
       </Modal>

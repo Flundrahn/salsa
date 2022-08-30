@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import '../styles/Card.css';
-import ResLink from './ResLink';
+import { signIn } from '../auth/firebase-configs';
+import ResourceLink from './ResourceLink';
 import { ValueContext } from './ValueContext';
-import {
-  signIn,
-} from '../auth/firebase-configs';
 import config from '../constants';
+import '../styles/Card.css';
 
 function Topic({ isDaily }) {
   const [topic, setTopic] = useState({});
@@ -99,7 +97,7 @@ function Topic({ isDaily }) {
           React.Children.toArray(
             topic.resources.map(r => (
               <>
-                <ResLink
+                <ResourceLink
                   resource={{ ...r, topicDay: topic.day }}
                   deleteLink={handleRemoveResource} />
               </>

@@ -1,22 +1,20 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import '../styles/Card.css';
 import axios from 'axios';
 import { ValueContext } from './ValueContext';
-import config from '../constants';
+import constants from '../constants';
 
 const ResourceList = () => {
   const { resourceType } = useParams();
   const [resources, setResources] = useState([]);
-  const resourceTypes = ['lab', 'slide', 'cheatsheet', 'article', 'video', 'weekend test'];
   const [readyToRender, setReadyToRender] = useState(false);
   const { currentUser, componentRefresh } = useContext(ValueContext);
 
   const getResources = () => {
     axios
       .get(
-        `${config.API_URL}/resources/type?resourceType=${resourceTypes.indexOf(resourceType)}`, // TODO Make sure this URL is working
+        `${constants.API_URL}/resources/type?resourceType=${constants.RESOURCE_TYPES.indexOf(resourceType)}`, // TODO Make sure this URL is working
       )
       .then(res => {
         setResources(res.data);

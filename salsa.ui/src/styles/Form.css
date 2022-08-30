@@ -16,6 +16,15 @@
 	font-family: "Roboto";
 }
 
+.form__title {
+	color: var(--salt-orange);
+	font-weight: bold;
+	font-size: 1.4rem;
+	font-family: "Raleway";
+	font-weight: bold;
+	text-align: center;
+}
+
 .form__row {
 	display: flex;
 	justify-content: space-between;
@@ -33,16 +42,7 @@
 	outline-color: var(--salt-orange);
 }
 
-.form__title {
-	color: var(--salt-orange);
-	font-weight: bold;
-	font-size: 1.4rem;
-	font-family: "Raleway";
-	font-weight: bold;
-	text-align: center;
-}
-
-.form__button--submit {
+.form__button {
 	padding: 6px;
 	border: rgba(128, 128, 128, 0.184) solid 0.5px;
 	align-self: center;
@@ -54,22 +54,22 @@
 	transition: 0.1s ease-in-out;
 }
 
-.form__button--submit:hover {
+.form__button:hover {
 	background-color: var(--salt-orange-dark);
 	box-shadow: 0 0 6px 0 #cfcfcf;
 }
 
-.form__button--submit:active {
+.form__button:active {
 	color: var(--salt-text);
 }
 
-.form__response-message {
+.form__feedback-message--success {
 	font-size: 0.8rem;
 	color: green;
 	align-self: center;
 }
 
-.form__response-message-fail {
+.form__feedback-message--fail {
 	font-size: 0.8rem;
 	color: red;
 	align-self: center;

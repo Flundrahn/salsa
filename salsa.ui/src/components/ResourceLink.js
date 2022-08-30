@@ -1,30 +1,28 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import Modal from '@mui/material/Modal';
-import '../styles/ResLink.css';
-import FormResourceUpdate from './FormResourceUpdate';
+import UpdateResourceForm from '../forms/UpdateResourceForm';
+import constants from '../constants';
+import '../styles/ResourceLink.css';
 
-import { ValueContext } from './ValueContext';
-
-function ResLink({ resource, deleteLink }) {
+function ResourceLink({ resource, deleteLink }) {
   const [openForm, setOpenForm] = useState(false);
   const handleOpenForm = () => setOpenForm(true);
   const handleCloseForm = () => setOpenForm(false);
 
-  const { resourceTypes } = useContext(ValueContext);
   return (
     <>
       <Modal
         open={openForm}
-        onClose={handleCloseForm}>
-        {/* NOTE removed the styling of Modal without apparent consequences
-        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} */}
-        <FormResourceUpdate resource={resource} />
+        onClose={handleCloseForm}
+        disableEnforceFocus
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <UpdateResourceForm resource={resource} />
       </Modal>
-      <div key={resource.link} className="row link__info">
+      <div className="row link__info">
         <span className="row__prefix">
-          {`${resourceTypes[resource.resourceType]}:`}
+          {`${constants.RESOURCE_TYPES[resource.resourceType]}:`}
         </span>
         <pre>      </pre>
         <a className="row__title" href={resource.link} target="_blank" rel="noreferrer">
@@ -39,4 +37,4 @@ function ResLink({ resource, deleteLink }) {
   );
 }
 
-export default ResLink;
+export default ResourceLink;

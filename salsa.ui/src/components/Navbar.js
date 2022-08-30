@@ -1,13 +1,12 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { auth } from '../auth/firebase-configs';
 import { ValueContext } from './ValueContext';
+import constants from '../constants';
 import '../styles/Navbar.css';
-import {
-  auth,
-} from '../auth/firebase-configs';
 
 function Navbar() {
-  const { resourceTypes, currentUser } = useContext(ValueContext) || {};
+  const { currentUser } = useContext(ValueContext) || {};
   const navigate = useNavigate();
 
   const logout = () => {
@@ -25,7 +24,7 @@ function Navbar() {
           <div className="navbar">
             {
             React.Children.toArray(
-              resourceTypes.map(r => (
+              constants.RESOURCE_TYPES.map(r => (
                 <Link
                   to={`resource/${r.toLowerCase()}`}
                   className="navbar-item">
