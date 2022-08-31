@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import useCollapse from 'react-collapsed';
@@ -25,7 +24,7 @@ function Week({ week, today }) {
       <div {...getCollapseProps()}>
         {
           React.Children.toArray(
-            week.topics.map(t => (
+            week.topics?.map(t => (
               <div className={
                 `timeline__row 
                 ${t.day === today ? 'today' : ''}

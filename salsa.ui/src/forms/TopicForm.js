@@ -10,7 +10,7 @@ import '../styles/Form.css';
 const TopicForm = React.forwardRef((_, ref) => {
   const action = ({
     formData,
-    setSuccessfulPost,
+    setSuccessfulSubmit,
     setFeedbackMessage,
   }) => {
     const newTopic = {
@@ -20,14 +20,12 @@ const TopicForm = React.forwardRef((_, ref) => {
 
     axios.post(`${constants.API_URL}/topics`, newTopic)
       .then(() => {
-        setSuccessfulPost(true);
+        setSuccessfulSubmit(true);
         setFeedbackMessage('Topic was successfully created');
-        // NOTE Find way to refresh correct component, use setWeeks / setTopics / ...
-        // setComponentRefresh('Refresh Topic & ResourceList');
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
-        setSuccessfulPost(false);
+        setSuccessfulSubmit(false);
         setFeedbackMessage(`Something went wrong: ${error.response.data}`);
       });
   };
@@ -35,17 +33,20 @@ const TopicForm = React.forwardRef((_, ref) => {
   return (
     <Form
       title="Create a new topic"
-      action={action}>
+      action={action}
+    >
       <Input
         label="Title"
         type="text"
         placeholder="Enter topic title"
         ref={ref}
-        required />
+        required
+      />
       <Input
         label="Day of bootcamp:"
         type="number"
-        required />
+        required
+      />
     </Form>
   );
 });

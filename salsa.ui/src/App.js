@@ -24,9 +24,9 @@ function App() {
             <Route exact path="/" element={<Topic isDaily="true" />} />
             <Route exact path="topic/:topicId" element={<Topic />} />
             <Route exact path="resource/:resourceType" element={<ResourceList />} />
+            <Route exact path="search" element={<SearchList />} />
             <Route path="*" element={<Error />} />
             <Route path="topic/*" element={<Error />} />
-            <Route exact path="search" element={<SearchList />} />
           </Routes>
           <CreateButton />
         </div>

@@ -1,0 +1,28 @@
+{
+    "eslintConfig": {
+        "extends": [
+            "salt",
+            "salt/react"
+        ],
+        "rules": {
+            "no-console": "off",
+            "linebreak-style": "off",
+            "react/jsx-closing-bracket-location": [
+            "error",
+            {
+                "selfClosing": "after-props",
+                "nonEmpty": "after-props"
+            }
+            ],
+            "react/jsx-filename-extension": [
+            "error",
+            {
+                "extensions": [
+                ".js"
+                ]
+            }
+            ],
+            "react/prop-types": "off"
+        }
+    }
+}

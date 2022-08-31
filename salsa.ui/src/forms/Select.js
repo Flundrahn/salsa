@@ -1,13 +1,11 @@
 import React, { useId } from 'react';
 
-const Select = React.forwardRef((
-  {
-    label,
-    options,
-    defaultValue,
-    required = false,
-  }, ref,
-) => {
+const Select = React.forwardRef(({
+  label,
+  options,
+  defaultValue,
+  required = false,
+}, ref) => {
   const id = useId();
 
   return (
@@ -19,7 +17,8 @@ const Select = React.forwardRef((
         required={required}
         defaultValue={defaultValue ?? ''}
         tabIndex="0"
-        className="form__input">
+        className="form__input"
+      >
         <option disabled value="">
           --Choose an option--
         </option>

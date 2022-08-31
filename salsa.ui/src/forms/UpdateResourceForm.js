@@ -26,8 +26,6 @@ const UpdateResourceForm = React.forwardRef(({ resource }, ref) => {
       .then(() => {
         setSuccessfulSubmit(true);
         setFeedbackMessage('Resource was successfully updated');
-        // NOTE Find way to refresh correct component, use setWeeks / setTopics / ...
-        // setComponentRefresh('Refresh Topic & ResourceList');
       })
       .catch(error => {
         console.error(error);

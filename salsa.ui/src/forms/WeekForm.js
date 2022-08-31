@@ -1,16 +1,17 @@
-import React from 'react';
-// import React, { useContext, useId, useState } from 'react';
+import React, { useContext } from 'react';
 import axios from 'axios';
-// import { ValueContext } from '../components/ValueContext';
+import { ValueContext } from '../components/ValueContext';
 import Input from './Input';
 import Form from './Form';
 import constants from '../constants';
 import '../styles/Form.css';
 
 const WeekForm = React.forwardRef((_, ref) => {
+  const { weeks, setWeeks } = useContext(ValueContext);
+
   const action = ({
     formData,
-    setSuccessfulPost,
+    setSuccessfulSubmit,
     setFeedbackMessage,
   }) => {
     const newWeek = {
@@ -19,15 +20,14 @@ const WeekForm = React.forwardRef((_, ref) => {
     };
 
     axios.post(`${constants.API_URL}/weeks`, newWeek)
-      .then(() => {
-        setSuccessfulPost(true);
+      .then(response => {
+        setWeeks([...weeks, response.data]);
+        setSuccessfulSubmit(true);
         setFeedbackMessage('Week was successfully created');
-        // NOTE Find way to refresh correct component, use setWeeks / setTopics / ...
-        // setComponentRefresh('Refresh Topic & ResourceList');
       })
       .catch(error => {
         console.error(error);
-        setSuccessfulPost(false);
+        setSuccessfulSubmit(false);
         setFeedbackMessage(`Something went wrong: ${error.response.data}`);
       });
   };
