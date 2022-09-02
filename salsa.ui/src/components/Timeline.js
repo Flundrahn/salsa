@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import useCollapse from 'react-collapsed';
@@ -29,13 +30,15 @@ function Week({ week, today }) {
                 `timeline__row 
                 ${t.day === today ? 'today' : ''}
                 ${t.day > today ? 'future' : ''}`
-                }>
+                }
+              >
                 <span className="topic__date timeline__date">{`Day ${t.day}`}</span>
                 <div className="timeline__line" />
                 <div className="topic__bullet" />
                 <Link
                   to={`topic/${t.topicId}`}
-                  className="topic__title timeline__title">
+                  className="topic__title timeline__title"
+                >
                   {` ${t.title}`}
                 </Link>
               </div>
@@ -52,7 +55,7 @@ function Timeline() {
   const { currentUser } = useContext(ValueContext);
 
   if (!currentUser) {
-    return (<></>);
+    return null;
   }
 
   return (

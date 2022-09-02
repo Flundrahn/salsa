@@ -5,7 +5,7 @@ import axios from 'axios';
 import { ValueContext } from './ValueContext';
 import constants from '../constants';
 
-const ResourceList = () => {
+function ResourceList() {
   const { resourceType } = useParams();
   const [resources, setResources] = useState([]);
   const [readyToRender, setReadyToRender] = useState(false);
@@ -28,7 +28,7 @@ const ResourceList = () => {
   }, [resourceType, componentRefresh]);
 
   if (!currentUser) {
-    return (<></>);
+    return (null);
   }
 
   if (!readyToRender) {
@@ -47,7 +47,8 @@ const ResourceList = () => {
                 className="row__title"
                 href={r.link}
                 target="_blank"
-                rel="noreferrer">
+                rel="noreferrer"
+              >
                 {r.title}
               </a>
             </div>
@@ -56,6 +57,6 @@ const ResourceList = () => {
       }
     </div>
   );
-};
+}
 
 export default ResourceList;

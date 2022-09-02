@@ -51,8 +51,10 @@ function Topic({ isDaily }) {
   }, [topicId, componentRefresh]);
 
   const handleRemoveResource = id => {
-    setTopic(Object.assign(topic,
-      { resources: topic.resources.filter(res => res.resourceId !== id) }));
+    setTopic(Object.assign(
+      topic,
+      { resources: topic.resources.filter(res => res.resourceId !== id) },
+    ));
     setLinks(topic.resources);
     deleteResource(id);
   };
@@ -96,11 +98,10 @@ function Topic({ isDaily }) {
         {
           React.Children.toArray(
             topic.resources.map(r => (
-              <>
-                <ResourceLink
-                  resource={{ ...r, topicDay: topic.day }}
-                  deleteLink={handleRemoveResource} />
-              </>
+              <ResourceLink
+                resource={{ ...r, topicDay: topic.day }}
+                deleteLink={handleRemoveResource}
+              />
             )),
           )
         }

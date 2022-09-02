@@ -23,7 +23,7 @@ const TopicForm = React.forwardRef((_, ref) => {
         setSuccessfulSubmit(true);
         setFeedbackMessage('Topic was successfully created');
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error);
         setSuccessfulSubmit(false);
         setFeedbackMessage(`Something went wrong: ${error.response.data}`);

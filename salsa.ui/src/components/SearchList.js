@@ -32,7 +32,7 @@ function SearchList() {
   }, [componentRefresh]);
 
   if (!currentUser) {
-    return (<></>);
+    return (null);
   }
 
   const inputHandler = e => {
@@ -59,7 +59,8 @@ function SearchList() {
           onChange={inputHandler}
           variant="outlined"
           fullWidth
-          label="Search" />
+          label="Search"
+        />
       </div>
 
       <div className="card">
@@ -74,7 +75,8 @@ function SearchList() {
                 className="row__title"
                 href={r.link}
                 target="_blank"
-                rel="noreferrer">
+                rel="noreferrer"
+              >
                 {r.title}
               </a>
             </div>

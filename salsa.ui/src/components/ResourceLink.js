@@ -17,7 +17,8 @@ function ResourceLink({ resource, deleteLink }) {
         open={openForm}
         onClose={handleCloseForm}
         disableEnforceFocus
-        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      >
         <UpdateResourceForm resource={resource} />
       </Modal>
       <div className="row link__info">

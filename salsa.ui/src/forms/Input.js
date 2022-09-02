@@ -1,14 +1,12 @@
 import React, { useId } from 'react';
 
-const Input = React.forwardRef((
-  {
-    label,
-    type,
-    placeholder,
-    defaultValue,
-    required = false,
-  }, ref,
-) => {
+const Input = React.forwardRef(({
+  label,
+  type,
+  placeholder,
+  defaultValue,
+  required = false,
+}, ref) => {
   const id = useId();
 
   return (
@@ -22,7 +20,8 @@ const Input = React.forwardRef((
         required={required}
         ref={ref}
         tabIndex="0"
-        className="form__input" />
+        className="form__input"
+      />
     </label>
   );
 });

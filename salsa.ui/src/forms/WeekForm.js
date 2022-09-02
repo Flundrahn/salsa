@@ -35,17 +35,20 @@ const WeekForm = React.forwardRef((_, ref) => {
   return (
     <Form
       title="Create a new week"
-      action={action}>
+      action={action}
+    >
       <Input
         label="Title"
         type="text"
         placeholder="Enter week title"
         ref={ref}
-        required />
+        required
+      />
       <Input
         label="Week of bootcamp:"
         type="number"
-        required />
+        required
+      />
     </Form>
   );
 });

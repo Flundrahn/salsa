@@ -27,7 +27,8 @@ function Navbar() {
               constants.RESOURCE_TYPES.map(r => (
                 <Link
                   to={`resource/${r.toLowerCase()}`}
-                  className="navbar-item">
+                  className="navbar-item"
+                >
                   <p className="item__text">{` ${r}s`}</p>
                   <div className="item__line" />
                 </Link>
@@ -36,7 +37,8 @@ function Navbar() {
             }
             <Link
               to="search"
-              className="navbar-item">
+              className="navbar-item"
+            >
               <p className="item__text">Search All</p>
               <div className="item__line" />
             </Link>

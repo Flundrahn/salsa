@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 // import { ValueContext } from './ValueContext';
 import '../styles/Form.css';
 
-const Form = ({ title, action, children }) => {
+function Form({ title, action, children }) {
   // NOTE Is the or part necessary here still? was added for reason, TODO investigate
   // NOTE See if this one can be injected as prop
   // const { setComponentRefresh } = useContext(ValueContext) || {};
@@ -27,7 +27,8 @@ const Form = ({ title, action, children }) => {
       {children}
       <button
         type="submit"
-        className="form__button">
+        className="form__button"
+      >
         Submit
       </button>
       <p className={`form__feedback-message${successfulSubmit ? '--success' : '--fail'}`}>
@@ -35,6 +36,6 @@ const Form = ({ title, action, children }) => {
       </p>
     </form>
   );
-};
+}
 
 export default Form;

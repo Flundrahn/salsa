@@ -23,7 +23,7 @@ const actions = [
 export default function CreateButton() {
   const { currentUser } = useContext(ValueContext) || {};
   const [open, setOpen] = useState(false);
-  const [form, setForm] = useState(<></>);
+  const [form, setForm] = useState(null);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -38,7 +38,7 @@ export default function CreateButton() {
   ];
 
   if (!currentUser) {
-    return (<></>);
+    return null;
   }
 
   return (
@@ -47,7 +47,8 @@ export default function CreateButton() {
         open={openForm}
         onClose={handleCloseForm}
         disableEnforceFocus
-        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      >
         {form}
       </Modal>
       <Box sx={{ height: 650, transform: 'translateZ(0px)' }}>
@@ -62,7 +63,8 @@ export default function CreateButton() {
           icon={<SpeedDialIcon />}
           onClose={handleClose}
           onOpen={handleOpen}
-          open={open}>
+          open={open}
+        >
           {actions.map((action, index) => (
             <SpeedDialAction
               key={action.name}
@@ -73,7 +75,8 @@ export default function CreateButton() {
                 setForm(forms[index]);
                 handleOpenForm();
                 handleClose();
-              }} />
+              }}
+            />
           ))}
         </SpeedDial>
       </Box>

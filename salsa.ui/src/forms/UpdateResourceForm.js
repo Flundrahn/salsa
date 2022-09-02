@@ -37,28 +37,33 @@ const UpdateResourceForm = React.forwardRef(({ resource }, ref) => {
   return (
     <Form
       title="Update resource"
-      action={action}>
+      action={action}
+    >
       <Select
         label="Type:"
         ref={ref}
         defaultValue={resource.resourceType}
         required
-        options={constants.RESOURCE_TYPES} />
+        options={constants.RESOURCE_TYPES}
+      />
       <Input
         label="Title:"
         type="text"
         defaultValue={resource.title}
-        required />
+        required
+      />
       <Input
         label="Link:"
         type="text"
         defaultValue={resource.link}
-        required />
+        required
+      />
       <Input
         label="Day of bootcamp:"
         type="number"
         defaultValue={resource.topicDay}
-        required />
+        required
+      />
     </Form>
   );
 });
