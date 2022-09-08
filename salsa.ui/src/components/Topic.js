@@ -16,10 +16,9 @@ function Topic({ isDaily }) {
   const { currentUser, componentRefresh, setComponentRefresh } = useContext(ValueContext);
 
   const fetchTopic = () => {
-    axios
-      .get(
-        `${config.API_URL}/topics/${isDaily ? 'daily' : topicId}`,
-      )
+    axios.get(
+      `${config.API_URL}/topics/${isDaily ? 'daily' : topicId}`,
+    )
       .then(res => {
         setTopic(res.data);
         setIsLoading(false);
