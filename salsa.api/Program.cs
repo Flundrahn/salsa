@@ -8,7 +8,7 @@ var config = builder.Configuration;
 
 // var dbUser = "sql-server-username";
 // var dbPass = "sql-server-password";
-var connectionStringName = "DataContextLocal";
+var connectionStringName = "DataContext";
 
 builder.Services.AddDbContext<DataContext>(options =>
     {
@@ -17,9 +17,15 @@ builder.Services.AddDbContext<DataContext>(options =>
         {
             throw new InvalidOperationException($"Connection string {connectionStringName} not found.");
         }
-        options.UseSqlite(connectionString);
+
+        options.UseSqlServer(connectionString
+            .Replace("DataContextConnectionString", config["DataContextConnectionString"]),
+            options => options.EnableRetryOnFailure()
+        );
         // .Replace(dbUser, config[dbUser])
         // .Replace(dbPass, config[dbPass]));
+
+        // options.UseSqlite(connectionString);
     });
 
 // Add services to the container.

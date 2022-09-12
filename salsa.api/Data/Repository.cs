@@ -84,7 +84,7 @@ public class Repository : IRepository
     public async Task<Topic> FindTopic(int id)
     {
         return await _context.Topics
-                    .Where(topic => topic.TopicId.Value == id)
+                    .Where(topic => topic.TopicId == id)
                     .Include("Resources")
                     .FirstOrDefaultAsync();
     }
@@ -99,7 +99,7 @@ public class Repository : IRepository
     public async Task<ResourceResponse> FindResource(int id)
     {
         return await _context.Resources
-                    .Where(r => r.ResourceId.Value == id)
+                    .Where(r => r.ResourceId == id)
                     .Select(r =>
                         new ResourceResponse
                         {
@@ -117,7 +117,7 @@ public class Repository : IRepository
     public async Task<Week> FindWeek(int id)
     {
         return await _context.Weeks
-                    .Where(week => week.WeekId.Value == id)
+                    .Where(week => week.WeekId == id)
                     .Include(week => week.Topics)
                     .FirstOrDefaultAsync();
     }
@@ -128,7 +128,7 @@ public class Repository : IRepository
                     .Select(r =>
                     new ResourceResponse
                     {
-                        ResourceId = r.ResourceId.Value,
+                        ResourceId = r.ResourceId,
                         ResourceType = r.ResourceType,
                         Title = r.Title,
                         Link = r.Link,
@@ -145,7 +145,7 @@ public class Repository : IRepository
                     .Select(r =>
                     new ResourceResponse
                     {
-                        ResourceId = r.ResourceId.Value,
+                        ResourceId = r.ResourceId,
                         ResourceType = r.ResourceType,
                         Title = r.Title,
                         Link = r.Link,
@@ -259,7 +259,7 @@ public class Repository : IRepository
     public Task<Course> FindCourse(int id)
     {
         return _context.Courses
-                    .Where(course => course.CourseId.Value == id)
+                    .Where(course => course.CourseId == id)
                     .FirstOrDefaultAsync();
     }
 

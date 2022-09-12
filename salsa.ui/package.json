@@ -44,6 +44,9 @@
       ],
       "react/prop-types": [0]
     },
+    "env": {
+      "browser": true
+    },
     "parserOptions": {
       "ecmaVersion": 2020
     }

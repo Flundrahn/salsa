@@ -13,12 +13,12 @@ namespace salsa.api.Migrations
                 name: "Courses",
                 columns: table => new
                 {
-                    CourseId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Location = table.Column<string>(type: "TEXT", nullable: true),
-                    Season = table.Column<string>(type: "TEXT", nullable: true),
-                    Subject = table.Column<string>(type: "TEXT", nullable: true),
-                    StartDate = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    CourseId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Season = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Subject = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -29,10 +29,11 @@ namespace salsa.api.Migrations
                 name: "Weeks",
                 columns: table => new
                 {
-                    WeekId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Title = table.Column<string>(type: "TEXT", nullable: false),
-                    WeekNumber = table.Column<int>(type: "INTEGER", nullable: false)
+                    WeekId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    WeekNumber = table.Column<int>(type: "int", nullable: false),
+                    StartingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,11 +44,12 @@ namespace salsa.api.Migrations
                 name: "Topics",
                 columns: table => new
                 {
-                    TopicId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Title = table.Column<string>(type: "TEXT", nullable: false),
-                    WeekId = table.Column<int>(type: "INTEGER", nullable: true),
-                    Day = table.Column<int>(type: "INTEGER", nullable: true)
+                    TopicId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Day = table.Column<int>(type: "int", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    WeekId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -63,12 +65,12 @@ namespace salsa.api.Migrations
                 name: "Resources",
                 columns: table => new
                 {
-                    ResourceId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    ResourceType = table.Column<int>(type: "INTEGER", nullable: false),
-                    Title = table.Column<string>(type: "TEXT", nullable: false),
-                    Link = table.Column<string>(type: "TEXT", nullable: false),
-                    TopicId = table.Column<int>(type: "INTEGER", nullable: true)
+                    ResourceId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ResourceType = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Link = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TopicId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -86,9 +88,21 @@ namespace salsa.api.Migrations
                 column: "TopicId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Topics_Day",
+                table: "Topics",
+                column: "Day",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Topics_WeekId",
                 table: "Topics",
                 column: "WeekId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Weeks_WeekNumber",
+                table: "Weeks",
+                column: "WeekNumber",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
