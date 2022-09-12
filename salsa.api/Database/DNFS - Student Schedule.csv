@@ -1,66 +1,66 @@
-Course week,Week Info,Date,Day,Info
-1,Introduction week 1,2022-05-02,Mon,Introduction day / Tools of our stack
-1,Introduction week 1,2022-05-03,Tue,Languages in our stack
-1,Introduction week 1,2022-05-04,Wed,Git and C#
-1,Introduction week 1,2022-05-05,Thu,Razor pages
-1,Introduction week 1,2022-05-06,Fri,Storing data in files
-2,Introduction week 2,2022-05-09,Mon,Visual Studio introduction
-2,Introduction week 2,2022-05-10,Tue,Testing in .NET
-2,Introduction week 2,2022-05-11,Wed,Calling APIs
-2,Introduction week 2,2022-05-12,Thu,AlvaLabs
-2,Introduction week 2,2022-05-13,Fri,Demo & Retro
-3,C# basics,2022-05-16,Mon,Introduction to C#
-3,C# basics,2022-05-17,Tue,Introduction to OOP
-3,C# basics,2022-05-18,Wed,Collections and Generics
-3,C# basics,2022-05-19,Thu,LINQ and Async
-3,C# basics,2022-05-20,Fri,Demo & Retro
-4,"Advanced C#, OOP and SOLID",2022-05-23,Mon,Introduction to SOLID and DI
-4,"Advanced C#, OOP and SOLID",2022-05-24,Tue,Patterns and the repository pattern
-4,"Advanced C#, OOP and SOLID",2022-05-25,Wed,Functional programming in C#
-4,"Advanced C#, OOP and SOLID",2022-05-26,Thu,Reflections
-4,"Advanced C#, OOP and SOLID",2022-05-27,Fri,Demo & Retro
-5,Web Applications with ASP.NET,2022-05-30,Mon,Introduction to ASP.NET WebAPI
-5,Web Applications with ASP.NET,2022-05-31,Tue,Testing WebAPI
-5,Web Applications with ASP.NET,2022-06-01,Wed,REST
-5,Web Applications with ASP.NET,2022-06-02,Thu,ASP.NET MVC
-5,Web Applications with ASP.NET,2022-06-03,Fri,Demo & Retro
-6,Styling - HTML5 and CSS,2022-06-06,Mon,Preparations for on-site tests
-6,Styling - HTML5 and CSS,2022-06-07,Tue,HTML & CSS intro
-6,Styling - HTML5 and CSS,2022-06-08,Wed,"Flexbox, Grid and CSS in depth"
-6,Styling - HTML5 and CSS,2022-06-09,Thu,Mobile-first & animation
-6,Styling - HTML5 and CSS,2022-06-10,Fri,On-site tests
-7,UX and JavaScript,2022-06-13,Mon,UX day 1
-7,UX and JavaScript,2022-06-14,Tue,UX day 2
-7,UX and JavaScript,2022-06-15,Wed,Introduction to JavaScript and Node
-7,UX and JavaScript,2022-06-16,Thu,"ES6, FP and Array methods"
-7,UX and JavaScript,2022-06-17,Fri,Demo & Retro
-8,Career days and Async JavaScript,2022-06-20,Mon,Career Day - 1
-8,Career days and Async JavaScript,2022-06-21,Tue,Career Day - 2
-8,Career days and Async JavaScript,2022-06-22,Wed,Async I - Callbacks and Promises
-8,Career days and Async JavaScript,2022-06-23,Thu,Async II - Promises and async/await
-8,Career days and Async JavaScript,2022-06-24,Fri,Free - reflect on the asynchronous material
-9,Intro to React,2022-06-27,Mon,React components
-9,Intro to React,2022-06-28,Tue,React testing
-9,Intro to React,2022-06-29,Wed,React hooks
-9,Intro to React,2022-06-30,Thu,React router
-9,Intro to React,2022-07-01,Fri,.NET and React
-10,Databases access,2022-07-04,Mon,Introduction to SQL Server Access
-10,Databases access,2022-07-05,Tue,Entity Framework
-10,Databases access,2022-07-06,Wed,EF and Web applications
-10,Databases access,2022-07-07,Thu,Personal Hackday
-10,Databases access,2022-07-08,Fri,Personal Hackday Demo
-11,Azure,2022-07-11,Mon,Introduction to Azure
-11,Azure,2022-07-12,Tue,Storage in Azure
-11,Azure,2022-07-13,Wed,Azure functions and serverless
-11,Azure,2022-07-14,Thu,Authentication & Authorization
-11,Azure,2022-07-15,Fri,Demo & Retro
-12,Project week 1,2022-07-18,Mon,Day 1
-12,Project week 1,2022-07-19,Tue,Day 2
-12,Project week 1,2022-07-20,Wed,Day 3
-12,Project week 1,2022-07-21,Thu,Day 4
-12,Project week 1,2022-07-22,Fri,Sprint demo
-13,Project week 2,2022-07-25,Mon,Day 1
-13,Project week 2,2022-07-26,Tue,Day 2
-13,Project week 2,2022-07-27,Wed,Day 3
-13,Project week 2,2022-07-28,Thu,Day 4
-13,Project week 2,2022-07-29,Fri,Sprint demo
+WeekNumber,WeekTitle,Date,DayNumber,DayTitle
+1,Introduction week 1,02/05/2022,1,Introduction day / Tools of our stack
+1,Introduction week 1,03/05/2022,2,Languages in our stack
+1,Introduction week 1,04/05/2022,3,Git and C#
+1,Introduction week 1,05/05/2022,4,Razor pages
+1,Introduction week 1,06/05/2022,5,Storing data in files
+2,Introduction week 2,09/05/2022,6,Visual Studio introduction
+2,Introduction week 2,10/05/2022,7,Testing in .NET
+2,Introduction week 2,11/05/2022,8,Calling APIs
+2,Introduction week 2,12/05/2022,9,AlvaLabs
+2,Introduction week 2,13/05/2022,10,Demo & Retro
+3,C# basics,16/05/2022,11,Introduction to C#
+3,C# basics,17/05/2022,12,Introduction to OOP
+3,C# basics,18/05/2022,13,Collections and Generics
+3,C# basics,19/05/2022,14,LINQ and Async
+3,C# basics,20/05/2022,15,Demo & Retro
+4,"Advanced C#, OOP and SOLID",23/05/2022,16,Introduction to SOLID and DI
+4,"Advanced C#, OOP and SOLID",24/05/2022,17,Patterns and the repository pattern
+4,"Advanced C#, OOP and SOLID",25/05/2022,18,Functional programming in C#
+4,"Advanced C#, OOP and SOLID",26/05/2022,19,Reflections
+4,"Advanced C#, OOP and SOLID",27/05/2022,20,Demo & Retro
+5,Web Applications with ASP.NET,30/05/2022,21,Introduction to ASP.NET WebAPI
+5,Web Applications with ASP.NET,31/05/2022,22,Testing WebAPI
+5,Web Applications with ASP.NET,01/06/2022,23,REST
+5,Web Applications with ASP.NET,02/06/2022,24,ASP.NET MVC
+5,Web Applications with ASP.NET,03/06/2022,25,Demo & Retro
+6,Styling - HTML5 and CSS,06/06/2022,26,Preparations for on-site tests
+6,Styling - HTML5 and CSS,07/06/2022,27,HTML & CSS intro
+6,Styling - HTML5 and CSS,08/06/2022,28,"Flexbox, Grid and CSS in depth"
+6,Styling - HTML5 and CSS,09/06/2022,29,Mobile-first & animation
+6,Styling - HTML5 and CSS,10/06/2022,30,On-site tests
+7,UX and JavaScript,13/06/2022,31,UX day 1
+7,UX and JavaScript,14/06/2022,32,UX day 2
+7,UX and JavaScript,15/06/2022,33,Introduction to JavaScript and Node
+7,UX and JavaScript,16/06/2022,34,"ES6, FP and Array methods"
+7,UX and JavaScript,17/06/2022,35,Demo & Retro
+8,Career days and Async JavaScript,20/06/2022,36,Career Day - 1
+8,Career days and Async JavaScript,21/06/2022,37,Career Day - 2
+8,Career days and Async JavaScript,22/06/2022,38,Async I - Callbacks and Promises
+8,Career days and Async JavaScript,23/06/2022,39,Async II - Promises and async/await
+8,Career days and Async JavaScript,24/06/2022,40,Free - reflect on the asynchronous material
+9,Intro to React,27/06/2022,41,React components
+9,Intro to React,28/06/2022,42,React testing
+9,Intro to React,29/06/2022,43,React hooks
+9,Intro to React,30/06/2022,44,React router
+9,Intro to React,01/07/2022,45,.NET and React
+10,Databases access,04/07/2022,46,Introduction to SQL Server Access
+10,Databases access,05/07/2022,47,Entity Framework
+10,Databases access,06/07/2022,48,EF and Web applications
+10,Databases access,07/07/2022,49,Personal Hackday
+10,Databases access,08/07/2022,50,Personal Hackday Demo
+11,Azure,11/07/2022,51,Introduction to Azure
+11,Azure,12/07/2022,52,Storage in Azure
+11,Azure,13/07/2022,53,Azure functions and serverless
+11,Azure,14/07/2022,54,Authentication & Authorization
+11,Azure,15/07/2022,55,Demo & Retro
+12,Project week 1,18/07/2022,56,Day 1
+12,Project week 1,19/07/2022,57,Day 2
+12,Project week 1,20/07/2022,58,Day 3
+12,Project week 1,21/07/2022,59,Day 4
+12,Project week 1,22/07/2022,60,Sprint demo
+13,Project week 2,25/07/2022,61,Day 1
+13,Project week 2,26/07/2022,62,Day 2
+13,Project week 2,27/07/2022,63,Day 3
+13,Project week 2,28/07/2022,64,Day 4
+13,Project week 2,29/07/2022,65,Sprint demo
