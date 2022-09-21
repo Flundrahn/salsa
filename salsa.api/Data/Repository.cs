@@ -225,6 +225,9 @@ public class Repository : IRepository
         return GetTopicByDay(day);
     }
 
+    // TODO Refactor to not need course
+    // NOTE course start date does provide convenient way to move all course material
+    // forward or backwards in time, useful for demo. But adds complexity.
     private int GetCurrentDay()
     {
         var curWeekDate = _dateProvider.GetCurrentDate().Date;
@@ -253,7 +256,7 @@ public class Repository : IRepository
         {
             return _context.Topics.LastOrDefaultAsync(); // TODO Added this fix so UI will load when there is no day, do real fix later! 
         }
-            return topic;
+        return topic;
     }
 
     public Task<Course> FindCourse(int id)

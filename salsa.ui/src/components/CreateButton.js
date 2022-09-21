@@ -8,7 +8,7 @@ import PostAdd from '@mui/icons-material/PostAdd';
 import TabIcon from '@mui/icons-material/Tab';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import Modal from '@mui/material/Modal';
-import { ValueContext } from './ValueContext';
+import { AuthContext } from './AuthContext';
 import ResourceForm from '../forms/ResourceForm';
 import TopicForm from '../forms/TopicForm';
 import WeekForm from '../forms/WeekForm';
@@ -21,9 +21,9 @@ const actions = [
 ];
 
 export default function CreateButton() {
-  const { currentUser } = useContext(ValueContext) || {};
+  const { currentUser } = useContext(AuthContext) || {};
   const [open, setOpen] = useState(false);
-  const [form, setForm] = useState(null);
+  const [form, setForm] = useState(<p>loading...</p>);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import useCollapse from 'react-collapsed';
 import { ValueContext } from './ValueContext';
+import { AuthContext } from './AuthContext';
 import '../styles/Timeline.css';
 
 function Week({ week, today }) {
@@ -52,7 +53,7 @@ function Week({ week, today }) {
 
 function Timeline() {
   const { weeks, dailyTopic } = useContext(ValueContext) || {};
-  const { currentUser } = useContext(ValueContext);
+  const { currentUser } = useContext(AuthContext);
 
   if (!currentUser) {
     return null;

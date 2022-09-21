@@ -4,6 +4,7 @@ import '../styles/SearchList.css';
 import axios from 'axios';
 import { TextField } from '@mui/material';
 import { ValueContext } from './ValueContext';
+import { AuthContext } from './AuthContext';
 import constants from '../constants';
 
 // TODO Dry SearchList and ResourceList to use common components
@@ -11,7 +12,8 @@ function SearchList() {
   const [resources, setResources] = useState([]);
   const [readyToRender, setReadyToRender] = useState(false);
   const [inputText, setInputText] = useState('');
-  const { currentUser, componentRefresh } = useContext(ValueContext);
+  const { componentRefresh } = useContext(ValueContext);
+  const { currentUser } = useContext(AuthContext);
 
   const getResources = () => {
     axios

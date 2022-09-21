@@ -3,19 +3,20 @@ import { useParams } from 'react-router-dom';
 import '../styles/Card.css';
 import axios from 'axios';
 import { ValueContext } from './ValueContext';
+import { AuthContext } from './AuthContext';
 import constants from '../constants';
 
 function ResourceList() {
   const { resourceType } = useParams();
   const [resources, setResources] = useState([]);
   const [readyToRender, setReadyToRender] = useState(false);
-  const { currentUser, componentRefresh } = useContext(ValueContext);
+  const { componentRefresh } = useContext(ValueContext);
+  const { currentUser } = useContext(AuthContext);
 
   const getResources = () => {
-    axios
-      .get(
-        `${constants.API_URL}/resources/type?resourceType=${constants.RESOURCE_TYPES.indexOf(resourceType)}`, // TODO Make sure this URL is working
-      )
+    axios.get(
+      `${constants.API_URL}/resources/type?resourceType=${constants.RESOURCE_TYPES.indexOf(resourceType)}`, // TODO Make sure this URL is working
+    )
       .then(res => {
         setResources(res.data);
         setReadyToRender(true);

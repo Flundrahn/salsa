@@ -1,5 +1,5 @@
+/* eslint-disable react/jsx-no-constructed-context-values */ // TODO fix this with useMemo or...
 import React, { createContext, useState, useEffect } from 'react';
-import { auth } from '../auth/firebase-configs';
 import constants from '../constants';
 
 const ValueContext = createContext(null);
@@ -10,11 +10,6 @@ function ValueProvider({ children }) {
   const [dailyTopic, setDailyTopic] = useState({});
   const [componentRefresh, setComponentRefresh] = useState('');
   const [timeLineRefresh, setTimeLineRefresh] = useState('');
-  const [currentUser, setCurrentUser] = useState(null);
-
-  useEffect(() => {
-    auth.onAuthStateChanged(setCurrentUser);
-  }, []);
 
   const fetchDailyTopic = async () => {
     const response = await fetch(`${constants.API_URL}/topics/daily`);
@@ -48,7 +43,6 @@ function ValueProvider({ children }) {
       componentRefresh,
       setComponentRefresh,
       setTimeLineRefresh,
-      currentUser,
     }}
     >
       {children}

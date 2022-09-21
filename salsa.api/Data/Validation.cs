@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 // using CdLib.Data;
 
+// TODO Either use this Håkans validation, or delete
 namespace salsa.api.Validations
 {
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
@@ -9,7 +10,7 @@ namespace salsa.api.Validations
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             var context = validationContext.GetService<DataContext>();
-            
+
             if (value.GetType() != typeof(int))
             {
                 return new ValidationResult(ErrorMessage ?? "Topic must be a valid number");

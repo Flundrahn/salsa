@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { signIn } from '../auth/firebase-configs';
+import { signIn } from '../auth/initFirebase';
 import ResourceLink from './ResourceLink';
 import { ValueContext } from './ValueContext';
+import { AuthContext } from './AuthContext';
 import config from '../constants';
 import '../styles/Card.css';
 
@@ -13,7 +14,8 @@ function Topic({ isDaily }) {
   const [isLoading, setIsLoading] = useState(true);
   const [deletedMessage, setDeletedMessage] = useState('');
   const { topicId } = useParams();
-  const { currentUser, componentRefresh, setComponentRefresh } = useContext(ValueContext);
+  const { componentRefresh, setComponentRefresh } = useContext(ValueContext);
+  const { currentUser } = useContext(AuthContext);
 
   const fetchTopic = () => {
     axios.get(
