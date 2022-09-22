@@ -7,9 +7,6 @@
     "@emotion/styled": "^11.9.3",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.9.2",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.3.0",
-    "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "firebase": "^9.9.1",
     "react": "^18.2.0",
@@ -32,7 +29,14 @@
       "airbnb"
     ],
     "rules": {
-      "arrow-parens": ["error", "as-needed"],
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "arrow-parens": [
+        "error",
+        "as-needed"
+      ],
       "no-console": "off",
       "react/jsx-filename-extension": [
         "error",
@@ -42,7 +46,9 @@
           ]
         }
       ],
-      "react/prop-types": [0]
+      "react/prop-types": [
+        0
+      ]
     },
     "env": {
       "browser": true
@@ -64,7 +70,18 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0-0",
+    "@babel/plugin-syntax-flow": "^7.14.5",
+    "@babel/plugin-transform-react-jsx": "^7.14.9",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/dom":">=7.21.4",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^13.5.0",
     "eslint": "^8.23.0",
-    "eslint-config-airbnb": "^19.0.4"
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "install-peers": "^1.0.4"
   }
 }
