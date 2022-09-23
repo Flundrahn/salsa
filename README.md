@@ -30,7 +30,7 @@ The intended purpose was to make finding the relevant course material at the rel
 ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 
 ## Prerequisites
-To be added
+To be added.
 
 ## Installation
 To be added
