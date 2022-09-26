@@ -9,15 +9,17 @@ public static class SeedData
     {
         using (var context = new DataContext(
             serviceProvider.GetRequiredService<
-                DbContextOptions<DataContext>>()))
+                DbContextOptions<DataContext>>()
+        ))
         {
-
             if (context.Weeks.Any())
             {
-                return;   // DB has already been seeded
+                return;
             }
 
-            var reader = new ScheduleReader($"{Directory.GetCurrentDirectory()}./Database/", "DNFS - Student Schedule.csv");
+            var reader = new ScheduleReader(
+                $"{Directory.GetCurrentDirectory()}./Database/", "DNFS - Student Schedule.csv"
+            );
 
             var weeks = reader.CreateWeeks();
 
@@ -28,7 +30,8 @@ public static class SeedData
 
             await context.SaveChangesAsync();
 
-            context.SaveChanges();
+            // NOTE there was both SaveChanges and SavecHangesAsync here, must be superfluous
+            // context.SaveChanges(); 
         }
     }
 }
