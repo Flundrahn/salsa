@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-// using Microsoft.Extensions.DependencyInjection;
 using salsa.api.Data;
 using salsa.api.Services;
 
@@ -17,11 +16,6 @@ builder.Services.AddDbContext<DataContext>(options =>
         }
 
         options.UseSqlite(connectionString);
-
-        // options.UseSqlServer(connectionString
-        //     .Replace("DataContextConnectionString", config["DataContextConnectionString"]),
-        //     options => options.EnableRetryOnFailure()
-        // );
     });
 
 builder.Services.AddControllers();

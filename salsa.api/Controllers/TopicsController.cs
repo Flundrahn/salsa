@@ -43,7 +43,6 @@ namespace salsa.api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Topic>> GetTopic(int id)
         {
-
             try
             {
                 var topic = await _repo.FindTopic(id);

@@ -104,28 +104,6 @@ namespace salsa.api.Controllers
             }
         }
 
-        // [HttpPost]
-        // public async Task<ActionResult<IEnumerable<Resource>>> PostResources(IEnumerable<CreateResource> dto)
-        // {
-        //     try
-        //     {
-        //         var persistedEntity = await _repo.CreateResources(_mapper.Map<IEnumerable<Resource>>(dto));
-        //         return CreatedAtAction("GetResource",
-        //         new { id = persistedEntity.ResourceId },
-        //         persistedEntity);
-        //     }
-        //     catch (KeyNotFoundException e)
-        //     {
-        //         return NotFound(e.Message);
-        //     }
-        //     catch (Exception e)
-        //     {
-        //         Console.WriteLine(e);
-        //         return Problem("Oops.");
-        //     }
-        // }
-
-
         [HttpDelete("{id}")]
         public async Task<ActionResult<Resource>> DeleteResource(int id)
         {

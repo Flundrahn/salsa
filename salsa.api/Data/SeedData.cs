@@ -29,9 +29,6 @@ public static class SeedData
             }
 
             await context.SaveChangesAsync();
-
-            // NOTE there was both SaveChanges and SavecHangesAsync here, must be superfluous
-            // context.SaveChanges(); 
         }
     }
 }

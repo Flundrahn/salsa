@@ -69,18 +69,6 @@ public class Repository : IRepository
         return savedEntry.Entity;
     }
 
-    // TODO LATER: functionality to add multiple resources
-    //
-    // public async Task<IEnumerable<Resource>> CreateResources(IEnumerable<Resource> resources)
-    // {
-    //     List<Resource> savedResources = new List<Resource>();
-    //     foreach(var resource in resources)
-    //     {
-    //         savedResources.Add(await CreateResource(resource));
-    //     }
-    //     return savedResources;
-    // }
-
     public async Task<Topic> FindTopic(int id)
     {
         return await _context.Topics
