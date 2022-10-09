@@ -22,7 +22,7 @@ function Form({ title, action, children }) {
   };
 
   return (
-    <form className="card--form" onSubmit={handleSubmit}>
+    <form className="form" onSubmit={handleSubmit}>
       <h2 className="form__title">{title}</h2>
       {children}
       <button

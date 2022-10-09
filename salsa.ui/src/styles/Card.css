@@ -5,18 +5,12 @@
 }
 .card {
 	display: flex;
-	justify-self: center;
-	align-self: center;
 	flex-direction: column;
-	width: 40vw;
-	min-height: 70vh;
-	height: fit-content;
 	background: white;
 	box-shadow: 0 0 6px 0 #cfcfcf;
 	border-radius: 5px;
-	justify-self: center;
 	margin-top: 16px;
-	padding: 16px;
+	padding: 16px 32px;
 }
 
 .card__body {

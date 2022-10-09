@@ -5,7 +5,6 @@ This project was built as the two week graduation project at [Salt: School of Ap
 * [About the Project](#about-the-project)
 * [Built With](#built-with)
 * [Prerequisites](#prerequisites)
-* [Installation](#installation)
 * [Usage](#usage)
 
 ## About the Project

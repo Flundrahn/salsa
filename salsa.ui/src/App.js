@@ -14,10 +14,8 @@ import SearchList from './components/SearchList';
 function App() {
   return (
     <Router>
-      <div className="App background-image">
-        <div className="App__header">
-          <Navbar />
-        </div>
+      <div className="App">
+        <Navbar />
         <Timeline />
         <div className="App-body">
           <Routes>

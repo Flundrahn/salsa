@@ -15,13 +15,13 @@ function Navbar() {
   };
 
   return (
-    <div className="navbar-container">
+    <header className="navbar">
       <div className="logo">
         <Link to="/"><img src="../salt-logo.svg" alt="salt-logo" /></Link>
       </div>
       {currentUser ? (
         <>
-          <div className="navbar">
+          <nav className="navbar__link-container">
             {
             React.Children.toArray(
               constants.RESOURCE_TYPES.map(r => (
@@ -42,7 +42,7 @@ function Navbar() {
               <p className="item__text">Search All</p>
               <div className="item__line" />
             </Link>
-          </div>
+          </nav>
           <div className="user-information">
             <img src={auth.currentUser.photoURL} alt="" className="user-information__photo" />
             {auth.currentUser.displayName}
@@ -55,7 +55,7 @@ function Navbar() {
         <>
         </>
       )}
-    </div>
+    </header>
   );
 }
 

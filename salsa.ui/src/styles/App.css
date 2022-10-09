@@ -17,17 +17,20 @@
 	text-align: center;
 	display: flex;
 	flex-direction: row;
-	height: 100vh;
-	background: var(--salt-background);
 	position: relative;
+	background-image: linear-gradient(to left, rgba(255, 255, 255, 0.688), rgba(255, 255, 255, 1)), url(https://www.salt.dev/_ipx/w_3840,q_75/https%3A%2F%2Fimages.ctfassets.net%2Fjqtlvicdu16w%2F4Eie2P3LrAhafO1Tjumxyf%2Fc61dcc187223ad370f6e407f2ddc6d15%2FSalt-Humans.ee5bf2b5.webp?url=https%3A%2F%2Fimages.ctfassets.net%2Fjqtlvicdu16w%2F4Eie2P3LrAhafO1Tjumxyf%2Fc61dcc187223ad370f6e407f2ddc6d15%2FSalt-Humans.ee5bf2b5.webp&w=3840&q=75);
+	background-size: cover;
+	background-attachment: fixed;
 }
 
 .App-body {
 	display: flex;
-	flex-direction: row;
-	justify-content: center;
+	margin-top: 9vh;
+	height: 91vh;
+	overflow-y: scroll;
 	flex-grow: 1;
-	height: auto;
+	justify-content: center;
+	padding: 2rem;
 }
 
 .MuiBox-root {
@@ -66,11 +69,6 @@
 	font-size: 1rem;
 }
 
-.background-image {
-   background-image: linear-gradient(to left, rgba(255, 255, 255, 0.688), rgba(255, 255, 255, 1)), url(https://www.salt.dev/_ipx/w_3840,q_75/https%3A%2F%2Fimages.ctfassets.net%2Fjqtlvicdu16w%2F4Eie2P3LrAhafO1Tjumxyf%2Fc61dcc187223ad370f6e407f2ddc6d15%2FSalt-Humans.ee5bf2b5.webp?url=https%3A%2F%2Fimages.ctfassets.net%2Fjqtlvicdu16w%2F4Eie2P3LrAhafO1Tjumxyf%2Fc61dcc187223ad370f6e407f2ddc6d15%2FSalt-Humans.ee5bf2b5.webp&w=3840&q=75);
-   background-size: cover;
-}
-
 .landing-page__heading-container {
 	display: flex;
 	flex-direction: column;
@@ -85,12 +83,12 @@
 
 .landing-page__heading {
 	font-family: 'Raleway';
-	font-size:72px;
+	font-size: 72px;
 	margin: 5px;
 	font-weight: bold;
 	letter-spacing: 0.01rem;
 	line-height: 3.5rem;
-	color:white;
+	color: white;
 	background-color: #ff7961;
 	padding-top: 9px;
 	padding-bottom: 8px;
@@ -132,6 +130,5 @@
 }
 
 .create-button {
-	/* background-color: var(--salt-orange); */
 	color: var(--salt-orange);
 }
