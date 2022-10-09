@@ -3,9 +3,6 @@ import React, {
 } from 'react';
 import { auth } from '../auth/initFirebase';
 
-// NOTE Can refactor and try to follow pattern here
-// https://eight-bites.blog/en/2021/10/firebase-auth-react/
-// Think need to take course on firebase auth properly
 const AuthContext = createContext({
   currentUser: null,
   initializing: true,
