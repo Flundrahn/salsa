@@ -152,7 +152,6 @@
 
 .timeline__end-text {
 	color: var(--salt-text);
-	font-family: "Roboto";
 	position: absolute;
 	top: 16px;
 	left: calc(var(--timeline-center) - 16px);

@@ -18,9 +18,10 @@
 	display: flex;
 	flex-direction: row;
 	position: relative;
-	background-image: linear-gradient(to left, rgba(255, 255, 255, 0.688), rgba(255, 255, 255, 1)), url(https://www.salt.dev/_ipx/w_3840,q_75/https%3A%2F%2Fimages.ctfassets.net%2Fjqtlvicdu16w%2F4Eie2P3LrAhafO1Tjumxyf%2Fc61dcc187223ad370f6e407f2ddc6d15%2FSalt-Humans.ee5bf2b5.webp?url=https%3A%2F%2Fimages.ctfassets.net%2Fjqtlvicdu16w%2F4Eie2P3LrAhafO1Tjumxyf%2Fc61dcc187223ad370f6e407f2ddc6d15%2FSalt-Humans.ee5bf2b5.webp&w=3840&q=75);
+	background-image: linear-gradient(to left, rgba(255, 255, 255, 0.688), rgba(255, 255, 255, 1)), url(../assets/background.webp);
 	background-size: cover;
 	background-attachment: fixed;
+	font-family: "Roboto";
 }
 
 .App-body {
