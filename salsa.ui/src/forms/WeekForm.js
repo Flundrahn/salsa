@@ -3,7 +3,7 @@ import axios from 'axios';
 import { ValueContext } from '../components/ValueContext';
 import Input from './Input';
 import Form from './Form';
-import constants from '../constants';
+import { API_URL } from '../constants';
 import '../styles/Form.css';
 
 const WeekForm = React.forwardRef((_, ref) => {
@@ -19,7 +19,7 @@ const WeekForm = React.forwardRef((_, ref) => {
       weekNumber: parseInt(formData[1].value, 10),
     };
 
-    axios.post(`${constants.API_URL}/weeks`, newWeek)
+    axios.post(`${API_URL}/weeks`, newWeek)
       .then(response => {
         setWeeks([...weeks, response.data]);
         setSuccessfulSubmit(true);

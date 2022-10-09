@@ -1,13 +1,7 @@
 const RESOURCE_TYPES = ['Lab', 'Slide', 'Cheatsheet', 'Article', 'Video', 'Weekend Test'];
 
-const prod = {
-  API_URL: 'https://salsa-api.azurewebsites.net/api',
-  RESOURCE_TYPES,
-};
-const dev = {
-  API_URL: 'https://localhost:7053/api',
-  RESOURCE_TYPES,
-};
+const API_URL = process.env.NODE_ENV === 'development'
+  ? 'https://salsa-api.azurewebsites.net/api'
+  : 'https://localhost:7053/api';
 
-const constants = process.env.NODE_ENV === 'development' ? dev : prod;
-export default constants;
+export { RESOURCE_TYPES, API_URL };

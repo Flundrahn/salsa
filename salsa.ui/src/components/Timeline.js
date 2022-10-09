@@ -52,7 +52,8 @@ function Week({ week, today }) {
 }
 
 function Timeline() {
-  const { weeks, dailyTopic } = useContext(ValueContext) || {};
+  //  || {} NOTE Is this or part necessary here still? Try remove and deploy
+  const { weeks, dailyTopic } = useContext(ValueContext);
   const { currentUser } = useContext(AuthContext);
 
   if (!currentUser) {

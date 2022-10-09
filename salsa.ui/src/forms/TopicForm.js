@@ -1,10 +1,8 @@
 import React from 'react';
-// import React, { useContext, useId, useState } from 'react';
 import axios from 'axios';
-// import { ValueContext } from '../components/ValueContext';
 import Input from './Input';
 import Form from './Form';
-import constants from '../constants';
+import { API_URL } from '../constants';
 import '../styles/Form.css';
 
 const TopicForm = React.forwardRef((_, ref) => {
@@ -18,7 +16,7 @@ const TopicForm = React.forwardRef((_, ref) => {
       day: parseInt(formData[1].value, 10),
     };
 
-    axios.post(`${constants.API_URL}/topics`, newTopic)
+    axios.post(`${API_URL}/topics`, newTopic)
       .then(() => {
         setSuccessfulSubmit(true);
         setFeedbackMessage('Topic was successfully created');

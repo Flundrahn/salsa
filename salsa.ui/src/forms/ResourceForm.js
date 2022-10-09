@@ -1,11 +1,9 @@
 import React from 'react';
-// import React, { useContext, useId, useState } from 'react';
 import axios from 'axios';
-// import { ValueContext } from '../components/ValueContext';
 import Select from './Select';
 import Input from './Input';
 import Form from './Form';
-import constants from '../constants';
+import { RESOURCE_TYPES, API_URL } from '../constants';
 import '../styles/Form.css';
 
 const ResourceForm = React.forwardRef((_, ref) => {
@@ -21,7 +19,7 @@ const ResourceForm = React.forwardRef((_, ref) => {
       topicDay: parseInt(formData[3].value, 10),
     };
 
-    axios.post(`${constants.API_URL}/resources`, newResource)
+    axios.post(`${API_URL}/resources`, newResource)
       .then(() => {
         setSuccessfulSubmit(true);
         setFeedbackMessage('Resource was successfully created');
@@ -42,7 +40,7 @@ const ResourceForm = React.forwardRef((_, ref) => {
         label="Type:"
         ref={ref}
         required
-        options={constants.RESOURCE_TYPES}
+        options={RESOURCE_TYPES}
       />
       <Input
         label="Title:"

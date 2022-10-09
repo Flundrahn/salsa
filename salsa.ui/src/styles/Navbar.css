@@ -15,13 +15,12 @@
 	box-shadow: 0 0 6px 0 #cfcfcf;
 	overflow-y: visible;
 	z-index: 2;
+	padding: 0 1rem;
 }
 
 .logo {
 	display: flex;
-	width: 15%;
 	height: 32.41px;
-	margin-left: 80px;
 }
 
 .navbar__link-container {
@@ -65,14 +64,12 @@
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
-	width: 15%;
+	gap: 1rem;
 	color: var(--salt-text);
 	text-align: left;
-	margin-right: 2rem;
 }
 
 .user-information__photo {
-	margin: 1rem;
 	border-radius: 50%;
 	max-height: 2.5rem;
 }

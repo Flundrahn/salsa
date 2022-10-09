@@ -3,7 +3,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import Modal from '@mui/material/Modal';
 import UpdateResourceForm from '../forms/UpdateResourceForm';
-import constants from '../constants';
+import { RESOURCE_TYPES } from '../constants';
 import '../styles/ResourceLink.css';
 
 function ResourceLink({ resource, deleteLink }) {
@@ -23,7 +23,7 @@ function ResourceLink({ resource, deleteLink }) {
       </Modal>
       <div className="row link__info">
         <span className="row__prefix">
-          {`${constants.RESOURCE_TYPES[resource.resourceType]}:`}
+          {`${RESOURCE_TYPES[resource.resourceType]}:`}
         </span>
         <pre>      </pre>
         <a className="row__title" href={resource.link} target="_blank" rel="noreferrer">

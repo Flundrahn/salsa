@@ -1,0 +1,46 @@
+.google-btn {
+	display: flex;
+	align-items: center;
+	position: relative;
+	padding: 8px;
+	gap: 8px;
+	border: none;
+	border-radius: 3px;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+	color: #4285f6;
+	font-family: Segoe UI;
+	font-size: 1.5rem;
+	font-weight: bold;
+	transition: all 0.3s ease-in-out;
+	cursor: pointer;
+}
+
+.google-btn:hover {
+	box-shadow: 0 0 9px rgba(0, 0, 0, 0.34);
+}
+
+.google-btn--logout {
+	font-size: 1rem;
+}
+
+.google-btn__icon {
+	width: 2rem;
+	height: 2rem;
+}
+
+.google-btn:active {
+	background-color: #eeeeee;
+}
+
+.google-btn:focus {
+	outline: none;
+	box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25),
+		0 0 0 3px #c8dafc;
+}
+
+.google-btn:disabled {
+	filter: grayscale(100%);
+	background-color: #ebebeb;
+	box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
+	cursor: not-allowed;
+}

@@ -5,7 +5,8 @@ import { signIn } from '../auth/initFirebase';
 import ResourceLink from './ResourceLink';
 import { ValueContext } from './ValueContext';
 import { AuthContext } from './AuthContext';
-import config from '../constants';
+import GoogleButton from './GoogleButton';
+import { API_URL } from '../constants';
 import '../styles/Card.css';
 
 function Topic({ isDaily }) {
@@ -19,7 +20,7 @@ function Topic({ isDaily }) {
 
   const fetchTopic = () => {
     axios.get(
-      `${config.API_URL}/topics/${isDaily ? 'daily' : topicId}`,
+      `${API_URL}/topics/${isDaily ? 'daily' : topicId}`,
     )
       .then(res => {
         setTopic(res.data);
@@ -32,7 +33,7 @@ function Topic({ isDaily }) {
     const headers = {
       // Authorization: 'Bearer my-token',    TODO later with authorization (maybe).
     };
-    axios.delete(`${config.API_URL}/resources/${id}`, { headers })
+    axios.delete(`${API_URL}/resources/${id}`, { headers })
       .then(() => setDeletedMessage('Resource deleted'))
       .catch(error => {
         setDeletedMessage(`Something went wrong: ${error.message}`);
@@ -66,25 +67,23 @@ function Topic({ isDaily }) {
 
   if (!currentUser) {
     return (
-      <>
-        <div className="landing-page__heading-container">
-          <span className="landing-page__heading">
+      <div className="landing-page">
+        <header className="landing-page__header">
+          <span className="landing-page__text">
             Welcome
           </span>
-          <span className="landing-page__heading">
+          <span className="landing-page__text">
             To
           </span>
-          <span className="landing-page__heading">
+          <span className="landing-page__text">
             SALSA
           </span>
-          <span className="landing-page__heading subheading">
+          <span className="landing-page__text subheading">
             Salt Student App
           </span>
-        </div>
-        <div className="centered-button">
-          <button type="submit" className="google-btn google-btn__login" onClick={signIn}>sign in</button>
-        </div>
-      </>
+        </header>
+        <GoogleButton className="google-btn--login" label="sign in" handleClick={signIn} />
+      </div>
 
     );
   }

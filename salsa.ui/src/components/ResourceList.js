@@ -4,7 +4,7 @@ import '../styles/Card.css';
 import axios from 'axios';
 import { ValueContext } from './ValueContext';
 import { AuthContext } from './AuthContext';
-import constants from '../constants';
+import { RESOURCE_TYPES, API_URL } from '../constants';
 
 function ResourceList() {
   const { resourceType } = useParams();
@@ -15,7 +15,7 @@ function ResourceList() {
 
   const getResources = () => {
     axios.get(
-      `${constants.API_URL}/resources/type?resourceType=${constants.RESOURCE_TYPES.indexOf(resourceType)}`, // TODO Make sure this URL is working
+      `${API_URL}/resources/type?resourceType=${RESOURCE_TYPES.indexOf(resourceType)}`, // TODO Make sure this URL is working
     )
       .then(res => {
         setResources(res.data);

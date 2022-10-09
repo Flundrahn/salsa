@@ -5,7 +5,7 @@ import axios from 'axios';
 import Select from './Select';
 import Input from './Input';
 import Form from './Form';
-import constants from '../constants';
+import { API_URL, RESOURCE_TYPES } from '../constants';
 import '../styles/Form.css';
 
 const UpdateResourceForm = React.forwardRef(({ resource }, ref) => {
@@ -22,7 +22,7 @@ const UpdateResourceForm = React.forwardRef(({ resource }, ref) => {
       topicDay: parseInt(formData[3].value, 10),
     };
 
-    axios.post(`${constants.API_URL}/resources`, updatedResource)
+    axios.post(`${API_URL}/resources`, updatedResource)
       .then(() => {
         setSuccessfulSubmit(true);
         setFeedbackMessage('Resource was successfully updated');
@@ -44,7 +44,7 @@ const UpdateResourceForm = React.forwardRef(({ resource }, ref) => {
         ref={ref}
         defaultValue={resource.resourceType}
         required
-        options={constants.RESOURCE_TYPES}
+        options={RESOURCE_TYPES}
       />
       <Input
         label="Title:"

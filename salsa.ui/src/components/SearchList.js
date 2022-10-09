@@ -5,7 +5,7 @@ import axios from 'axios';
 import { TextField } from '@mui/material';
 import { ValueContext } from './ValueContext';
 import { AuthContext } from './AuthContext';
-import constants from '../constants';
+import { API_URL, RESOURCE_TYPES } from '../constants';
 
 // TODO Dry SearchList and ResourceList to use common components
 function SearchList() {
@@ -18,7 +18,7 @@ function SearchList() {
   const getResources = () => {
     axios
       .get(
-        `${constants.API_URL}/resources`,
+        `${API_URL}/resources`,
       )
       .then(res => {
         setResources(res.data);
@@ -71,7 +71,7 @@ function SearchList() {
         React.Children.toArray(
           filteredResources.map(r => (
             <div className="row">
-              <span className="row__prefix">{`${constants.RESOURCE_TYPES[r.resourceType]}:\t\t `}</span>
+              <span className="row__prefix">{`${RESOURCE_TYPES[r.resourceType]}:\t\t `}</span>
               <span className="row__title">{`Day ${r.topicDay}: `}</span>
               <a
                 className="row__title"

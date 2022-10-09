@@ -21,7 +21,8 @@ const actions = [
 ];
 
 export default function CreateButton() {
-  const { currentUser } = useContext(AuthContext) || {};
+  //  || {} NOTE Is this or part necessary here still? Try remove and deploy
+  const { currentUser } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState(<p>loading...</p>);
 
