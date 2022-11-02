@@ -1,5 +1,5 @@
 # salsa
-This project was built as the two week graduation project at [Salt: School of Applied Technology](https://www.salt.dev/)
+This project was built as the two week graduation project at [Salt: School of Applied Technology](https://www.salt.dev/).
 
 ## Table of Contents
 * [About the Project](#about-the-project)
