@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import useCollapse from 'react-collapsed';
@@ -8,7 +7,8 @@ import '../styles/Timeline.css';
 
 function Week({ week, today }) {
   const isFutureWeek = week.weekNumber >= today / 5 + 1;
-  const isCurrentWeek = today <= week.weekNumber * 5 && today > week.weekNumber * 5 - 4;
+  const isCurrentWeek =
+    today <= week.weekNumber * 5 && today > week.weekNumber * 5 - 4;
 
   const { getCollapseProps, getToggleProps } = useCollapse({
     defaultExpanded: isCurrentWeek,
@@ -24,35 +24,31 @@ function Week({ week, today }) {
         </h3>
       </div>
       <div {...getCollapseProps()}>
-        {
-          React.Children.toArray(
-            week.topics?.map(t => (
-              <div className={
-                `timeline__row 
+        {React.Children.toArray(
+          week.topics?.map(t => (
+            <div
+              className={`timeline__row 
                 ${t.day === today ? 'today' : ''}
-                ${t.day > today ? 'future' : ''}`
-                }
+                ${t.day > today ? 'future' : ''}`}
+            >
+              <span className="topic__date timeline__date">{`Day ${t.day}`}</span>
+              <div className="timeline__line" />
+              <div className="topic__bullet" />
+              <Link
+                to={`topic/${t.topicId}`}
+                className="topic__title timeline__title"
               >
-                <span className="topic__date timeline__date">{`Day ${t.day}`}</span>
-                <div className="timeline__line" />
-                <div className="topic__bullet" />
-                <Link
-                  to={`topic/${t.topicId}`}
-                  className="topic__title timeline__title"
-                >
-                  {` ${t.title}`}
-                </Link>
-              </div>
-            )),
-          )
-        }
+                {` ${t.title}`}
+              </Link>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );
 }
 
 function Timeline() {
-  //  || {} NOTE Is this or part necessary here still? Try remove and deploy
   const { weeks, dailyTopic } = useContext(ValueContext);
   const { currentUser } = useContext(AuthContext);
 
@@ -65,13 +61,9 @@ function Timeline() {
       <div className="timeline__start">
         <div className="timeline__line" />
       </div>
-      {
-        React.Children.toArray(
-          weeks.map(w => (
-            <Week week={w} today={dailyTopic.day} />
-          )),
-        )
-      }
+      {React.Children.toArray(
+        weeks.map(w => <Week week={w} today={dailyTopic.day} />)
+      )}
       <div className="timeline__end">
         <div className="timeline__line" />
         <div className="topic__bullet" />

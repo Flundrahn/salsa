@@ -15,8 +15,8 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-const signIn = () => signInWithPopup(auth, provider)
-  .catch(error => {
+const signIn = () =>
+  signInWithPopup(auth, provider).catch(error => {
     const credential = GoogleAuthProvider.credentialFromError(error);
     console.log(`google credential ${credential}`);
   });

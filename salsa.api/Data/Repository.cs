@@ -242,7 +242,7 @@ public class Repository : IRepository
 
         if (topic == null)
         {
-            return _context.Topics.LastOrDefaultAsync(); // TODO Added this fix so UI will load when there is no day, do real fix later! 
+            return _context.Topics.LastOrDefaultAsync(); // TODO Added this fix so UI will load when there is no day, do real fix later! NOTE this did not occur as expected
         }
         return topic;
     }
@@ -261,6 +261,13 @@ public class Repository : IRepository
         return savedEntry.Entity;
     }
 
+    public async Task<int> UpdateCourse(Course course)
+    {
+        var savedEntry = _context.Courses.Update(course);
+        await _context.SaveChangesAsync();
+        return savedEntry.Entity.CourseId;
+    }
+
     public DateTime GetCurrentCourseStartDate()
     {
         var course = _context.Courses.FirstOrDefault();
@@ -274,4 +281,5 @@ public class Repository : IRepository
     public int? GetTopicId(int topicDay)
     => _context.Topics.Where(topic => topic.Day == topicDay).Select(topic => topic.TopicId).FirstOrDefault();
 
+    public async Task<IEnumerable<Course>> GetAllCourses() => await _context.Courses.ToListAsync();
 }

@@ -17,9 +17,10 @@ public interface IRepository
     Task<IEnumerable<ResourceResponse>> GetResources();
     Task<ResourceResponse> ReplaceResource(EditResource dto);
     Task<Resource> CreateResource(CreateResource resource);
-    // Task<IEnumerable<Resource>> CreateResources(IEnumerable<Resource> resources); // TODO LATER
     Task<Course> FindCourse(int id);
+    Task<IEnumerable<Course>> GetAllCourses();
     Task<Course> CreateCourse(Course course);
+    Task<int> UpdateCourse(Course course);
     DateTime GetCurrentCourseStartDate();
     bool TopicExists(int id);
     bool TopicExists(Topic topic);

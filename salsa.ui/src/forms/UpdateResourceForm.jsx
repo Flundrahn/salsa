@@ -1,19 +1,17 @@
-import React from 'react';
-// import React, { useContext, useId, useState } from 'react';
+/* eslint-disable react/display-name */
+import React, { useContext } from 'react';
 import axios from 'axios';
-// import { ValueContext } from '../components/ValueContext';
 import Select from './Select';
 import Input from './Input';
 import Form from './Form';
+import { ValueContext } from '../components/ValueContext';
 import { API_URL, RESOURCE_TYPES } from '../constants';
 import '../styles/Form.css';
 
 const UpdateResourceForm = React.forwardRef(({ resource }, ref) => {
-  const action = ({
-    formData,
-    setSuccessfulSubmit,
-    setFeedbackMessage,
-  }) => {
+  const { setComponentRefresh } = useContext(ValueContext);
+
+  const action = ({ formData, setSuccessfulSubmit, setFeedbackMessage }) => {
     const updatedResource = {
       resourceId: resource.resourceId,
       resourceType: parseInt(formData[0].value, 10),
@@ -22,10 +20,12 @@ const UpdateResourceForm = React.forwardRef(({ resource }, ref) => {
       topicDay: parseInt(formData[3].value, 10),
     };
 
-    axios.post(`${API_URL}/resources`, updatedResource)
+    axios
+      .put(`${API_URL}/resources`, updatedResource)
       .then(() => {
         setSuccessfulSubmit(true);
         setFeedbackMessage('Resource was successfully updated');
+        setComponentRefresh('Update resource list component');
       })
       .catch(error => {
         console.error(error);
@@ -35,10 +35,7 @@ const UpdateResourceForm = React.forwardRef(({ resource }, ref) => {
   };
 
   return (
-    <Form
-      title="Update resource"
-      action={action}
-    >
+    <Form title="Update resource" action={action}>
       <Select
         label="Type:"
         ref={ref}
@@ -52,12 +49,7 @@ const UpdateResourceForm = React.forwardRef(({ resource }, ref) => {
         defaultValue={resource.title}
         required
       />
-      <Input
-        label="Link:"
-        type="text"
-        defaultValue={resource.link}
-        required
-      />
+      <Input label="Link:" type="text" defaultValue={resource.link} required />
       <Input
         label="Day of bootcamp:"
         type="number"

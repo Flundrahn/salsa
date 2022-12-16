@@ -25,40 +25,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "eslint:recommended",
-      "airbnb"
-    ],
-    "rules": {
-      "linebreak-style": [
-        "error",
-        "unix"
-      ],
-      "arrow-parens": [
-        "error",
-        "as-needed"
-      ],
-      "no-console": "off",
-      "react/jsx-filename-extension": [
-        "error",
-        {
-          "extensions": [
-            ".js"
-          ]
-        }
-      ],
-      "react/prop-types": [
-        0
-      ]
-    },
-    "env": {
-      "browser": true
-    },
-    "parserOptions": {
-      "ecmaVersion": 2020
-    }
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -80,6 +46,8 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "eslint": "^8.23.0",
-    "eslint-config-airbnb": "^19.0.4"
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-react": "^7.31.11",
+    "prettier": "^2.8.1"
   }
 }

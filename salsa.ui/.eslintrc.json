@@ -1,0 +1,39 @@
+{
+  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "prefer-template": "error",
+    // "react/self-closing-comp": [
+    //   "error",
+    //   {
+    //     "component": true,
+    //     "html": true
+    //   }
+    // ],
+    "no-useless-concat": "error",
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "no-console": "off",
+    "react/prop-types": [0]
+    // "react/jsx-filename-extension": [
+    //   "error",
+    //   {
+    //     "extensions": [".jsx"]
+    //   }
+    // ]
+  }
+}

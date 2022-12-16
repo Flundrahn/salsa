@@ -17,7 +17,11 @@ function ResourceLink({ resource, deleteLink }) {
         open={openForm}
         onClose={handleCloseForm}
         disableEnforceFocus
-        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
       >
         <UpdateResourceForm resource={resource} />
       </Modal>
@@ -25,8 +29,13 @@ function ResourceLink({ resource, deleteLink }) {
         <span className="row__prefix">
           {`${RESOURCE_TYPES[resource.resourceType]}:`}
         </span>
-        <pre>      </pre>
-        <a className="row__title" href={resource.link} target="_blank" rel="noreferrer">
+        <pre> </pre>
+        <a
+          className="row__title"
+          href={resource.link}
+          target="_blank"
+          rel="noreferrer"
+        >
           {`${resource.title}  `}
         </a>
         <div className="link-buttons">

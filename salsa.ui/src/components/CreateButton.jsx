@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import React, { useState, useContext } from 'react';
 import Box from '@mui/material/Box';
 import Backdrop from '@mui/material/Backdrop';
@@ -9,7 +10,7 @@ import TabIcon from '@mui/icons-material/Tab';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import Modal from '@mui/material/Modal';
 import { AuthContext } from './AuthContext';
-import ResourceForm from '../forms/ResourceForm';
+import ResourceForm from '../forms/ResourceForm.jsx';
 import TopicForm from '../forms/TopicForm';
 import WeekForm from '../forms/WeekForm';
 import '../styles/CreateButton.css';
@@ -21,7 +22,6 @@ const actions = [
 ];
 
 export default function CreateButton() {
-  //  || {} NOTE Is this or part necessary here still? Try remove and deploy
   const { currentUser } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState(<p>loading...</p>);
@@ -32,11 +32,7 @@ export default function CreateButton() {
   const handleOpenForm = () => setOpenForm(true);
   const handleCloseForm = () => setOpenForm(false);
 
-  const forms = [
-    <ResourceForm />,
-    <TopicForm />,
-    <WeekForm />,
-  ];
+  const forms = [<ResourceForm />, <TopicForm />, <WeekForm />];
 
   if (!currentUser) {
     return null;
@@ -48,7 +44,11 @@ export default function CreateButton() {
         open={openForm}
         onClose={handleCloseForm}
         disableEnforceFocus
-        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
       >
         {form}
       </Modal>

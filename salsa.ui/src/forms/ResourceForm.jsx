@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React from 'react';
 import axios from 'axios';
 import Select from './Select';
@@ -7,11 +8,7 @@ import { RESOURCE_TYPES, API_URL } from '../constants';
 import '../styles/Form.css';
 
 const ResourceForm = React.forwardRef((_, ref) => {
-  const action = ({
-    formData,
-    setSuccessfulSubmit,
-    setFeedbackMessage,
-  }) => {
+  const action = ({ formData, setSuccessfulSubmit, setFeedbackMessage }) => {
     const newResource = {
       resourceType: parseInt(formData[0].value, 10),
       title: formData[1].value,
@@ -19,7 +16,8 @@ const ResourceForm = React.forwardRef((_, ref) => {
       topicDay: parseInt(formData[3].value, 10),
     };
 
-    axios.post(`${API_URL}/resources`, newResource)
+    axios
+      .post(`${API_URL}/resources`, newResource)
       .then(() => {
         setSuccessfulSubmit(true);
         setFeedbackMessage('Resource was successfully created');
@@ -32,16 +30,8 @@ const ResourceForm = React.forwardRef((_, ref) => {
   };
 
   return (
-    <Form
-      title="Create a new resource"
-      action={action}
-    >
-      <Select
-        label="Type:"
-        ref={ref}
-        required
-        options={RESOURCE_TYPES}
-      />
+    <Form title="Create a new resource" action={action}>
+      <Select label="Type:" ref={ref} required options={RESOURCE_TYPES} />
       <Input
         label="Title:"
         type="text"
@@ -54,11 +44,7 @@ const ResourceForm = React.forwardRef((_, ref) => {
         placeholder="https://www.resourcelink.com/"
         required
       />
-      <Input
-        label="Day of bootcamp:"
-        type="number"
-        required
-      />
+      <Input label="Day of bootcamp:" type="number" required />
     </Form>
   );
 });

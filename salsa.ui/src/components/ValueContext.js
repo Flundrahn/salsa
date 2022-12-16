@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-constructed-context-values */ // TODO fix this with useMemo or...
 import React, { createContext, useState, useEffect } from 'react';
 import { API_URL } from '../constants';
 
@@ -28,22 +27,18 @@ function ValueProvider({ children }) {
     fetchDailyTopic().catch(console.error);
   }, [timeLineRefresh]);
 
-  // TODO useMemo for the context values, unsure for which or for everyone?
-  // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-constructed-context-values.md
-  // "Pass a “create” function and an array of dependencies. useMemo will only recompute
-  //  the memoized value when one of the dependencies has changed. This optimization helps
-  // to avoid expensive calculations on every render."
   return (
-    <ValueContext.Provider value={{
-      weeks,
-      setWeeks,
-      topics,
-      setTopics,
-      dailyTopic,
-      componentRefresh,
-      setComponentRefresh,
-      setTimeLineRefresh,
-    }}
+    <ValueContext.Provider
+      value={{
+        weeks,
+        setWeeks,
+        topics,
+        setTopics,
+        dailyTopic,
+        componentRefresh,
+        setComponentRefresh,
+        setTimeLineRefresh,
+      }}
     >
       {children}
     </ValueContext.Provider>

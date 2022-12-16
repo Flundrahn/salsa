@@ -17,14 +17,10 @@ function SearchList() {
 
   const getResources = () => {
     axios
-      .get(
-        `${API_URL}/resources`,
-      )
+      .get(`${API_URL}/resources`)
       .then(res => {
         setResources(res.data);
         setReadyToRender(true);
-        console.log('resource data');
-        console.log(res.data);
       })
       .catch(err => console.error(err));
   };
@@ -34,11 +30,10 @@ function SearchList() {
   }, [componentRefresh]);
 
   if (!currentUser) {
-    return (null);
+    return null;
   }
 
   const inputHandler = e => {
-    // TODO Add feature to write 'lab:' and filter on only labs
     setInputText(e.target.value.toLowerCase());
   };
 
@@ -46,11 +41,14 @@ function SearchList() {
     if (inputText === '') {
       return r;
     }
-    return r.title.toLowerCase().includes(inputText);
+    return (
+      r.title.toLowerCase().includes(inputText) ||
+      RESOURCE_TYPES[r.resourceType].toLowerCase().includes(inputText)
+    );
   });
 
   if (!readyToRender) {
-    return (<h1>Loading...</h1>);
+    return <h1>Loading...</h1>;
   }
 
   return (
@@ -67,11 +65,12 @@ function SearchList() {
 
       <div className="card">
         <h1 className="card__header">Resources</h1>
-        {
-        React.Children.toArray(
+        {React.Children.toArray(
           filteredResources.map(r => (
             <div className="row">
-              <span className="row__prefix">{`${RESOURCE_TYPES[r.resourceType]}:\t\t `}</span>
+              <span className="row__prefix">{`${
+                RESOURCE_TYPES[r.resourceType]
+              }:\t\t `}</span>
               <span className="row__title">{`Day ${r.topicDay}: `}</span>
               <a
                 className="row__title"
@@ -82,9 +81,8 @@ function SearchList() {
                 {r.title}
               </a>
             </div>
-          )),
-        )
-      }
+          ))
+        )}
       </div>
     </div>
   );

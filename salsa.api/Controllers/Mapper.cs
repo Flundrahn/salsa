@@ -9,6 +9,7 @@ public class Mapper : Profile
         CreateMap<EditTopic, Topic>();
         CreateMap<EditResource, Resource>();
         CreateMap<CreateCourse, Course>();
+        CreateMap<UpdateCourse, Course>();
         CreateMap<CreateTopic, Topic>();
         CreateMap<CreateResource, Resource>();
         CreateMap<Resource, ResourceResponse>();

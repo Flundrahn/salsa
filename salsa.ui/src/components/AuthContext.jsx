@@ -1,6 +1,4 @@
-import React, {
-  createContext, useState, useEffect, useMemo,
-} from 'react';
+import React, { createContext, useState, useEffect, useMemo } from 'react';
 import { auth } from '../auth/initFirebase';
 
 const AuthContext = createContext({
@@ -26,14 +24,10 @@ function AuthProvider({ children }) {
       currentUser,
       initializing,
     }),
-    [currentUser, initializing],
+    [currentUser, initializing]
   );
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 export { AuthContext, AuthProvider };
