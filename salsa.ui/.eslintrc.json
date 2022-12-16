@@ -28,12 +28,13 @@
     "no-useless-concat": "error",
     "quotes": ["error", "single", { "avoidEscape": true }],
     "no-console": "off",
-    "react/prop-types": [0]
-    // "react/jsx-filename-extension": [
-    //   "error",
-    //   {
-    //     "extensions": [".jsx"]
-    //   }
-    // ]
+    "react/prop-types": [0],
+    "react/display-name": "off",
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [".jsx"]
+      }
+    ]
   }
 }
